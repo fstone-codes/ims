@@ -25,22 +25,23 @@
     // }
 }
 
-// .inv {
-// &__list {
-// }
+.inv {
+    // &__list {
+    // }
 
-// &__item {
-// }
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-auto-flow: column;
+    }
 
-// &__container {
-// }
+    // &__container {
+    // }
 
-// &__content-container {
-// }
+    // &__label {
+    // }
 
-// &__label {
-// }
-
-// &__text {
-// }
-// }
+    // &__text {
+    // }
+}
