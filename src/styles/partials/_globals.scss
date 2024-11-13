@@ -1,0 +1,9 @@
+@use "./typography";
+@use "./mixins" as *;
+@use "./variables" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
