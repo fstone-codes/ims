@@ -1,0 +1,24 @@
+.wh-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @include tablet {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        &--top-left {
+            grid-column: 1 / 3;
+        }
+    }
+
+    // &__label {
+    // }
+
+    // &__text {
+    // }
+}
