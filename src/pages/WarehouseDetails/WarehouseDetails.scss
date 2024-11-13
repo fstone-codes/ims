@@ -29,6 +29,11 @@
     // &__list {
     // }
 
+    // @include tablet {
+    //     display: flex;
+    //     flex-direction: row;
+    // }
+
     &__item {
         display: grid;
         grid-template-columns: 1fr 1fr;
