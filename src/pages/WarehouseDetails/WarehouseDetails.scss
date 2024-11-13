@@ -4,10 +4,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    @include tablet {
-        display: flex;
-        flex-direction: row;
-    }
+    // @include tablet {
+    //     display: flex;
+    //     flex-direction: row;
+    // }
 
     &__container {
         display: flex;
