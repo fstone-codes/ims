@@ -1,5 +1,6 @@
 
-function Edit() {
+
+function Inventory() {
 
     return (
         <div>
@@ -8,4 +9,4 @@ function Edit() {
     )
 }
 
-export default Edit
+export default Inventory
