@@ -1,10 +1,36 @@
 import "./Inventory.scss";
 import { Link } from "react-router-dom";
-import searchIcon from "../../assets/Icons/search-24px.svg";
+import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+import axios from "axios";
+import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
+import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
+import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 
-function Inventory() {
+// const BASE_URL = import.meta.env.VITE_API_URL;
 
+function Inventory() {
+    const [inventory, setInventory] = useState([]);
+    const [selectedInventory, setSelectedInventory] = useState(null);
+
+    const getInventory = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/inventories");
+            const inventoryData = response.data;
+            // console.log(inventoryData)
+            setInventory(inventoryData);
+        } catch (error) {
+            console.error("Error fetching inventory data: ", error);
+        }
+    }
+
+    useEffect(() => {
+        getInventory();
+    }, []);
+    
     return (
         <main className="main">
             <section className="inventory">
@@ -23,57 +49,51 @@ function Inventory() {
                         /> */}
                     {/* </div> */}
                     {/* add onclick handler */}
-                    <button className="button">+Add New item</button>
+                    <button className="add-button">+Add New item</button>
                 </article>
-                <ul className="inventory__table">
-                    <li className="inventory__row-entry">
-                        <article className="inventory__col-entry">
-                            <div className="col">
-                                <h4 className="col__header">INVENTORY ITEM</h4>
-                                <img className="col__header-img" src={sortIcon} alt="Sort icon" />
+                <ul className="inv__list">
+                    {inventory.map((inventoryItem) => (
+                        <li className="inv__item" key={inventoryItem.id}>
+                        <div className="inv__item-container">
+                            <article className="inv__container">
+                                <h2 className="inv__label">INVENTORY ITEM</h2>
+                                <p className="inv__text inv__text--blue">
+                                    {inventoryItem.item_name}
+                                    <span className="inv__inline-icon">
+                                        <img
+                                            className="inv__chevron-icon"
+                                            src={chevronIcon}
+                                            alt="chevron right icon"
+                                        />
+                                    </span>
+                                </p>
+                            </article>
+                            <div className="inv__container">
+                                <h2 className="inv__label">CATEGORY</h2>
+                                <p className="inv__text">{inventoryItem.category}</p>
                             </div>
-                            <Link>
-                                <p className="body-small"></p>
-                                <img 
-                                className="table-icon" 
-                                src="" 
-                                alt="Blue right chevron" />
-                            </Link>
-                        </article>
-                        <article className="inventory__col-entry">
-                            <div className="col">
-                                <h4 className="col__header"></h4>
-                                <img className="col__header-img" src="" alt="Sort icon" />
+                            <div className="inv__container">
+                                <h2 className="inv__label">STATUS</h2>
+                                <div className={`inv__status-wrapper ${inventoryItem.status === "In Stock" ? "in-stock" : "out-of-stock"}`}>
+                                    <p className="inv__text">{inventoryItem.status}</p>
+                                </div>
                             </div>
-                        </article>
-                        <article className="inventory__col-entry">
-                            <div className="col">
-                                <h4 className="col__header"></h4>
-                                <img className="col__header-img" src="" alt="Sort icon" />
+                            <div className="inv__container">
+                                <h2 className="inv__label">QTY</h2>
+                                <p className="inv__text">{inventoryItem.quantity}</p>
                             </div>
-                            
-                        </article>
-                        <article className="inventory__col-entry">
-                            <div className="col">
-                                <h4 className="col__header"></h4>
-                                <img className="col__header-img" src="" alt="Sort icon" />
+                            <div className="inv__container">
+                                <h2 className="inv__label">WAREHOUSE</h2>
+                                <p className="inv__text">{inventoryItem.warehouse_name}</p>
                             </div>
-                            
-                        </article>
-                        <article className="inventory__col-entry">
-                            <div className="col">
-                                <h4 className="col__header"></h4>
-                                <img className="col__header-img" src="" alt="Sort icon" />
                             </div>
-                            
-                        </article>
-                        <article className="inventory__col-entry inventory__col-entry--last">
-                            <h4 className="table-header"></h4>
-                            <div className="">
-
+                            <div className="inv__icon-container">
+                                <img className="inv__icon" src={deleteIcon} alt="delete icon" />
+                                <img className="inv__icon" src={editIcon} alt="edit icon" />
                             </div>
-                        </article>
-                    </li>
+                        </li>
+                    ))}
+                    
                 </ul>
             </section>
         </main>
