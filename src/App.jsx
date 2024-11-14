@@ -9,11 +9,13 @@ import Inventory from "./pages/Inventory/Inventory.jsx";
 import InventoryDetails from "./pages/InventoryDetails/InventoryDetails.jsx";
 import InventoryEdit from "./pages/InventoryEdit/InventoryEdit.jsx";
 import InventoryAdd from "./pages/InventoryAdd/InventoryAdd.jsx";
+import Header from "./components/Header.jsx/Header.jsx";
 
 function App() {
     return (
         <>
             <BrowserRouter>
+                <Header />
                 <Routes>
                     <Route path="/warehouse" element={<Warehouse />} />
                     <Route path="/warehouse/:warehouseId" element={<WarehouseDetails />} />
