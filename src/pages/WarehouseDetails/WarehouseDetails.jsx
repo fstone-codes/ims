@@ -2,13 +2,13 @@ import "./WarehouseDetails.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-// import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
-// import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
-// import editIcon from "../../assets/Icons/edit-24px.svg";
-// import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
+import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
+import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
 
 function WarehouseDetails() {
-    const [singleWarehouse, getSingleWarehouse] = useState(null);
+    const [singleWarehouse, setSingleWarehouse] = useState(null);
     const { warehouseId } = useParams();
 
     // const id = warehouseId ?? singleWarehouse.id;
@@ -17,7 +17,7 @@ function WarehouseDetails() {
         try {
             const { data } = await axios.get(`http://localhost:8080/api/warehouses/${warehouseId}`);
 
-            getSingleWarehouse(data);
+            setSingleWarehouse(data);
         } catch (error) {
             console.error("Error fetching single warehouse details");
         }
@@ -25,7 +25,7 @@ function WarehouseDetails() {
 
     useEffect(() => {
         getSingleWarehouseData();
-    }, []);
+    }, [warehouseId]);
 
     if (!singleWarehouse) {
         <div>Loading warehouse details...</div>;
@@ -34,9 +34,9 @@ function WarehouseDetails() {
     return (
         <>
             <section className="title">
-                {/* <img src={arrowBackIcon} alt="arrow back icon" /> */}
+                <img className="inv__icon" src={arrowBackIcon} alt="arrow back icon" />
                 <h1 className="title__header">{singleWarehouse.warehouse_name}</h1>
-                {/* <img src={editWhiteIcon} alt="edit icon" /> */}
+                <img className="inv__icon" src={editWhiteIcon} alt="edit icon" />
             </section>
             <section className="wh-details">
                 <div className="wh-details__container wh-details__container--top-left">
@@ -80,8 +80,10 @@ function WarehouseDetails() {
                             <h2 className="inv__label">QTY</h2>
                             <p className="inv__text">to be replaced</p>
                         </div>
-                        {/* <img src={deleteIcon} alt="delete icon" />
-                    <img src={editIcon} alt="edit icon" /> */}
+                        <div className="inv__container">
+                            <img className="inv__icon" src={deleteIcon} alt="delete icon" />
+                            <img className="inv__icon" src={editIcon} alt="edit icon" />
+                        </div>
                     </li>
                 </ul>
             </section>
