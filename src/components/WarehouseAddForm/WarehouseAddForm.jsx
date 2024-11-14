@@ -1,9 +1,11 @@
+import './WarehouseAddForm.scss'
 
 
 function WarehouseAddForm() {
+  
 
     return (
-        <div>
+        <div className="warehouseform-container">
             <form>
                 <div className="warehouseform">
                     <h2 className="warehouseform__title"> Warehouse Details </h2>
@@ -52,12 +54,12 @@ function WarehouseAddForm() {
                         placeholder="Position"
                         className= "whcontactform__input-position"
                     ></input>
-                    <label htmlFor="phoneNumber" class="whcontactform__label-phoneNumber">Phone Number</label>
+                    <label htmlFor="phoneNumber" class="whcontactform__label-phone">Phone Number</label>
                     <input
                         type="text"
                         name="phoneNumber"
                         placeholder="Phone Number"
-                        className= "whcontactform__input-phoneNumber"
+                        className= "whcontactform__input-phone"
                     ></input>
                     <label htmlFor="email" class="whcontactform__label-email">Email</label>
                     <input
@@ -67,9 +69,11 @@ function WarehouseAddForm() {
                         className= "whcontactform__input-email"
                     ></input>
                 </div>
-
-                <button type="button" class="warehouseform__button-cancel">Cancel</button>
-                <butto type="submit" class="warehouseform__button-add">+ Add Warehouse</butto>
+                <div>
+                    <button type="button" class="warehouseform__button-cancel">Cancel</button>
+                    <button type="submit" class="warehouseform__button-add">+ Add Warehouse</button>
+                </div>
+                
 
             </form>
         </div>
