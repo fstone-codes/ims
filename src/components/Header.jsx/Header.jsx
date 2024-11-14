@@ -13,14 +13,14 @@ export default function Header() {
                     alt="InStock logo" 
                     />
                 </NavLink>
-                <ul className="nav__list">
+                <div className="nav__button-wrapper">
                     <NavLink>
-                        <li className="nav__item">Warehouses</li>
+                        <button className="nav__button">Warehouses</button>
                     </NavLink>
                     <NavLink>
-                        <li className="nav__item">Inventory</li>
+                        <button className="nav__button">Inventory</button>
                     </NavLink>
-                </ul>
+                </div>
             </nav>
         </header>
     )
