@@ -10,18 +10,18 @@ function Inventory() {
             <section className="inventory">
                 <h1 className="inventory__title">Inventory</h1>
                 <article className="inventory__CTA-field-container">
-                    <div className="field-wrapper">
+                    {/* <div className="field-wrapper"> */}
                         <input 
                         className="input-field" 
                         type="text" 
                         placeholder="Search..." 
                         />
-                        <img 
+                        {/* <img 
                         className="field-icon" 
                         src={searchIcon}
                         alt="Search icon"
-                        />
-                    </div>
+                        /> */}
+                    {/* </div> */}
                     {/* add onclick handler */}
                     <button className="button">+Add New item</button>
                 </article>
