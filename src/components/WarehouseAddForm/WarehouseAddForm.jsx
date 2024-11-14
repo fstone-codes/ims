@@ -1,15 +1,19 @@
 import './WarehouseAddForm.scss'
-
+import backArrow from '../../assets/Icons/arrow_back-24px.svg'
 
 function WarehouseAddForm() {
   
 
     return (
         <div className="warehouseform-container">
+            <div className="warehouseform-container__top">
+                <img src={backArrow} alt="back arrow"></img>
+                <h1 className="warehouseform-container__title">Add New Warehouse</h1>
+            </div>
             <form>
                 <div className="warehouseform">
                     <h2 className="warehouseform__title"> Warehouse Details </h2>
-                    <label htmlFor="warehouseName" class="warehouseform__label-name">WareHouse Name</label>
+                    <label htmlFor="warehouseName" class="warehouseform__label-name">Warehouse Name</label>
                     <input
                         type="text"
                         name="warehouseName"
@@ -69,7 +73,7 @@ function WarehouseAddForm() {
                         className= "whcontactform__input-email"
                     ></input>
                 </div>
-                <div>
+                <div className="warehouseform__button">
                     <button type="button" class="warehouseform__button-cancel">Cancel</button>
                     <button type="submit" class="warehouseform__button-add">+ Add Warehouse</button>
                 </div>
