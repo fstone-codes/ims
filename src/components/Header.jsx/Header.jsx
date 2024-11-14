@@ -1,7 +1,7 @@
 import "./Header.scss";
-// import instockLogo from "../../assets/logo/InStock-Logo_2x.png"
+import instockLogo from "../../assets/logos/InStock-Logo_2x.png"
 
-function Header() {
+export default function Header() {
     return (
         <header className="header">
             <nav className="nav">
@@ -18,5 +18,3 @@ function Header() {
         </header>
     )
 };
-
-export default Header;
