@@ -1,4 +1,4 @@
-@use "./typography";
+@use "./typography" as *;
 @use "./mixins" as *;
 @use "./variables" as *;
 
@@ -6,4 +6,72 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+// Style body element in main.jsx 
+body {
+  font-family: "Titillium Web";
+  font-weight: 400;
+  color: $Instock-Black;
+  background: linear-gradient(
+  $Graphite 12.5rem,
+  $Light-Grey 12.5rem
+);
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  @include mobile__page-header;
+  @include tablet {
+    @include page-header;
+  } 
+}
+
+h2 {
+  @include mobile__sub-header;
+  @include tablet {
+    @include sub-header;
+  }
+}
+
+h3 {
+  @include mobile__buttons-labels;
+  @include tablet {
+    @include buttons-labels;
+  }
+}
+
+h4 {
+  @include mobile__table-header;
+  @include tablet {
+    @include table-header;
+  }
+}
+
+p.p-text--large {
+  @include mobile__body-large;
+  @include tablet {
+    @include body-large;
+  }
+}
+
+p.p-text--medium {
+  @include mobile__body-medium;
+  @include tablet {
+    @include body-medium;
+  }
+}
+
+p.p-text--small {
+  @include mobile__body-small;
+  @include tablet {
+    @include body-small;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }

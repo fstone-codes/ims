@@ -1,5 +1,5 @@
 import { useState } from 'react'
-// import './App.scss'
+import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Warehouse from './pages/Warehouse/Warehouse.jsx'
 import WarehouseEdit from './pages/WarehouseEdit/WarehouseEdit.jsx'
@@ -20,14 +20,14 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Routes path="/warehouse" element={<Warehouse/>}/>
-        <Routes path="/warehouse/:warehouseId" element={<WarehouseDetails/>}/>
-        <Routes path="/inventory" element={<Inventory/>}/>
-        <Routes path="/inventory/:inventoryId" element={<InventoryDetails/>}/>
-        <Routes path="/warehouse/:warehouseId/edit" element={<WarehouseEdit/>}/>
-        <Routes path="/warehouse/add" element={<WarehouseAdd/>}/>
-        <Routes path="/inventory/:inventoryId/edit" element={<InventoryEdit/>}/>
-        <Routes path="/inventory/add" element={<InventoryAdd/>}/>
+        <Route path="/warehouse" element={<Warehouse/>}/>
+        <Route path="/warehouse/:warehouseId" element={<WarehouseDetails/>}/>
+        <Route path="/inventory" element={<Inventory/>}/>
+        <Route path="/inventory/:inventoryId" element={<InventoryDetails/>}/>
+        <Route path="/warehouse/:warehouseId/edit" element={<WarehouseEdit/>}/>
+        <Route path="/warehouse/add" element={<WarehouseAdd/>}/>
+        <Route path="/inventory/:inventoryId/edit" element={<InventoryEdit/>}/>
+        <Route path="/inventory/add" element={<InventoryAdd/>}/>
       </Routes>
     </BrowserRouter>
   </>
