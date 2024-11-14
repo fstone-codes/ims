@@ -30,7 +30,7 @@ function WarehouseDetails() {
     }, [warehouseId]);
 
     if (!singleWarehouse) {
-        <div>Loading warehouse details...</div>;
+        return <div>Loading warehouse details...</div>;
     }
 
     return (
