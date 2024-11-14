@@ -45,7 +45,6 @@ function Inventory() {
                                 <h4 className="col__header"></h4>
                                 <img className="col__header-img" src="" alt="Sort icon" />
                             </div>
-                            
                         </article>
                         <article className="inventory__col-entry">
                             <div className="col">
