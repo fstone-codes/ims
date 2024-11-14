@@ -1,0 +1,50 @@
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+*{
+    margin: 0;
+}
+.main{
+    width: 100%;
+    padding: 0 1rem;
+    position: relative;
+}
+.warehouse-list{
+
+    position: absolute;
+    width: 90%;
+    padding: 0 1.5rem;
+    background-color: $White;
+
+    &__heading{
+        color: $Instock-Black;
+        @include mobile__page-header;
+        padding: 32px 24px 24px;
+    }
+
+    &__search-container{
+       // width: 295px;
+       // height: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__search{
+        border: none;
+        color: $Slate;
+        border: 1px solid $Cloud;
+        border-radius: 20px;
+        padding: 10px;
+    }
+    &__add-warehouse-button{
+        background-color: $Instock-Indigo;
+        color: $White;
+        border: none;
+        border-radius: 20px;
+        @include mobile__buttons-labels;
+        padding: 8px 84px;
+    }
+}
