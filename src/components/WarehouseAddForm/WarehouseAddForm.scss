@@ -15,5 +15,13 @@
         width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
+        border-color: $cloud;
+
+    }
+}
+
+.whcontactform {
+    &__label-name, &__label-street, &__label-city, &__label-country  {
+        @include mobile__buttons-labels;
     }
 }
