@@ -40,6 +40,10 @@
         border-right: .0625rem $Cloud solid;
         margin-top: 1rem;
     }
+    @include desktop {
+        padding-left: 3.9375rem;
+        padding-right: 3.9375rem;
+    }
     &__title {
         @include mobile__sub-header;
         padding-left: 0.5rem;
@@ -73,6 +77,10 @@
         width: 100%;
         margin-top: 1rem;
     }
+    @include desktop {
+        padding-left: 3.9375rem;
+        padding-right: 3.9375rem;
+    }
     &__title {
         @include mobile__sub-header;
         padding-left: 0.5rem;
@@ -94,6 +102,9 @@
         color: $Slate;
         background-color: $Light-Grey;
         font-weight: 400;
+        @include tablet {
+            width: auto;
+        }
     }
 }
 
@@ -120,6 +131,9 @@
             height: 2.375rem;
             width: auto;
         }
+        @include desktop {
+           margin-left: 3.9375rem;
+        }
     }
     &-add {
         height: 2.25rem;
@@ -133,6 +147,9 @@
         @include tablet {
             height: 2.375rem;
             width: auto;
+        }
+        @include desktop {
+            margin-right: 3.9375rem
         }
     }
 }
