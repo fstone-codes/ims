@@ -1,3 +1,19 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/globals' as *;
 
+.warehouseform {
+    &__title {
+        @include mobile__sub-header;
+    }
+    &__label-name, &__label-street, &__label-city, &__label-country  {
+        @include mobile__buttons-labels;
+    }
+    &__input-name, &__input-street, &__input-city, &__input-country {
+        @include moobile__buttons-labels;
+        border-radius: 1.25rem;
+        height: 2.25rem;
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
