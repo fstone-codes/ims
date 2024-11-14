@@ -1,6 +1,7 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
 
 *{
     padding: 0rem;
@@ -22,12 +23,23 @@
     }
     
 }
+.warehouseform-card {
+    @include tablet {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
 
 .warehouseform {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     row-gap: 0.25rem;
+    @include tablet {
+        width: 100%;
+        border-right: .0625rem $Cloud solid;
+        margin-top: 1rem;
+    }
     &__title {
         @include mobile__sub-header;
         padding-left: 0.5rem;
@@ -47,6 +59,7 @@
         color: $Slate;
         background-color: $Light-Grey;
         font-weight: 400;
+        margin-bottom: 1rem;
 
     }
 }
@@ -56,6 +69,14 @@
     flex-direction: column;
     padding: 1rem;
     row-gap: 0.25rem;
+    @include tablet {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    &__title {
+        @include mobile__sub-header;
+        padding-left: 0.5rem;
+    }
     &__label-contact, &__label-position, &__label-phone, &__label-email  {
         @include mobile__buttons-labels;
         padding-left: 0.5rem;
@@ -68,18 +89,24 @@
         width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
+        margin-bottom: 1rem;
         border-color: $Cloud;
         color: $Slate;
         background-color: $Light-Grey;
         font-weight: 400;
     }
 }
+
 .warehouseform__button {
     display: flex;
     justify-content: center;
     padding: 1rem;
     column-gap: 0.5rem;
     background-color: $Light-Grey;
+    @include tablet {
+        justify-content: flex-end;
+       
+    }
     &-cancel {
         height: 2.25rem;
         padding-left: 1rem;
@@ -89,6 +116,10 @@
         background-color: $White;
         color: $Slate;
         width: 100%;
+        @include tablet {
+            height: 2.375rem;
+            width: auto;
+        }
     }
     &-add {
         height: 2.25rem;
@@ -99,5 +130,9 @@
         color: $White;
         border-color: $Instock-Indigo;
         width: 100%;
+        @include tablet {
+            height: 2.375rem;
+            width: auto;
+        }
     }
 }
