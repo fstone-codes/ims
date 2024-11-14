@@ -10,25 +10,43 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: rgb(187, 187, 187);
-} 
-*/
+}
+ */
 
 .main {
-    width: calc(100vw - 2rem);
     border-radius: 3px;
+    width: calc(100vw - 2rem);
     background-color: $White;
+    box-shadow: 0px 2px 5px 0px #13182c1a;
+
+    @include tablet {
+        width: calc(100vw - 4rem);
+    }
 }
 
 .title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid $Cloud;
     padding: 2rem 1.5rem 1.5rem;
+
+    @include tablet {
+        padding: 2rem 2rem 1.5rem;
+    }
+
+    @include desktop {
+        padding: 2rem 2.5rem 1.5rem;
+    }
 
     &__container {
         display: flex;
         align-items: center;
         gap: 0.25rem;
+
+        @include tablet {
+            gap: 0.5rem;
+        }
     }
 
     &__back-icon {
@@ -39,22 +57,41 @@ body {
 
     &__header {
         @include mobile__page-header;
+
+        @include tablet {
+            @include page-header;
+        }
     }
 
     &__icon-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%;
-        width: 2.25rem;
+        border-radius: 1.25rem;
         height: 2.25rem;
+        aspect-ratio: 1 / 1;
         background-color: $Instock-Indigo;
         cursor: pointer;
+
+        @include tablet {
+            width: 5rem;
+        }
     }
 
     &__edit-icon {
         width: 1.25rem;
         height: 1.25rem;
+    }
+
+    &__edit-text {
+        display: none;
+        color: $White;
+        font-weight: 600;
+
+        @include tablet {
+            display: block;
+            margin-left: 4px;
+        }
     }
 }
 
@@ -67,30 +104,98 @@ body {
     @include tablet {
         display: flex;
         flex-direction: row;
+        padding: 1.5rem 2rem;
+    }
+
+    @include desktop {
+        display: flex;
+        flex-direction: row;
+        padding: 1.5rem 2.5rem;
     }
 
     &__container {
         display: flex;
         flex-direction: column;
 
+        @include tablet {
+            margin-left: 2.5rem;
+        }
+
         &--top-left {
             grid-column: 1 / 3;
+
+            @include tablet {
+                margin-left: 0;
+                border-right: 1px solid $Cloud;
+                width: 38%;
+            }
         }
     }
 
     &__label {
-        @include mobile__buttons-labels;
+        @include mobile__body-small;
         color: $Slate;
+        font-weight: 600;
+
+        @include tablet {
+            @include body-small;
+            font-weight: 600;
+        }
     }
 
-    // &__text {
-    // }
+    &__text {
+        @include tablet {
+            display: flex;
+            flex-direction: column;
+        }
+
+        // &--span {
+        // }
+    }
 }
 
 .inv {
     @include tablet {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+    }
+
+    &__td-container {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            padding: 0 2rem;
+            height: 2.5rem;
+            background-color: $Light-Grey;
+        }
+
+        @include desktop {
+            padding: 0 2.5rem;
+        }
+    }
+
+    &__td-content {
+        display: flex;
+        align-items: center;
+        flex: 1 1 21.25%;
+
+        &--right {
+            flex: 1 1 15%;
+            justify-content: flex-end;
+        }
+    }
+
+    &__td-label {
+        @include body-small;
+        color: $Slate;
+        font-weight: 600;
+    }
+
+    &__td-icon {
+        height: 1rem;
+        aspect-ratio: 1 / 1;
+        cursor: pointer;
     }
 
     &__list {
@@ -100,6 +205,17 @@ body {
     &__item {
         padding: 1rem 1.5rem 1.5rem;
         border-top: 1px solid $Cloud;
+
+        @include tablet {
+            display: flex;
+            padding: 1rem 2rem;
+            border-top: none;
+            border-bottom: 1px solid $Cloud;
+        }
+
+        @include desktop {
+            padding: 1rem 2.5rem;
+        }
     }
 
     &__item-container {
@@ -108,14 +224,28 @@ body {
         grid-template-rows: 1fr 1fr;
         grid-auto-flow: column;
         row-gap: 1rem;
+
+        @include tablet {
+            display: flex;
+            align-items: center;
+            width: 85%;
+        }
     }
 
-    // &__container {
-    // }
+    &__container {
+        @include tablet {
+            width: 25%;
+        }
+    }
 
     &__label {
-        @include mobile__buttons-labels;
+        @include mobile__body-small;
         color: $Slate;
+        font-weight: 600;
+
+        @include tablet {
+            display: none;
+        }
     }
 
     &__text {
@@ -125,6 +255,10 @@ body {
             font-weight: 600;
             cursor: pointer;
         }
+    }
+
+    &__inline-icon {
+        display: flex;
     }
 
     &__chevron-icon {
@@ -137,6 +271,13 @@ body {
         display: flex;
         justify-content: space-between;
         margin-top: 1rem;
+
+        @include tablet {
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 0;
+            width: 15%;
+        }
     }
 
     &__icon {

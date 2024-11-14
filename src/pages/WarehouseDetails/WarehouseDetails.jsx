@@ -7,6 +7,7 @@ import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
 import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
+import sortIcon from "../../assets/Icons/sort-24px.svg";
 
 function WarehouseDetails() {
     const [singleWarehouse, setSingleWarehouse] = useState(null);
@@ -41,6 +42,7 @@ function WarehouseDetails() {
                 </div>
                 <div className="title__icon-container">
                     <img className="title__edit-icon" src={editWhiteIcon} alt="edit icon" />
+                    <p className="title__edit-text">Edit</p>
                 </div>
             </section>
             <section className="wh-details">
@@ -67,6 +69,27 @@ function WarehouseDetails() {
                 </div>
             </section>
             <section className="inv">
+                <div className="inv__td-container">
+                    <div className="inv__td-content">
+                        <p className="inv__td-label">INVENTORY ITEM</p>
+                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                    </div>
+                    <div className="inv__td-content">
+                        <p className="inv__td-label">CATEGORY</p>
+                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                    </div>
+                    <div className="inv__td-content">
+                        <p className="inv__td-label">STATUS</p>
+                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                    </div>
+                    <div className="inv__td-content">
+                        <p className="inv__td-label">QUANTITY</p>
+                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                    </div>
+                    <div className="inv__td-content inv__td-content--right">
+                        <p className="inv__td-label">ACTIONS</p>
+                    </div>
+                </div>
                 <ul className="inv__list">
                     <li className="inv__item">
                         <div className="inv__item-container">
@@ -74,7 +97,7 @@ function WarehouseDetails() {
                                 <h2 className="inv__label">INVENTORY ITEM</h2>
                                 <p className="inv__text inv__text--blue">
                                     to be replaced
-                                    <span>
+                                    <span className="inv__inline-icon">
                                         <img
                                             className="inv__chevron-icon"
                                             src={chevronIcon}
