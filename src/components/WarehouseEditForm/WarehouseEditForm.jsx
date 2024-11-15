@@ -1,29 +1,23 @@
-import backArrow from '../../assets/Icons/arrow_back-24px.svg';
+import backArrow from '../../assets/Icons/arrow_back-24px.svg'
+import './WarehouseEditForm.scss'
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function WarehouseEditForm() {
-    const { warehouseId } = useParams(); 
-    const [formData, setFormData] = useState({
-        warehouse_name: '',
-        address: '',
-        city: '',
-        country: '',
-        contact_name: '',
-        contact_position: '',
-        contact_phone: '',
-        contact_email: ''
-    });
-
+    
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/warehouse');
+    } 
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
                 <Link to="/warehouse" className="warehouse-container_arrow">
                     <img src={backArrow} alt="back arrow" className="warehouse-container_arrow"></img>
                 </Link>
-                <h1 className="warehouseform-container__title">Add New Warehouse</h1>
+                <h1 className="warehouseform-container__title">Edit Warehouse</h1>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="warehouseform-card">
                     <div className="warehouseform">
                         <h2 className="warehouseform__title"> Warehouse Details </h2>
@@ -33,8 +27,8 @@ function WarehouseEditForm() {
                             name="warehouse_name"
                             placeholder="Warehouse Name"
                             className= "warehouseform__input-name"
-                            value={formData.warehouse_name}
-                            onChange={handleInputChange}
+                            // value={formData.warehouse_name}
+                            // onChange={handleInputChange}
                         ></input>
                         <label htmlFor="address" className="warehouseform__label-street">Street Address</label>
                         <input
@@ -42,8 +36,8 @@ function WarehouseEditForm() {
                             name="address"
                             placeholder="Street Address"
                             className= "warehouseform__input-street"
-                            value={formData.address}
-                            onChange={handleInputChange}
+                            // value={formData.address}
+                            // onChange={handleInputChange}
                         ></input>
                         <label htmlFor="city" className="warehouseform__label-city">City</label>
                         <input
@@ -51,8 +45,8 @@ function WarehouseEditForm() {
                             name="city"
                             placeholder="City"
                             className= "warehouseform__input-city"
-                            value={formData.city}
-                            onChange={handleInputChange}
+                            // value={formData.city}
+                            // onChange={handleInputChange}
                         ></input>
                         <label htmlFor="country" className="warehouseform__label-country">Country</label>
                         <input
@@ -60,8 +54,8 @@ function WarehouseEditForm() {
                             name="country"
                             placeholder="Country"
                             className= "warehouseform__input-country"
-                            value={formData.country}
-                            onChange={handleInputChange}
+                            // value={formData.country}
+                            // onChange={handleInputChange}
                         ></input>
                     </div>              
                     <div className="whcontactform">
@@ -72,8 +66,8 @@ function WarehouseEditForm() {
                             name="contact_name"
                             placeholder="Contact Name"
                             className= "whcontactform__input-contact"
-                            value={formData.contact_name}
-                            onChange={handleInputChange}
+                            // value={formData.contact_name}
+                            // onChange={handleInputChange}
                         ></input>
                         <label htmlFor="contact_position" className="whcontactform__label-position">Position</label>
                         <input
@@ -81,8 +75,8 @@ function WarehouseEditForm() {
                             name="contact_position"
                             placeholder="Position"
                             className= "whcontactform__input-position"
-                            value={formData.contact_position}
-                            onChange={handleInputChange}
+                            // value={formData.contact_position}
+                            // onChange={handleInputChange}
                         ></input>
                         <label htmlFor="contact_phone" className="whcontactform__label-phone">Phone Number</label>
                         <input
@@ -90,8 +84,8 @@ function WarehouseEditForm() {
                             name="contact_phone"
                             placeholder="Phone Number"
                             className= "whcontactform__input-phone"
-                            value={formData.contact_phone}
-                            onChange={handleInputChange}
+                            // value={formData.contact_phone}
+                            // onChange={handleInputChange}
                         ></input>
                         <label htmlFor="contact_email" className="whcontactform__label-email">Email</label>
                         <input
@@ -99,8 +93,8 @@ function WarehouseEditForm() {
                             name="contact_email"
                             placeholder="Email"
                             className= "whcontactform__input-email"
-                            value={formData.contact_email}
-                            onChange={handleInputChange}
+                            // value={formData.contact_email}
+                            // onChange={handleInputChange}
                         ></input>
                     </div>
                 </div>              
