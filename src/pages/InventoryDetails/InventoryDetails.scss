@@ -106,14 +106,16 @@
     }
 
     &__container {
-        @include tablet {
-            // margin-left: 2.5rem;
-        }
-
         &--top-left {
             display: flex;
             flex-direction: column;
             gap: 1rem;
+
+            @include tablet {
+                border-right: 1px solid $Cloud;
+                padding-right: 1.5rem;
+                flex: 0 0 50%;
+            }
         }
 
         &--bottom-right {
@@ -121,6 +123,11 @@
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
             row-gap: 1rem;
+
+            @include tablet {
+                margin-left: 2.5rem;
+                width: 100%;
+            }
         }
     }
 
