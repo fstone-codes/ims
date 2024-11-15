@@ -5,10 +5,79 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function WarehouseEditForm() {
     
+    const { warehouseId } = useParams(); 
+    const [formData, setFormData] = useState({
+        warehouse_name: '',
+        address: '',
+        city: '',
+        country: '',
+        contact_name: '',
+        contact_position: '',
+        contact_phone: '',
+        contact_email: ''
+    });
+    const [error, setError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
+
+    useEffect(() => {
+        const fetchWarehouseData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/warehouses/${warehouseId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setFormData(data); // Populate the form with the fetched data
+                } else {
+                    console.error("Error fetching warehouse data");
+                    setError("Error fetching warehouse data");
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                setError("An error occurred while fetching the warehouse data.");
+            }
+        };
+        fetchWarehouseData();
+    }, [warehouseId]);
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("Submitting form data:", formData);
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/warehouses/${warehouseId}`, {
+                method: 'PUT', // Use PUT to update the existing entry
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setSuccessMessage(result.message || 'Warehouse updated successfully!');
+                setError(null);
+                console.log("Success:", result);
+            } else {
+                setError(result.message || 'Failed to update warehouse.');
+                setSuccessMessage(null);
+                console.error("Error from server:", result);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            setError('An error occurred while updating the warehouse.');
+            setSuccessMessage(null);
+        }
+    };
+
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/warehouse');
     } 
+
+
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
@@ -17,7 +86,7 @@ function WarehouseEditForm() {
                 </Link>
                 <h1 className="warehouseform-container__title">Edit Warehouse</h1>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="warehouseform-card">
                     <div className="warehouseform">
                         <h2 className="warehouseform__title"> Warehouse Details </h2>
@@ -27,8 +96,8 @@ function WarehouseEditForm() {
                             name="warehouse_name"
                             placeholder="Warehouse Name"
                             className= "warehouseform__input-name"
-                            // value={formData.warehouse_name}
-                            // onChange={handleInputChange}
+                            value={formData.warehouse_name}
+                            onChange={handleInputChange}
                         ></input>
                         <label htmlFor="address" className="warehouseform__label-street">Street Address</label>
                         <input
