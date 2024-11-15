@@ -185,25 +185,112 @@
     &__item {
         display: flex;
         flex-direction: column;
+        gap: 1rem;
         width: 100%;
-        
         @include tablet {
             flex-direction: row;
         }
     }
+    &__link--blue {
+        color: $Instock-Indigo;
+        text-decoration: none;
+        display: flex;
+        @include mobile__buttons-labels;
+        @include tablet {
+            @include buttons-labels;
+        }
+    }
     &__table-components {
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
+        width: 100%;
+        height: 40vw;
     }
     &__content {
         width: 50%;
+        // height: 30%;
         &:nth-child(1) {
             display: flex;
+            flex-direction: column;
+        }
+        &--transparent {
+            height: 30%;
+        }
+    }
+    &__label {
+        color: $Slate;
+        padding-bottom: .25rem;
+        @include mobile__table-header;
+        @include tablet {
+            @include table-header;
+        }
+    }
+    &__status-wrapper {
+        width: 3.8125rem;
+        height: 1.5rem;
+        padding: 4px 8px 4px 8px;
+        gap: 0px;
+        border-radius: 1.25rem;
+        margin-bottom: 1rem;
+        opacity: 30%;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        &--green {
+            color: $Green;
+            background-color: $Green;
+        }
+        &--red {
+            color: $Red;
+            background-color: $Red;
+        }
+    }
+    &__text {
+        padding-bottom: 1rem;
+        
+        &--h4 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            opacity: 100%;
         }
     }
     &__icon-container {
         display: flex;
         justify-content: space-between;
+    }
+    &__inline-icon {
+        display: flex;
+    }
+
+    &__chevron-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        cursor: pointer;
+    }
+
+    &__icon-container {
+        display: flex;
+        justify-content: space-between;
+
+        @include tablet {
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 0;
+            width: 15%;
+        }
+    }
+    &__icon {
+        cursor: pointer;
     }
 }
 

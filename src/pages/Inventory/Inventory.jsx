@@ -52,7 +52,7 @@ function Inventory() {
               <div className="inventory__table-components">
                 <article className="inventory__content">
                   <h4 className="inventory__label">INVENTORY ITEM</h4>
-                  <Link to="/inventory/:inventoryId">
+                  <Link className="inventory__link inventory__link--blue" to="/inventory/:inventoryId">
                     <p className="inventory__text inventory__text--blue">
                       {inventoryItem.item_name}
                     </p>
@@ -65,47 +65,49 @@ function Inventory() {
                 </article>
                 <article className="inventory__content">
                   <h4 className="inventory__label">CATEGORY</h4>
-                  <p className="inventory__text">{inventoryItem.category}</p>
+                  <p className="inventory__text inventory__text--medium">{inventoryItem.category}</p>
+                </article>
+                <article className="inventory__content inventory__content--transparent">
                 </article>
                 <article className="inventory__content">
                   <h4 className="inventory__label">STATUS</h4>
                   <div
                     className={`inventory__status-wrapper ${
                       inventoryItem.status === "In Stock"
-                        ? "in-stock"
-                        : "out-of-stock"
+                        ? "inventory__status-wrapper--green"
+                        : "inventory__status-wrapper--red"
                     }`}
                   >
-                    <p className="inventory__text">{inventoryItem.status}</p>
+                    <p className="inventory__text inventory__text--h4">{inventoryItem.status}</p>
                   </div>
                 </article>
                 <article className="inventory__content">
                   <h4 className="inventory__label">QTY</h4>
-                  <p className="inventory__text">{inventoryItem.quantity}</p>
+                  <p className="inventory__text inventory__text--medium">{inventoryItem.quantity}</p>
                 </article>
                 <article className="inventory__content">
                   <h4 className="inventory__label">WAREHOUSE</h4>
-                  <p className="inventory__text">
+                  <p className="inventory__text inventory__text--medium">
                     {inventoryItem.warehouse_name}
                   </p>
                 </article>
               </div>
               <article className="inventory__icon-container">
                 {/* Need delete modal */}
-                {/* <Link to="" */}
+                {/* <Link to=""> */}
                     <img
                     className="inventory__icon"
                     src={deleteIcon}
                     alt="delete icon"
                     />
                 {/* </Link> */}
-                {/* <Link to=""> */}
+                <Link to="/inventory/:inventoryId/edit">
                     <img
                     className="inventory__icon"
                     src={editIcon}
                     alt="edit icon"
                     />
-                {/* </Link> */}
+                </Link>
               </article>
             </li>
           ))}
