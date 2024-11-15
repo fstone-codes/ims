@@ -1,7 +1,7 @@
 import './WarehouseAddForm.scss'
 import backArrow from '../../assets/Icons/arrow_back-24px.svg'
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 function WarehouseAddForm() {
   
@@ -63,11 +63,15 @@ function WarehouseAddForm() {
         }
     };
 
+    const handleClick = () => {
+        navigate('/warehouse');
+    }
+
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
-                <Link to="/warehouse">
-                    <img src={backArrow} alt="back arrow"></img>
+                <Link to="/warehouse" className="warehouse-container_arrow">
+                    <img src={backArrow} alt="back arrow" className="warehouse-container_arrow"></img>
                 </Link>
                 <h1 className="warehouseform-container__title">Add New Warehouse</h1>
             </div>
@@ -153,9 +157,7 @@ function WarehouseAddForm() {
                     </div>
                 </div>              
                 <div className="warehouseform__button">
-                    <Link to="/warehouse">
-                        <button type="button" className="warehouseform__button-cancel">Cancel</button>
-                    </Link>
+                    <button type="button" onclick={handleClick} className="warehouseform__button-cancel">Cancel</button>
                     <button type="submit" className="warehouseform__button-add">+ Add Warehouse</button>
                 </div>
                 
