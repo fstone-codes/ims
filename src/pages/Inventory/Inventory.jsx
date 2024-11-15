@@ -35,7 +35,7 @@ function Inventory() {
   }, []);
 
   return (
-    <main className="main">
+    <main className="inventory-wrapper">
       <section className="inventory">
         <div className="inventory__header">
           <h1 className="inventory__title">Inventory</h1>
