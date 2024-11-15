@@ -1,16 +1,15 @@
 import "./WarehouseDetails.scss";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
-import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
-import editIcon from "../../assets/Icons/edit-24px.svg";
 import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
-import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 
 function WarehouseDetails() {
     const [singleWarehouse, setSingleWarehouse] = useState(null);
+    const [warehouseInventory, setWarehouseInventory] = useState(null);
     const { warehouseId } = useParams();
 
     async function getSingleWarehouseData() {
@@ -23,25 +22,48 @@ function WarehouseDetails() {
         }
     }
 
+    async function getWarehouseInventoryData() {
+        try {
+            const { data } = await axios.get(
+                `http://localhost:8080/api/warehouses/${warehouseId}/inventories`
+            );
+
+            setWarehouseInventory(data);
+        } catch (error) {
+            console.error("Error fetching warehouse inventory details");
+        }
+    }
+
     useEffect(() => {
         getSingleWarehouseData();
+        getWarehouseInventoryData();
     }, [warehouseId]);
 
     if (!singleWarehouse) {
         return <div>Loading warehouse details...</div>;
     }
 
+    if (!warehouseInventory) {
+        return <div>Loading warehouse inventory details...</div>;
+    }
+
     return (
         <main className="main">
             <section className="title">
                 <div className="title__container">
-                    <img className="title__back-icon" src={arrowBackIcon} alt="arrow back icon" />
+                    <Link className="title__link" to={"/warehouse"}>
+                        <img
+                            className="title__back-icon"
+                            src={arrowBackIcon}
+                            alt="arrow back icon"
+                        />
+                    </Link>
                     <h1 className="title__header">{singleWarehouse.warehouse_name}</h1>
                 </div>
-                <div className="title__icon-container">
+                <Link className="title__icon-container" to={`/warehouse/${warehouseId}/edit`}>
                     <img className="title__edit-icon" src={editWhiteIcon} alt="edit icon" />
                     <p className="title__edit-text">Edit</p>
-                </div>
+                </Link>
             </section>
             <section className="wh-details">
                 <div className="wh-details__container wh-details__container--top-left">
@@ -89,39 +111,15 @@ function WarehouseDetails() {
                     </div>
                 </div>
                 <ul className="inv__list">
-                    <li className="inv__item">
-                        <div className="inv__item-container">
-                            <div className="inv__container">
-                                <h2 className="inv__label">INVENTORY ITEM</h2>
-                                <p className="inv__text inv__text--blue">
-                                    to be replaced
-                                    <span className="inv__inline-icon">
-                                        <img
-                                            className="inv__chevron-icon"
-                                            src={chevronIcon}
-                                            alt="chevron right icon"
-                                        />
-                                    </span>
-                                </p>
-                            </div>
-                            <div className="inv__container">
-                                <h2 className="inv__label">CATEGORY</h2>
-                                <p className="inv__text">to be replaced</p>
-                            </div>
-                            <div className="inv__container">
-                                <h2 className="inv__label">STATUS</h2>
-                                <p className="inv__text">to be replaced</p>
-                            </div>
-                            <div className="inv__container">
-                                <h2 className="inv__label">QTY</h2>
-                                <p className="inv__text">to be replaced</p>
-                            </div>
-                        </div>
-                        <div className="inv__icon-container">
-                            <img className="inv__icon" src={deleteIcon} alt="delete icon" />
-                            <img className="inv__icon" src={editIcon} alt="edit icon" />
-                        </div>
-                    </li>
+                    {warehouseInventory.map((item) => (
+                        <InventoryItem
+                            key={item.id}
+                            name={item.item_name}
+                            category={item.category}
+                            status={item.status}
+                            quantity={item.quantity}
+                        />
+                    ))}
                 </ul>
             </section>
         </main>
