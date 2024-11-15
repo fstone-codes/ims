@@ -35,27 +35,25 @@ function WarehouseAddForm() {
             });
 
             const result = await response.json();
-            if (!response.ok) {
-                const errorData = await response.json();
-                setError(errorData.message || 'Failed to add warehouse.');
-                setSuccessMessage(null);
-                console.error("Error from server:", errorData);
-            } else {
-                const result = await response.json();
-                setSuccessMessage(result.message || 'Warehouse added successfully!');
-                setError(null);
 
-                setFormData({
-                    warehouse_name: '',
-                    address: '',
-                    city: '',
-                    country: '',
-                    contact_name: '',
-                    contact_position: '',
-                    contact_phone: '',
-                    contact_email: ''
-                });
-                console.log("Success:", result);
+            if (response.ok) {
+            setSuccessMessage(result.message || 'Warehouse added successfully!');
+            setError(null);
+            setFormData({
+                warehouse_name: '',
+                address: '',
+                city: '',
+                country: '',
+                contact_name: '',
+                contact_position: '',
+                contact_phone: '',
+                contact_email: ''
+            });
+            console.log("Success:", result);
+            } else {
+                setError(result.message || 'Failed to add warehouse.');
+                setSuccessMessage(null);
+                console.error("Error from server:", result);
             }
         } catch (error) {
             console.error("Fetch error:", error);
