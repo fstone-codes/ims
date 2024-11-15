@@ -63,6 +63,7 @@ function WarehouseAddForm() {
         }
     };
 
+    const navigate = useNavigate();
     const handleClick = () => {
         navigate('/warehouse');
     }
