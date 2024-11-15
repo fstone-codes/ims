@@ -5,14 +5,14 @@ import {useState} from 'react'
 function WarehouseAddForm() {
   
     const [formData, setFormData] = useState({
-        warehouseName: '',
-        streetAddress: '',
+        warehouse_name: '',
+        address: '',
         city: '',
         country: '',
-        contactName: '',
-        position: '',
-        phoneNumber: '',
-        email: ''
+        contact_name: '',
+        contact_position: '',
+        contact_phone: '',
+        contact_email: ''
     });
 
     const [error, setError] = useState(null);
@@ -38,14 +38,14 @@ function WarehouseAddForm() {
                 setSuccessMessage('Warehouse added successfully!');
                 setError(null);
                 setFormData({
-                    warehouseName: '',
-                    streetAddress: '',
+                    warehouse_name: '',
+                    address: '',
                     city: '',
                     country: '',
-                    contactName: '',
-                    position: '',
-                    phoneNumber: '',
-                    email: ''
+                    contact_name: '',
+                    contact_position: '',
+                    contact_phone: '',
+                    contact_email: ''
                 });
             } else {
                 setError(result.message || 'Failed to add warehouse.');
@@ -73,7 +73,7 @@ function WarehouseAddForm() {
                             name="warehouseName"
                             placeholder="Warehouse Name"
                             className= "warehouseform__input-name"
-                            value={formData.warehouseName}
+                            value={formData.warehouse_name}
                             onChange={handleInputChange}
                         ></input>
                         <label htmlFor="streetAddress" className="warehouseform__label-street">Street Address</label>
@@ -82,7 +82,7 @@ function WarehouseAddForm() {
                             name="streetAddress"
                             placeholder="Street Address"
                             className= "warehouseform__input-street"
-                            value={formData.streetAddress}
+                            value={formData.address}
                             onChange={handleInputChange}
                         ></input>
                         <label htmlFor="city" className="warehouseform__label-city">City</label>
@@ -112,7 +112,7 @@ function WarehouseAddForm() {
                             name="contactName"
                             placeholder="Contact Name"
                             className= "whcontactform__input-contact"
-                            value={formData.contactName}
+                            value={formData.contact_name}
                             onChange={handleInputChange}
                         ></input>
                         <label htmlFor="position" className="whcontactform__label-position">Position</label>
@@ -121,7 +121,7 @@ function WarehouseAddForm() {
                             name="position"
                             placeholder="Position"
                             className= "whcontactform__input-position"
-                            value={formData.position}
+                            value={formData.contact_position}
                             onChange={handleInputChange}
                         ></input>
                         <label htmlFor="phoneNumber" className="whcontactform__label-phone">Phone Number</label>
@@ -130,7 +130,7 @@ function WarehouseAddForm() {
                             name="phoneNumber"
                             placeholder="Phone Number"
                             className= "whcontactform__input-phone"
-                            value={formData.phoneNumber}
+                            value={formData.contact_phone}
                             onChange={handleInputChange}
                         ></input>
                         <label htmlFor="email" className="whcontactform__label-email">Email</label>
@@ -139,7 +139,7 @@ function WarehouseAddForm() {
                             name="email"
                             placeholder="Email"
                             className= "whcontactform__input-email"
-                            value={formData.email}
+                            value={formData.contact_email}
                             onChange={handleInputChange}
                         ></input>
                     </div>
