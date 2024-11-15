@@ -157,7 +157,7 @@ function WarehouseAddForm() {
                     </div>
                 </div>              
                 <div className="warehouseform__button">
-                    <button type="button" onclick={handleClick} className="warehouseform__button-cancel">Cancel</button>
+                    <button type="button" onCick={handleClick} className="warehouseform__button-cancel">Cancel</button>
                     <button type="submit" className="warehouseform__button-add">+ Add Warehouse</button>
                 </div>
                 
