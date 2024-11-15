@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import axios from "axios";
-import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
+// import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
-import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
 import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 
@@ -40,7 +39,6 @@ function Inventory() {
       <section className="inventory">
         <h1 className="inventory__title">Inventory</h1>
         <article className="inventory__CTA-field-container">
-          {/* <div className="field-wrapper"> */}
           <input className="input-field" type="text" placeholder="Search..." />
           <button className="add-button" onClick={addHandleClick}>
             +Add New item
@@ -92,22 +90,25 @@ function Inventory() {
                   </p>
                 </article>
               </div>
-              <article className="inventory__icon-container">
-                {/* Need delete modal */}
-                {/* <Link to=""> */}
+              <article className="inventory__inventory__content">
+                <h4 className="inventory__label">ACTIONS</h4>
+                <div className="inventory__icon-wrapper">
+                  {/* Need delete modal */}
+                  {/* <Link to=""> */}
                     <img
-                    className="inventory__icon"
-                    src={deleteIcon}
-                    alt="delete icon"
-                    />
-                {/* </Link> */}
-                <Link to="/inventory/:inventoryId/edit">
-                    <img
-                    className="inventory__icon"
-                    src={editIcon}
-                    alt="edit icon"
-                    />
-                </Link>
+                      className="inventory__icon"
+                      src={deleteIcon}
+                      alt="delete icon"
+                      />
+                  {/* </Link> */}
+                  <Link to="/inventory/:inventoryId/edit">
+                      <img
+                      className="inventory__icon"
+                      src={editIcon}
+                      alt="edit icon"
+                      />
+                  </Link>
+                </div>
               </article>
             </li>
           ))}

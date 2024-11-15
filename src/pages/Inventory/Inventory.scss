@@ -6,104 +6,7 @@
     width: 100%;
     padding: 0 1rem;
     position: relative;
-    // .inventory {
-        // @include tablet {
-        //     display: flex;
-        //     flex-direction: column;
-        // }
-        // &__td-container {
-        //     display: none;
-    
-        //     @include tablet {
-        //         display: flex;
-        //         padding: 0 2rem;
-        //         height: 2.5rem;
-        //         background-color: $Light-Grey;
-        //     }
-    
-        //     @include desktop {
-        //         padding: 0 2.5rem;
-        //     }
-        // }
-    
-        // &__td-content {
-        //     display: flex;
-        //     align-items: center;
-        //     flex: 1 1 21.25%;
-    
-        //     &--right {
-        //         flex: 1 1 15%;
-        //         justify-content: flex-end;
-        //     }
-        // }
-    
-        // &__td-label {
-        //     @include body-small;
-        //     color: $Slate;
-        //     font-weight: 600;
-        // }
-    
-        // &__td-icon {
-        //     height: 1rem;
-        //     // aspect-ratio: 1 / 1;
-        //     cursor: pointer;
-        // }
-//         &__list {
-//             list-style-type: none;
-//         }
-    
-//         &__item {
-//             padding: 1rem 1.5rem 1.5rem;
-//             border-top: 1px solid $Cloud;
-//             list-style-type: none;
-    
-//             @include tablet {
-//                 display: flex;
-//                 padding: 1rem 2rem;
-//                 border-top: none;
-//                 border-bottom: 1px solid $Cloud;
-//             }
-    
-//             @include desktop {
-//                 padding: 1rem 2.5rem;
-//             }
-//         }
-
-//         &__item-container {
-//             display: flex;
-//             flex-wrap: wrap;
-
-//             @include tablet {
-//                 align-items: center;
-//                 width: 85%;
-//             }
-//         }
-    
-//         &__container {
-//             @include tablet {
-//                 width: 25%;
-//             }
-//         }
-    
-//         &__label {
-//             @include mobile__body-small;
-//             color: $Slate;
-//             font-weight: 600;
-    
-//             @include tablet {
-//                 display: none;
-//             }
-//         }
-//         // &__status-wrapper {
-            
-//         // }
-//         &__text {
-//             &--blue {
-//                 display: flex;
-//                 color: $Instock-Indigo;
-//                 font-weight: 600;
-//                 cursor: pointer;
-//             }
+   
 //         }
     
 //         &__inline-icon {
@@ -116,23 +19,6 @@
 //             cursor: pointer;
 //         }
     
-//         &__icon-container {
-//             display: flex;
-//             justify-content: space-between;
-//             margin-top: 1rem;
-    
-//             @include tablet {
-//                 justify-content: flex-end;
-//                 gap: 1rem;
-//                 margin-top: 0;
-//                 width: 15%;
-//             }
-//         }
-    
-//         &__icon {
-//             cursor: pointer;
-//         }
-//     }
 }
 
 .inventory {
@@ -283,9 +169,10 @@
             opacity: 100%;
         }
     }
-    &__icon-container {
+    &__icon-wrapper {
         display: flex;
         justify-content: space-between;
+        width: 100%;
     }
     &__inline-icon {
         display: flex;
@@ -300,9 +187,8 @@
     &__icon-container {
         display: flex;
         justify-content: space-between;
-
         @include tablet {
-            justify-content: flex-end;
+            justify-content: unset;
             gap: 1rem;
             margin-top: 0;
             width: 15%;
