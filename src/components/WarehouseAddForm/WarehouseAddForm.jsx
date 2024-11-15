@@ -67,19 +67,19 @@ function WarehouseAddForm() {
                 <div className="warehouseform-card">
                     <div className="warehouseform">
                         <h2 className="warehouseform__title"> Warehouse Details </h2>
-                        <label htmlFor="warehouseName" className="warehouseform__label-name">Warehouse Name</label>
+                        <label htmlFor="warehouse_name" className="warehouseform__label-name">Warehouse Name</label>
                         <input
                             type="text"
-                            name="warehouseName"
+                            name="warehouse_name"
                             placeholder="Warehouse Name"
                             className= "warehouseform__input-name"
                             value={formData.warehouse_name}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="streetAddress" className="warehouseform__label-street">Street Address</label>
+                        <label htmlFor="address" className="warehouseform__label-street">Street Address</label>
                         <input
                             type="text"
-                            name="streetAddress"
+                            name="address"
                             placeholder="Street Address"
                             className= "warehouseform__input-street"
                             value={formData.address}
@@ -106,37 +106,37 @@ function WarehouseAddForm() {
                     </div>              
                     <div className="whcontactform">
                         <h2 className="whcontactform__title">Contact Details</h2>
-                        <label htmlFor="contactName" className="whcontactform__label-contact">Contact Name</label>
+                        <label htmlFor="contact_name" className="whcontactform__label-contact">Contact Name</label>
                         <input
                             type="text"
-                            name="contactName"
+                            name="contact_name"
                             placeholder="Contact Name"
                             className= "whcontactform__input-contact"
                             value={formData.contact_name}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="position" className="whcontactform__label-position">Position</label>
+                        <label htmlFor="contact_position" className="whcontactform__label-position">Position</label>
                         <input
                             type="text"
-                            name="position"
+                            name="contact_position"
                             placeholder="Position"
                             className= "whcontactform__input-position"
                             value={formData.contact_position}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="phoneNumber" className="whcontactform__label-phone">Phone Number</label>
+                        <label htmlFor="contact_phone" className="whcontactform__label-phone">Phone Number</label>
                         <input
                             type="text"
-                            name="phoneNumber"
+                            name="contact_phone"
                             placeholder="Phone Number"
                             className= "whcontactform__input-phone"
                             value={formData.contact_phone}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="email" className="whcontactform__label-email">Email</label>
+                        <label htmlFor="contact_email" className="whcontactform__label-email">Email</label>
                         <input
                             type="text"
-                            name="email"
+                            name="contact_email"
                             placeholder="Email"
                             className= "whcontactform__input-email"
                             value={formData.contact_email}
