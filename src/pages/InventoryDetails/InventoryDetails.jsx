@@ -1,33 +1,33 @@
 import "./InventoryDetails.scss";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
 import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
 
 function InventoryDetails() {
-    const [singleItem, setSingleItem] = useState(null);
-    const { inventoryId } = useParams();
+    // const [singleItem, setSingleItem] = useState(null);
+    // const { inventoryId } = useParams();
 
-    async function getSingleItemData() {
-        try {
-            const { data } = await axios.get(
-                `http://localhost:8080/api/inventories/${inventoryId}`
-            );
+    // async function getSingleItemData() {
+    //     try {
+    //         const { data } = await axios.get(
+    //             `http://localhost:8080/api/inventories/${inventoryId}`
+    //         );
 
-            setSingleItem(data);
-        } catch (error) {
-            console.error("Error fetching single inventory item details: ", error);
-        }
-    }
+    //         setSingleItem(data);
+    //     } catch (error) {
+    //         console.error("Error fetching single inventory item details: ", error);
+    //     }
+    // }
 
-    useEffect(() => {
-        getSingleItemData();
-    }, [inventoryId]);
+    // useEffect(() => {
+    //     getSingleItemData();
+    // }, [inventoryId]);
 
-    if (!singleItem) {
-        return <div>Loading inventory details...</div>;
-    }
+    // if (!singleItem) {
+    //     return <div>Loading inventory details...</div>;
+    // }
 
     return (
         <main className="main">
@@ -41,8 +41,10 @@ function InventoryDetails() {
                         />
                     </Link>
                     {/* <h1 className="title__header">{singleItem.item_name}</h1> */}
+                    <h1 className="title__header">to be replaced</h1>
                 </div>
-                <Link className="title__icon-container" to={`/inventory/${inventoryId}/edit`}>
+                {/* <Link className="title__icon-container" to={`/inventory/${inventoryId}/edit`}> */}
+                <Link className="title__icon-container" to={`#`}>
                     <img className="title__edit-icon" src={editWhiteIcon} alt="edit icon" />
                     <p className="title__edit-text">Edit</p>
                 </Link>
@@ -83,6 +85,32 @@ function InventoryDetails() {
                 </div>
                 </div>
             </section> */}
+            <section className="inv-details">
+                <div className="inv-details__container inv-details__container--top-left">
+                    <div className="inv-details__content-container">
+                        <h2 className="inv-details__label">ITEM DESCRIPTION:</h2>
+                        <p className="inv-details__text">description text</p>
+                    </div>
+                    <div className="inv-details__content-container">
+                        <h2 className="inv-details__label">CATEGORY:</h2>
+                        <p className="inv-details__text">to be replaced</p>
+                    </div>
+                </div>
+                <div className="inv-details__container inv-details__container--bottom-right">
+                    <div className="inv-details__content-container">
+                        <h2 className="inv-details__label">STATUS:</h2>
+                        <p className={`inv-details__status`}>to be replaced</p>
+                    </div>
+                    <div className="inv-details__content-container">
+                        <h2 className="inv-details__label">QUANTITY:</h2>
+                        <p className="inv-details__text">to be replaced</p>
+                    </div>
+                    <div className="inv-details__content-container">
+                        <h2 className="inv-details__label">WAREHOUSE:</h2>
+                        <p className="inv-details__text">to be replaced</p>
+                    </div>
+                </div>
+            </section>
         </main>
     );
 }

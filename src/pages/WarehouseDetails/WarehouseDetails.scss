@@ -109,8 +109,6 @@ body {
     }
 
     @include desktop {
-        display: flex;
-        flex-direction: row;
         padding: 1.5rem 2.5rem;
     }
 
