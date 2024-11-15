@@ -38,6 +38,7 @@ body {
     font-weight: 400;
     color: $Instock-Black;
     background: linear-gradient($Graphite 12.5rem, $Light-Grey 12.5rem);
+    background-repeat: no-repeat;
     min-height: 100vh;
     margin: 0;
     @include mobile__body-medium;
