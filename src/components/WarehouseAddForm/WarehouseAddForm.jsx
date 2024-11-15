@@ -65,7 +65,9 @@ function WarehouseAddForm() {
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
-                <img src={backArrow} alt="back arrow"></img>
+                <Link to="/warehouse">
+                    <img src={backArrow} alt="back arrow"></img>
+                </Link>
                 <h1 className="warehouseform-container__title">Add New Warehouse</h1>
             </div>
             <form onSubmit={handleSubmit}>
@@ -150,7 +152,9 @@ function WarehouseAddForm() {
                     </div>
                 </div>              
                 <div className="warehouseform__button">
-                    <button type="button" className="warehouseform__button-cancel">Cancel</button>
+                    <Link to="/warehouse">
+                        <button type="button" className="warehouseform__button-cancel">Cancel</button>
+                    </Link>
                     <button type="submit" className="warehouseform__button-add">+ Add Warehouse</button>
                 </div>
                 
