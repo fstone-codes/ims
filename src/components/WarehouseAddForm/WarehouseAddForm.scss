@@ -127,6 +127,10 @@
         background-color: $White;
         color: $Slate;
         width: 100%;
+        &:hover {
+            border-color: $Instock-Indigo;
+            color: $Instock-Indigo;
+        }
         @include tablet {
             height: 2.375rem;
             width: auto;
@@ -144,6 +148,10 @@
         color: $White;
         border-color: $Instock-Indigo;
         width: 100%;
+        &:hover {
+            background-color: $Graphite;
+            border-color: $Graphite;
+        }
         @include tablet {
             height: 2.375rem;
             width: auto;
