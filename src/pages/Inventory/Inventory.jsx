@@ -37,13 +37,15 @@ function Inventory() {
   return (
     <main className="main">
       <section className="inventory">
-        <h1 className="inventory__title">Inventory</h1>
-        <article className="inventory__CTA-field-container">
-          <input className="input-field" type="text" placeholder="Search..." />
-          <button className="add-button" onClick={addHandleClick}>
-            +Add New item
-          </button>
-        </article>
+        <div className="inventory__header">
+          <h1 className="inventory__title">Inventory</h1>
+          <article className="inventory__CTA-field-container">
+            <input className="input-field" type="text" placeholder="Search..." />
+            <button className="add-button" onClick={addHandleClick}>
+              +Add New Item
+            </button>
+          </article>
+        </div>
         <ul className="inventory__list">
           {inventory.map((inventoryItem) => (
             <li className="inventory__item" key={inventoryItem.id}>
@@ -65,8 +67,6 @@ function Inventory() {
                   <h4 className="inventory__label">CATEGORY</h4>
                   <p className="inventory__text inventory__text--medium">{inventoryItem.category}</p>
                 </article>
-                <article className="inventory__content inventory__content--transparent">
-                </article>
                 <article className="inventory__content">
                   <h4 className="inventory__label">STATUS</h4>
                   <div
@@ -82,6 +82,8 @@ function Inventory() {
                 <article className="inventory__content">
                   <h4 className="inventory__label">QTY</h4>
                   <p className="inventory__text inventory__text--medium">{inventoryItem.quantity}</p>
+                </article>
+                <article className="inventory__content inventory__content--transparent">
                 </article>
                 <article className="inventory__content">
                   <h4 className="inventory__label">WAREHOUSE</h4>
