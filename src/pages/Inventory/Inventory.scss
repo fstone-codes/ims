@@ -190,6 +190,13 @@
         @include tablet {
             flex-direction: row;
         }
+        &:first-child {
+            .inventory__label {
+                @include tablet {
+                    display: unset;
+                }
+            }
+        }
     }
     &__link--blue {
         color: $Instock-Indigo;
@@ -206,16 +213,27 @@
         flex-wrap: wrap;
         width: 100%;
         height: 40vw;
+        @include tablet {
+            flex-direction: row;
+            height: unset;
+            // width: 100%;
+        }
     }
     &__content {
         width: 50%;
         // height: 30%;
+        @include tablet {
+            width: 20%;
+        }
         &:nth-child(1) {
             display: flex;
             flex-direction: column;
         }
         &--transparent {
             height: 30%;
+            @include tablet {
+                display: none;
+            }
         }
     }
     &__label {
@@ -223,6 +241,7 @@
         padding-bottom: .25rem;
         @include mobile__table-header;
         @include tablet {
+            display: none;
             @include table-header;
         }
     }
@@ -290,6 +309,8 @@
         }
     }
     &__icon {
+        width: 1.5rem;
+        height: 1.5rem;
         cursor: pointer;
     }
 }
