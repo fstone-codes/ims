@@ -1,0 +1,215 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    border-bottom: 1px solid $Cloud;
+    padding: 2rem 1.5rem 1.5rem;
+
+    @include tablet {
+        padding: 2rem 2rem 1.5rem;
+        gap: 0.5rem;
+    }
+
+    @include desktop {
+        padding: 2rem 2.5rem 1.5rem;
+    }
+
+    &__link {
+        display: flex;
+
+        @include tablet {
+            align-items: center;
+        }
+    }
+
+    &__icon {
+        margin-top: 6px;
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+
+        @include tablet {
+            margin-top: none;
+        }
+    }
+
+    &__header {
+        @include mobile__page-header;
+
+        @include tablet {
+            @include page-header;
+        }
+    }
+}
+
+.inventoryform {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    row-gap: 0.25rem;
+    @include tablet {
+        padding: 0 2rem 0.5rem;
+    }
+    @include desktop {
+        padding: 0 2.5rem 0.5rem;
+    }
+
+    &--border {
+        border-bottom: 1px solid $Cloud;
+
+        @include tablet {
+            border-right: 1px solid $Cloud;
+            border-bottom: none;
+        }
+    }
+
+    @include tablet {
+        width: 100%;
+        border-right: 0.0625rem $Cloud solid;
+        margin-top: 1rem;
+    }
+    @include desktop {
+        padding-left: 3.9375rem;
+        padding-right: 3.9375rem;
+    }
+    &__title {
+        @include mobile__sub-header;
+        padding-left: 0.5rem;
+        padding-bottom: 24px;
+    }
+    &__label {
+        @include mobile__buttons-labels;
+        padding-left: 0.5rem;
+        padding-bottom: 4px;
+    }
+    &__input-name,
+    &__input-description,
+    &__input-category,
+    &__input-quantity,
+    &__input-warehouse {
+        @include mobile__buttons-labels;
+        border-radius: 1.25rem;
+        height: 2.25rem;
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-color: $Cloud;
+        color: $Slate;
+        background-color: $White;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        font-family: "Titillium Web", sans-serif;
+    }
+
+    &__input-quantity {
+        @include desktop {
+            width: 122px;
+        }
+    }
+
+    &__input-description {
+        width: 100%;
+        height: 120px;
+        font-family: "Titillium Web", sans-serif;
+        color: $Slate;
+        @include mobile__buttons-labels;
+        font-weight: 400;
+        padding: 8px 1rem;
+    }
+
+    &__buttons {
+        background: #f7f8f9;
+        display: flex;
+        padding: 1rem 24px;
+        justify-content: space-between;
+        gap: 1rem;
+
+        @include tablet {
+            grid-column: 1 / 3;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+    }
+
+    &__button-cancel,
+    &__button-add {
+        display: flex;
+        padding: 8px 39px;
+        column-gap: 0.5rem;
+        background-color: $Light-Grey;
+        flex-grow: 1;
+        @include tablet {
+            flex: 0 0 auto;
+        }
+    }
+    &__button-cancel {
+        height: 2.25rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-radius: 1.25rem;
+        border-color: $Cloud;
+        background-color: $White;
+        color: $Slate;
+        &:hover {
+            border-color: $Instock-Indigo;
+            color: $Instock-Indigo;
+        }
+        @include tablet {
+            height: 2.375rem;
+            width: auto;
+        }
+        @include desktop {
+            margin-left: 3.9375rem;
+        }
+    }
+    &__button-add {
+        height: 2.25rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-radius: 1.25rem;
+        background-color: $Instock-Indigo;
+        color: $White;
+        border-color: $Instock-Indigo;
+        &:hover {
+            background-color: $Graphite;
+            border-color: $Graphite;
+        }
+        @include tablet {
+            height: 2.375rem;
+            width: auto;
+        }
+        @include desktop {
+            margin-right: 3.9375rem;
+        }
+    }
+}
+
+input,
+textarea,
+select {
+    box-shadow: none;
+    outline: none;
+    border: 1px solid;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: $Instock-Indigo;
+}
+
+.inventoryform-card {
+    @include tablet {
+        //  display: flex;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+    }
+}
