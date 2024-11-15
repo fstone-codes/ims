@@ -25,7 +25,7 @@ function WarehouseEditForm() {
                 const response = await fetch(`http://localhost:8080/api/warehouses/${warehouseId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    setFormData(data); // Populate the form with the fetched data
+                    setFormData(data); 
                 } else {
                     console.error("Error fetching warehouse data");
                     setError("Error fetching warehouse data");
