@@ -2,137 +2,12 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 
-.main__inventory {
+.inventory-wrapper {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    padding: 0 1rem;
-    position: relative;
-    // .inventory {
-        // @include tablet {
-        //     display: flex;
-        //     flex-direction: column;
-        // }
-        // &__td-container {
-        //     display: none;
-    
-        //     @include tablet {
-        //         display: flex;
-        //         padding: 0 2rem;
-        //         height: 2.5rem;
-        //         background-color: $Light-Grey;
-        //     }
-    
-        //     @include desktop {
-        //         padding: 0 2.5rem;
-        //     }
-        // }
-    
-        // &__td-content {
-        //     display: flex;
-        //     align-items: center;
-        //     flex: 1 1 21.25%;
-    
-        //     &--right {
-        //         flex: 1 1 15%;
-        //         justify-content: flex-end;
-        //     }
-        // }
-    
-        // &__td-label {
-        //     @include body-small;
-        //     color: $Slate;
-        //     font-weight: 600;
-        // }
-    
-        // &__td-icon {
-        //     height: 1rem;
-        //     // aspect-ratio: 1 / 1;
-        //     cursor: pointer;
-        // }
-//         &__list {
-//             list-style-type: none;
-//         }
-    
-//         &__item {
-//             padding: 1rem 1.5rem 1.5rem;
-//             border-top: 1px solid $Cloud;
-//             list-style-type: none;
-    
-//             @include tablet {
-//                 display: flex;
-//                 padding: 1rem 2rem;
-//                 border-top: none;
-//                 border-bottom: 1px solid $Cloud;
-//             }
-    
-//             @include desktop {
-//                 padding: 1rem 2.5rem;
-//             }
-//         }
-
-//         &__item-container {
-//             display: flex;
-//             flex-wrap: wrap;
-
-//             @include tablet {
-//                 align-items: center;
-//                 width: 85%;
-//             }
-//         }
-    
-//         &__container {
-//             @include tablet {
-//                 width: 25%;
-//             }
-//         }
-    
-//         &__label {
-//             @include mobile__body-small;
-//             color: $Slate;
-//             font-weight: 600;
-    
-//             @include tablet {
-//                 display: none;
-//             }
-//         }
-//         // &__status-wrapper {
-            
-//         // }
-//         &__text {
-//             &--blue {
-//                 display: flex;
-//                 color: $Instock-Indigo;
-//                 font-weight: 600;
-//                 cursor: pointer;
-//             }
-//         }
-    
-//         &__inline-icon {
-//             display: flex;
-//         }
-    
-//         &__chevron-icon {
-//             width: 1.25rem;
-//             height: 1.25rem;
-//             cursor: pointer;
-//         }
-    
-//         &__icon-container {
-//             display: flex;
-//             justify-content: space-between;
-//             margin-top: 1rem;
-    
-//             @include tablet {
-//                 justify-content: flex-end;
-//                 gap: 1rem;
-//                 margin-top: 0;
-//                 width: 15%;
-//             }
-//         }
-    
-//         &__icon {
-//             cursor: pointer;
-//         }
-//     }
+    // padding: 0 1rem;
+    position: relative;   
 }
 
 .inventory {
@@ -141,18 +16,31 @@
     background-color: $White;
     width: 90%;
     position: absolute;
-    padding: 0 1.5rem;
+    &__header {
+        display: flex;
+        flex-direction: column;
+        padding: 0 1rem;
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
     &__title {
         padding-top: 2rem;
         @include mobile__page-header;
         @include tablet {
+            padding-bottom: 1.5rem;
             @include page-header;
         }
     }
     &__CTA-field-container {
         display: flex;
         flex-direction: column;
-        // padding: 1rem;
+        justify-content: center;
+        @include tablet {
+            flex-direction: row;
+            align-items: center;
+        }
         .input-field {
             background-image: url("../../assets/Icons/search-24px.svg");
             background-repeat: no-repeat;
@@ -163,6 +51,9 @@
             width: 100%;
             height: 2.25rem;
             margin: 1rem 0;
+            @include tablet {
+                width: unset;
+            }
             &::placeholder {
                 padding: .5rem 1rem;
             }
@@ -176,34 +67,161 @@
         border: none;
         margin-bottom: 1.5rem;
         padding: .5rem 0;
+        @include tablet {
+            width: 8rem;
+            height: 2.375rem;
+            margin-bottom: 0;
+            margin: 0 1rem;
+        }
     }
     &__list {
         display: flex;
         flex-direction: column;
         list-style-type: none;
+        padding: 0 1rem;
     }
     &__item {
         display: flex;
         flex-direction: column;
+        gap: 1rem;
         width: 100%;
-        
+        border-top: 1px solid $Cloud;
         @include tablet {
             flex-direction: row;
+            gap: 0;
+        }
+        &:first-child {
+            .inventory__tb-header-wrapper {
+                display: flex;
+                @include tablet {
+                    background-color: $Light-Grey;
+                }
+            }
+            .inventory__label {
+                @include tablet {
+                    display: unset;
+                }
+            }
+            .inventory__sort-icon {
+                @include tablet {
+                    width: 1rem;
+                    height: 1rem;
+                    display: unset;
+                }
+            }
+        }
+    }
+    &__link--blue {
+        color: $Instock-Indigo;
+        text-decoration: none;
+        display: flex;
+        @include mobile__buttons-labels;
+        @include tablet {
+            @include buttons-labels;
         }
     }
     &__table-components {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-    }
-    &__content {
-        width: 50%;
-        &:nth-child(1) {
-            display: flex;
+        width: 100%;
+        height: 40vw;
+        @include tablet {
+            flex-direction: row;
+            height: unset;
+            // width: 100%;
         }
     }
-    &__icon-container {
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 50%;
+        // height: 30%;
+        @include tablet {
+            width: 20%;
+        }
+        &:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+        }
+        &--transparent {
+            @include tablet {
+                display: none;
+            }
+        }
+    }
+    &__label {
+        color: $Slate;
+        padding-bottom: .25rem;
+        @include mobile__table-header;
+        @include tablet {
+            display: none;
+            @include table-header;
+        }
+    }
+    &__sort-icon {
+        display: none;
+    }
+    &__status-wrapper {
+        width: 3.8125rem;
+        height: 1.5rem;
+        padding: 4px 8px 4px 8px;
+        gap: 0px;
+        border-radius: 1.25rem;
+        margin-bottom: 1rem;
+        opacity: 30%;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        &--green {
+            color: $Green;
+            background-color: $Green;
+        }
+        &--red {
+            color: $Red;
+            background-color: $Red;
+        }
+    }
+    &__text {
+        padding-bottom: 1rem;
+        
+        &--h4 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            opacity: 100%;
+        }
+    }
+    &__icon-wrapper {
         display: flex;
         justify-content: space-between;
+        width: 100%;
+        @include tablet {
+            justify-content: flex-end;
+        }
+    }
+    &__inline-icon {
+        display: flex;
+    }
+
+    &__chevron-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        cursor: pointer;
+    }
+    &__icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
     }
 }
 
