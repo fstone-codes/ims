@@ -1,7 +1,6 @@
 import "./Inventory.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
 import axios from "axios";
 import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
@@ -14,7 +13,6 @@ import sortIcon from "../../assets/Icons/sort-24px.svg";
 
 function Inventory() {
   const [inventory, setInventory] = useState([]);
-  const [selectedInventory, setSelectedInventory] = useState(null);
   const navigate = useNavigate();
 
   // handleClick for Add button
