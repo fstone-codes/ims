@@ -13,15 +13,13 @@ function WarehouseDetails() {
     const [singleWarehouse, setSingleWarehouse] = useState(null);
     const { warehouseId } = useParams();
 
-    // const id = warehouseId ?? singleWarehouse.id;
-
     async function getSingleWarehouseData() {
         try {
             const { data } = await axios.get(`http://localhost:8080/api/warehouses/${warehouseId}`);
 
             setSingleWarehouse(data);
         } catch (error) {
-            console.error("Error fetching single warehouse details");
+            console.error("Error fetching single warehouse details: ", error);
         }
     }
 
