@@ -67,7 +67,7 @@ function WarehouseAddForm() {
                 <div className="warehouseform-card">
                     <div className="warehouseform">
                         <h2 className="warehouseform__title"> Warehouse Details </h2>
-                        <label htmlFor="warehouseName" class="warehouseform__label-name">Warehouse Name</label>
+                        <label htmlFor="warehouseName" className="warehouseform__label-name">Warehouse Name</label>
                         <input
                             type="text"
                             name="warehouseName"
@@ -76,7 +76,7 @@ function WarehouseAddForm() {
                             value={formData.warehouseName}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="streetAddress" class="warehouseform__label-street">Street Address</label>
+                        <label htmlFor="streetAddress" className="warehouseform__label-street">Street Address</label>
                         <input
                             type="text"
                             name="streetAddress"
@@ -85,7 +85,7 @@ function WarehouseAddForm() {
                             value={formData.streetAddress}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="city" class="warehouseform__label-city">City</label>
+                        <label htmlFor="city" className="warehouseform__label-city">City</label>
                         <input
                             type="text"
                             name="city"
@@ -94,7 +94,7 @@ function WarehouseAddForm() {
                             value={formData.city}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="country" class="warehouseform__label-country">Country</label>
+                        <label htmlFor="country" className="warehouseform__label-country">Country</label>
                         <input
                             type="text"
                             name="country"
@@ -106,7 +106,7 @@ function WarehouseAddForm() {
                     </div>              
                     <div className="whcontactform">
                         <h2 className="whcontactform__title">Contact Details</h2>
-                        <label htmlFor="contactName" class="whcontactform__label-contact">Contact Name</label>
+                        <label htmlFor="contactName" className="whcontactform__label-contact">Contact Name</label>
                         <input
                             type="text"
                             name="contactName"
@@ -115,7 +115,7 @@ function WarehouseAddForm() {
                             value={formData.contactName}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="position" class="whcontactform__label-position">Position</label>
+                        <label htmlFor="position" className="whcontactform__label-position">Position</label>
                         <input
                             type="text"
                             name="position"
@@ -124,7 +124,7 @@ function WarehouseAddForm() {
                             value={formData.position}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="phoneNumber" class="whcontactform__label-phone">Phone Number</label>
+                        <label htmlFor="phoneNumber" className="whcontactform__label-phone">Phone Number</label>
                         <input
                             type="text"
                             name="phoneNumber"
@@ -133,7 +133,7 @@ function WarehouseAddForm() {
                             value={formData.phoneNumber}
                             onChange={handleInputChange}
                         ></input>
-                        <label htmlFor="email" class="whcontactform__label-email">Email</label>
+                        <label htmlFor="email" className="whcontactform__label-email">Email</label>
                         <input
                             type="text"
                             name="email"
@@ -145,8 +145,8 @@ function WarehouseAddForm() {
                     </div>
                 </div>              
                 <div className="warehouseform__button">
-                    <button type="button" class="warehouseform__button-cancel">Cancel</button>
-                    <button type="submit" class="warehouseform__button-add">+ Add Warehouse</button>
+                    <button type="button" className="warehouseform__button-cancel">Cancel</button>
+                    <button type="submit" className="warehouseform__button-add">+ Add Warehouse</button>
                 </div>
                 
 
