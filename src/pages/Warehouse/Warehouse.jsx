@@ -11,10 +11,11 @@ import { useState, useEffect } from "react";
 // const warehouses = [
 //   {
 //     id: 1,
-//     name: "Manhattan",
+//     warehouse_name: "Manhattan",
 //     address: "503 Broadway, New York, USA",
-//     contactName: "Parmin Aujla",
-//     contactInfo: "+1 (629)-555-0129",
+//     contact_name: "Parmin Aujla",
+//     contact_phone: "+1 (629)-555-0129",
+//     contact_email: email@email.com,
 //   },
 //   {
 //     id: 2,
@@ -65,11 +66,53 @@ function Warehouse() {
         <section className="warehouse-list__items">
           {warehouses.map((warehouse) => (
             <li key={warehouse.id} className="warehouse-list__item">
-              <Link
-                to={`/warehouse/${warehouse.id}`}
-                className="warehouse-list__link"
-              >
-                <div className="warehouse-list__row">
+              
+                <div className="warehouse-list__table-components">
+                  <div className="warehouse-list__content">
+                    <p className="warehouse-list__label">WAREHOUSE</p>
+                    <Link
+                      to={`/warehouse/${warehouse.id}`}
+                      className="warehouse-list__link">                
+                    <p className="warehouse-list__text">
+                      {warehouse.warehouse_name}
+                    </p>
+                    </Link>
+                    
+                  </div>
+                  <div className="warehouse-list__content">
+                    <p className="warehouse-list__label">CONTACT NAME</p>
+                    <p className="warehouse-list__text">
+                      {warehouse.contact_name}
+                    </p>
+                  </div>
+                  <div className="warehouse-list__content">
+                    <p className="warehouse-list__label">ADDRESS </p>
+                    <p className="warehouse-list__text">{warehouse.address}</p>
+                  </div>
+                  <div className="warehouse-list__content">
+                    <p className="warehouse-list__label">CONTACT INFORMATION</p>
+                    <p className="warehouse-list__text">
+                      {warehouse.contact_phone}
+                    </p>
+                    <p className="warehouse-list__text">
+                      {warehouse.contact_email}
+                    </p>
+                  </div>
+                </div>
+                <div className="warehouse-list__icon-container">
+                  <img
+                    className="warehouse-list__icon"
+                    src={warehouse__deleteIcon}
+                    alt="delete icon"
+                  />
+                  <img
+                    className="warehouse__icon"
+                    src={warehouse__editIcon}
+                    alt="edit icon"
+                  />
+                </div>
+
+                {/* <div className="warehouse-list__row">
                   <div className="warehouse-list__content">
                     <p className="warehouse-list__label">WAREHOUSE</p>
                     <p className="warehouse-list__text">
@@ -94,6 +137,9 @@ function Warehouse() {
                     <p className="warehouse-list__text">
                       {warehouse.contact_phone}
                     </p>
+                    <p className="warehouse-list__text">
+                      {warehouse.contact_email}
+                    </p>
                   </div>
                 </div>
                 <div className="warehouse-list__row">
@@ -109,11 +155,8 @@ function Warehouse() {
                       alt="edit icon"
                     />
                   </div>
-                </div>
-                {/* <h2>{warehouse.name}</h2>
-                        <p>Address {warehouse.address}</p>
-                        <p>Contact Name {warehouse.contactName}</p> */}
-              </Link>
+                </div> */}
+              
             </li>
           ))}
         </section>

@@ -5,7 +5,7 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 a,
@@ -28,26 +28,27 @@ section,
 span,
 textarea,
 ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 // Style body element in main.jsx
 body {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 400;
-    color: $Instock-Black;
-    background: linear-gradient($Graphite 12.5rem, $Light-Grey 12.5rem);
-    min-height: 100vh;
-    margin: 0;
-    @include mobile__body-medium;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  color: $Instock-Black;
+  background: linear-gradient($Graphite 12.5rem, $Light-Grey 12.5rem);
+  min-height: 100vh;
+  margin: 0;
+  background-repeat: no-repeat;
+  @include mobile__body-medium;
 
-    @include tablet {
-        background: linear-gradient($Graphite 11.625rem, $Light-Grey 11.625rem);
-        @include body-medium;
-    }
+  @include tablet {
+    background: linear-gradient($Graphite 11.625rem, $Light-Grey 11.625rem);
+    @include body-medium;
+  }
 }
 
 #root {
-    width: 100vw;
+  width: 100vw;
 }
