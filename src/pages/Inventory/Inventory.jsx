@@ -1,5 +1,5 @@
 import "./Inventory.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -15,6 +15,10 @@ import sortIcon from "../../assets/Icons/sort-24px.svg";
 function Inventory() {
     const [inventory, setInventory] = useState([]);
     const [selectedInventory, setSelectedInventory] = useState(null);
+    const navigate = useNavigate();
+
+    // handleClick for Add button
+    const addHandleClick = () => (navigate("/warehouse/add"));
 
     const getInventory = async () => {
         try {
@@ -42,55 +46,47 @@ function Inventory() {
                         type="text" 
                         placeholder="Search..." 
                         />
-                        {/* <img 
-                        className="field-icon" 
-                        src={searchIcon}
-                        alt="Search icon"
-                        /> */}
-                    {/* </div> */}
-                    {/* add onclick handler */}
-                    <button className="add-button">+Add New item</button>
+                    <button className="add-button" onClick={addHandleClick}>+Add New item</button>
                 </article>
-                <ul className="inv__list">
+                <ul className="inventory__list">
                     {inventory.map((inventoryItem) => (
-                        <li className="inv__item" key={inventoryItem.id}>
-                        <div className="inv__item-container">
-                            <article className="inv__container">
-                                <h2 className="inv__label">INVENTORY ITEM</h2>
-                                <p className="inv__text inv__text--blue">
-                                    {inventoryItem.item_name}
-                                    <span className="inv__inline-icon">
+                        <li className="inventory__item" key={inventoryItem.id}>
+                            <div className="inventory__table-components">
+                                <article className="inventory__content">
+                                    <h4 className="inventory__label">INVENTORY ITEM</h4>
+                                    <Link to="/inventory/:inventoryId">
+                                        <p className="inventory__text inventory__text--blue">{inventoryItem.item_name}</p>
                                         <img
-                                            className="inv__chevron-icon"
-                                            src={chevronIcon}
-                                            alt="chevron right icon"
+                                        className="inventory__chevron-icon"
+                                        src={chevronIcon}
+                                        alt="chevron right icon"
                                         />
-                                    </span>
-                                </p>
+                                    </Link>
+                                </article>
+                                <article className="inventory__content">
+                                    <h4 className="inventory__label">CATEGORY</h4>
+                                    <p className="inventory__text">{inventoryItem.category}</p>
+                                </article>
+                                <article className="inventory__content">
+                                    <h4 className="inventory__label">STATUS</h4>
+                                    <div className={`inventory__status-wrapper ${inventoryItem.status === "In Stock" ? "in-stock" : "out-of-stock"}`}>
+                                        <p className="inventory__text">{inventoryItem.status}</p>
+                                    </div>
+                                </article>
+                                <article className="inventory__content">
+                                    <h4 className="inventory__label">QTY</h4>
+                                    <p className="inventory__text">{inventoryItem.quantity}</p>
+                                </article>
+                                <article className="inventory__content">
+                                    <h4 className="inventory__label">WAREHOUSE</h4>
+                                    <p className="inventory__text">{inventoryItem.warehouse_name}</p>
+                                </article>
+                            </div>
+                            <article className="inventory__icon-container">
+                                <img className="inventory__icon" src={deleteIcon} alt="delete icon" />
+                                <img className="inventory__icon" src={editIcon} alt="edit icon" />
                             </article>
-                            <div className="inv__container">
-                                <h2 className="inv__label">CATEGORY</h2>
-                                <p className="inv__text">{inventoryItem.category}</p>
-                            </div>
-                            <div className="inv__container">
-                                <h2 className="inv__label">STATUS</h2>
-                                <div className={`inv__status-wrapper ${inventoryItem.status === "In Stock" ? "in-stock" : "out-of-stock"}`}>
-                                    <p className="inv__text">{inventoryItem.status}</p>
-                                </div>
-                            </div>
-                            <div className="inv__container">
-                                <h2 className="inv__label">QTY</h2>
-                                <p className="inv__text">{inventoryItem.quantity}</p>
-                            </div>
-                            <div className="inv__container">
-                                <h2 className="inv__label">WAREHOUSE</h2>
-                                <p className="inv__text">{inventoryItem.warehouse_name}</p>
-                            </div>
-                            </div>
-                            <div className="inv__icon-container">
-                                <img className="inv__icon" src={deleteIcon} alt="delete icon" />
-                                <img className="inv__icon" src={editIcon} alt="edit icon" />
-                            </div>
+                        
                         </li>
                     ))}
                     
