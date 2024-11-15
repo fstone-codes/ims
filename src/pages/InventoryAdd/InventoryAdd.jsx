@@ -23,19 +23,23 @@ const InventoryAdd = () => {
 
     const [inventories, setInventories] = useState([]);
     const [warehouses, setWarehouses] = useState([]);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
-    /*     async function postInventoryData() {
+    const postInventoryData = async (id, updatedData) => {
         try {
             const { data } = await axios.post(
-                "http://localhost:8080/api/inventories",
-                InventoryData
+                `http://localhost:8080/api/inventories/${id}`,
+                updatedData
             );
 
-            setInventoryData(data);
+            setInventories((prev) => [...prev, data]);
+            return true;
+            
         } catch (error) {
             console.error("Error posting inventory data: ", error);
+            return false;
         }
-    } */
+    };
 
     const getInventories = async () => {
         try {
@@ -78,8 +82,6 @@ const InventoryAdd = () => {
         getInventories();
     }, []);
 
-    const [formSubmitted, setFormSubmitted] = useState(false);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInventoryData({
@@ -88,10 +90,40 @@ const InventoryAdd = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true);
         // postInventoryData();
+
+        if (
+            !InventoryData.item_name ||
+            !InventoryData.description ||
+            !InventoryData.category ||
+            !InventoryData.warehouse_id ||
+            (InventoryData.status === "In Stock" && !InventoryData.quantity)
+        ) {
+            console.error("Missing required fields");
+            return;
+        }
+        if(InventoryData.status === "In Stock" && isNaN(Number(InventoryData.quantity))){
+            console.error("Quantity must be a number");
+            return;
+        }
+
+        const updatedData = {
+            warehouse_id: InventoryData.warehouse_id,
+            item_name: InventoryData.item_name,
+            description: InventoryData.description,
+            category: InventoryData.category,
+            status: InventoryData.status,
+            quantity: InventoryData.status === "In Stock" ? InventoryData.quantity : 0,
+        };
+
+        const response = await postInventoryData(updatedData);
+
+        if(response){
+            alert("Inventory updated successfully!")
+        }
     };
 
     // //when validating
@@ -123,8 +155,8 @@ const InventoryAdd = () => {
                         </label>
                         <input
                             type="text"
-                            name="inventory_name"
-                            id="inventory_name"
+                            name="item_name"
+                            id="item_name"
                             placeholder="Item Name"
                             className="inventoryform__input-name"
                             value={InventoryData.item_name}
