@@ -74,7 +74,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  
+
   &__table-components {
     display: flex;
     flex-direction: row;
@@ -121,7 +121,7 @@
   }
 }
 .warehouse-list {
-  @include tablet{
+  @include tablet {
     &__item {
       &:first-child {
         .warehouse-list__label {
@@ -133,7 +133,6 @@
       display: none;
     }
   }
-  
 }
 
 .warehouse-list {
@@ -161,5 +160,4 @@
     border-bottom: 1px solid $Cloud;
     padding: 1rem;
   }
-
 }
