@@ -25,6 +25,7 @@ function WarehouseAddForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("Submitting form data:", formData);
 
         try {
             const response = await fetch('http://localhost:8080/api/warehouses/add', {
@@ -34,9 +35,16 @@ function WarehouseAddForm() {
             });
 
             const result = await response.json();
-            if (response.ok) {
-                setSuccessMessage('Warehouse added successfully!');
+            if (!response.ok) {
+                const errorData = await response.json();
+                setError(errorData.message || 'Failed to add warehouse.');
+                setSuccessMessage(null);
+                console.error("Error from server:", errorData);
+            } else {
+                const result = await response.json();
+                setSuccessMessage(result.message || 'Warehouse added successfully!');
                 setError(null);
+
                 setFormData({
                     warehouse_name: '',
                     address: '',
@@ -47,11 +55,10 @@ function WarehouseAddForm() {
                     contact_phone: '',
                     contact_email: ''
                 });
-            } else {
-                setError(result.message || 'Failed to add warehouse.');
-                setSuccessMessage(null);
+                console.log("Success:", result);
             }
-        } catch (err) {
+        } catch (error) {
+            console.error("Fetch error:", error);
             setError('An error occurred while adding the warehouse.');
             setSuccessMessage(null);
         }
