@@ -83,7 +83,7 @@ function WarehouseEditForm() {
 
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate("/warehouse");
+        navigate("/warehouse/{warehouseId}");
     };
 
     return (
