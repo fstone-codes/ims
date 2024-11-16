@@ -90,15 +90,15 @@ function Inventory() {
                       alt="sort right icon"
                     />
                   </div>
-                  <div
-                    className={`inventory__status-wrapper ${
-                      inventoryItem.status === "In Stock"
-                        ? "inventory__status-wrapper--green"
-                        : "inventory__status-wrapper--red"
-                    }`}
-                  >
-                    <p className="inventory__text inventory__text--h4">{inventoryItem.status}</p>
-                  </div>
+                  <p
+                        className={`inventory__status ${
+                          inventoryItem.status === "In Stock"
+                                ? "inventory__status--green"
+                                : "inventory__status--red"
+                        }`}
+                    >
+                        {inventoryItem.status === "In Stock" ? "IN STOCK" : "OUT OF STOCK"}
+                    </p>
                 </article>
                 <article className="inventory__content">
                 <div className="inventory__tb-header-wrapper">
@@ -137,15 +137,12 @@ function Inventory() {
                     />
                 </div>
                 <div className="inventory__icon-wrapper">
-                  {/* Need delete modal */}
-                  {/* <Link to=""> */}
-                    <img
-                      className="inventory__icon"
-                      src={deleteIcon}
-                      alt="delete icon"
-                      />
-                  {/* </Link> */}
-                  <Link to="/inventory/:inventoryId/edit">
+                  <img
+                    className="inventory__icon"
+                    src={deleteIcon}
+                    alt="delete icon"
+                    />
+                  <Link to={`/inventory/${inventoryItem.id}/edit`}>
                       <img
                       className="inventory__icon"
                       src={editIcon}
