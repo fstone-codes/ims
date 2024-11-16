@@ -83,19 +83,18 @@ function WarehouseEditForm() {
 
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate("/warehouse/{warehouseId}");
+        navigate(`/warehouse/${warehouseId}`);
     };
 
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
-                <Link to="/warehouse" className="warehouse-container_arrow">
                     <img
                         src={backArrow}
                         alt="back arrow"
                         className="warehouse-container_arrow"
+                        onClick={handleClick}
                     ></img>
-                </Link>
                 <h1 className="warehouseform-container__title">
                     Edit Warehouse
                 </h1>
