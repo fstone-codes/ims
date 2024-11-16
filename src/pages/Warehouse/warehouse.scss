@@ -1,0 +1,272 @@
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+* {
+    margin: 0;
+}
+.main {
+    width: 100%;
+    padding: 0 1rem;
+    position: relative;
+}
+.warehouse {
+    &__header {
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    position: absolute;
+    width: 90%;
+    padding: 0 1.5rem;
+    background-color: $White;
+
+    @include tablet {
+        padding-left: 2rem;
+    }
+
+    &__heading {
+        color: $Instock-Black;
+        @include mobile__page-header;
+        padding: 2rem 1.5rem 1rem;
+
+        @include tablet {
+            padding: 0;
+            padding-top: 2rem;
+            padding-bottom: 1.375rem;
+        }
+    }
+
+    &__search-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 1.5rem 1rem;
+        padding-top: 0;
+        border-bottom: 1px solid $Cloud;
+
+        @include tablet {
+            @include buttons-labels;
+            display: flex;
+            flex-direction: row;
+            border-bottom: none;
+            padding-top: 2rem;
+        }
+    }
+
+    &__search {
+        border: none;
+        color: $Slate;
+        border: 1px solid $Cloud;
+        border-radius: 20px;
+        padding: 10px;
+        width: 100%;
+
+        @include tablet {
+            width: 185px;
+            height: 38px;
+        }
+
+        @include desktop {
+            width: 17.125rem;
+        }
+    }
+    &__add-warehouse-button {
+        background-color: $Instock-Indigo;
+        color: $White;
+        border: none;
+        border-radius: 20px;
+        width: 100%;
+        height: 2.25rem;
+        @include mobile__buttons-labels;
+
+        @include tablet {
+            padding-top: 8px 16px;
+            width: 168px;
+            height: 38px;
+        }
+    }
+}
+
+.warehouse-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__table-components {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @include tablet {
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+    }
+    &__content {
+        //1st child name, 2nd child contactname, 3rd address, 4th contactinfo
+        // Default order for mobile view
+        width: 50%;
+        &:nth-child(1) {
+            order: 1;
+        }
+        &:nth-child(2) {
+            order: 2;
+        }
+        &:nth-child(3) {
+            order: 3;
+        }
+        &:nth-child(4) {
+            order: 4;
+        }
+
+        @include tablet {
+            //tablet view
+            &:nth-child(1) {
+                order: 1;
+            }
+            &:nth-child(2) {
+                order: 3;
+            }
+            &:nth-child(3) {
+                order: 2;
+            }
+            &:nth-child(4) {
+                order: 4;
+            }
+        }
+    }
+}
+.warehouse-list {
+    @include tablet {
+        &__item {
+            &:first-child {
+                .warehouse-list__label {
+                    display: unset;
+                }
+            }
+        }
+        &__label {
+            display: none;
+        }
+    }
+}
+
+.warehouse-list {
+    &__item {
+        list-style: none;
+        background-color: $White;
+    }
+
+    &__link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    &__link #warehousenamecolor {
+        color: $Instock-Indigo;
+        font-weight: 600;
+    }
+
+    &__label {
+        color: $Slate;
+        @include mobile__body-small;
+        font-weight: 600;
+        padding-top: 1rem;
+        padding-bottom: 0.25rem;
+
+        @include tablet {
+            background-color: #f7f8f9;
+            @include body-small;
+            font-weight: 600;
+        }
+    }
+
+    &__text {
+        @include mobile__body-small;
+        color: $Instock-Black;
+
+        @include tablet {
+            @include body-small;
+            padding-top: 1.5rem;
+        }
+    }
+
+    &__item {
+        border-bottom: 1px solid $Cloud;
+
+        &:hover {
+            background-color: #2e66e5 7%;
+        }
+    }
+
+    &__icon-container {
+        display: flex;
+
+        padding-bottom: 1.5rem;
+
+        @include tablet {
+            justify-content: flex-end;
+            // flex: 1;
+        }
+    }
+
+    &__sortIcon {
+        display: none;
+        width: 1rem;
+        height: 1rem;
+
+        @include tablet {
+            display: inline-block;
+            background-color: #f7f8f9;
+        }
+    }
+
+    &__chevron {
+        //display: none;
+        height: 1.25rem;
+        width: 1.25rem;
+        display: inline-block;
+        flex-shrink: 0;
+
+        @include tablet {
+            transform: translateY(62%);
+        }
+    }
+}
+.warehouse-list__content-action {
+    display: flex;
+}
+
+.warehouse-list__label--action-label {
+    display: none;
+    @include tablet {
+        display: inline-block;
+        color: $Slate;
+        @include body-small;
+        font-weight: 600;
+        padding-top: 1rem;
+        padding-bottom: 0.25rem;
+        background-color: #f7f8f9;
+    }
+}
+
+.warehouse-list__searchIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 5px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.warehouse__search-subcontainer {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+}

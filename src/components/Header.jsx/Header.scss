@@ -41,6 +41,10 @@
             @include tablet {
                 width: unset;
             }
+            &:hover {
+                text-decoration: underline;
+                text-decoration-color: $White;
+            }
         }
     }
     &__button {
@@ -49,7 +53,7 @@
         align-items: center;        
         width: 100%;
         height: 2.25rem;
-        color: $White;
+        color: $Cloud;
         background-color: $Graphite;
         border-radius: 1.25rem;
         padding: .5rem 0;
@@ -59,7 +63,12 @@
             height: 2.375rem;
         }
         &:hover {
-            background-color: $Instock-Black;
+            color: $White;
         }
+        // Use turnary in className to apply styling
+        // &--isActive {
+        //     color: $White;
+        //     background-color: $Instock-Black;
+        // }
     }
 }

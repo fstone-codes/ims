@@ -18,7 +18,7 @@ function WarehouseDetails() {
 
             setSingleWarehouse(data);
         } catch (error) {
-            console.error("Error fetching single warehouse details");
+            console.error("Error fetching single warehouse details: ", error);
         }
     }
 
