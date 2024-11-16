@@ -233,7 +233,7 @@ function WarehouseEditForm() {
                     >
                         Cancel
                     </button>
-                    <button type="submit" className="warehouseform__button-save">
+                    <button type="submit" className="warehouseform__button-save" onClick={handleClick}>
                         Save
                     </button>
                 </div>
