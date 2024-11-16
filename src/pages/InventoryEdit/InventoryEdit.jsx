@@ -64,7 +64,7 @@ function InventoryEdit() {
 
             setWarehouses(data);
         } catch (error) {
-            console.log("Error fetching warehouses", error);
+            console.error("Error fetching warehouses", error);
         }
     };
 
@@ -76,7 +76,20 @@ function InventoryEdit() {
 
             setFormData(data);
         } catch (error) {
-            console.log("Error fetching single inventory item: ", error);
+            console.error("Error fetching single inventory item: ", error);
+        }
+    };
+
+    const editSingleItemData = async () => {
+        try {
+            const { data } = await axios.put(
+                `http://localhost:8080/api/inventories/${inventoryId}`,
+                updatedData
+            );
+
+            getSingleItemData(data);
+        } catch (error) {
+            console.error("Error editing single inventory item: ", error);
         }
     };
 
@@ -101,7 +114,20 @@ function InventoryEdit() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true);
+        validateForm();
 
+        const response = await editSingleItemData(updatedData);
+
+        if (response) {
+            alert("Inventory updated successfully!");
+        }
+    };
+
+    const handleNavigation = () => {
+        navigate("/inventory");
+    };
+
+    const validateForm = () => {
         if (
             !formData.item_name ||
             !formData.description ||
@@ -120,26 +146,15 @@ function InventoryEdit() {
             console.error("Quantity must be a number");
             return;
         }
-
-        const updatedData = {
-            warehouse_id: formData.warehouse_id,
-            item_name: formData.item_name,
-            description: formData.description,
-            category: formData.category,
-            status: formData.status,
-            quantity: formData.status === "In Stock" ? formData.quantity || 0 : 0,
-        };
-        console.log(updatedData);
-
-        const response = await postInventoryData(updatedData);
-
-        if (response) {
-            alert("Inventory updated successfully!");
-        }
     };
 
-    const handleNavigation = () => {
-        navigate("/inventory");
+    const updatedData = {
+        warehouse_id: formData.warehouse_id,
+        item_name: formData.item_name,
+        description: formData.description,
+        category: formData.category,
+        status: formData.status,
+        quantity: formData.status === "In Stock" ? formData.quantity || 0 : 0,
     };
 
     if (!formData) {
@@ -282,7 +297,7 @@ function InventoryEdit() {
                             Cancel
                         </button>
                         <button type="submit" className="inventoryform__button-add">
-                            + Add Item
+                            Save
                         </button>
                     </div>
                 </div>
