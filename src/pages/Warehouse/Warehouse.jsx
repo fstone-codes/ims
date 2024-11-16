@@ -36,7 +36,7 @@ function Warehouse() {
         if (!itemSelected) return;
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/inventories/${itemSelected.id}`
+                `http://localhost:8080/api/warehouses/${itemSelected.id}`
             );
             setWarehouses((previousWhList) => {
                 return previousWhList.filter(
