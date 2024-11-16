@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.main {
+.main-wh {
     border-radius: 3px;
     width: calc(100vw - 2rem);
     background-color: $White;
@@ -17,7 +17,7 @@
     }
 }
 
-.title {
+.title-wh {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -70,6 +70,7 @@
         aspect-ratio: 1 / 1;
         background-color: $Instock-Indigo;
         cursor: pointer;
+        text-decoration: none;
 
         @include tablet {
             width: 5rem;
