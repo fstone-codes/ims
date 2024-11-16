@@ -1,0 +1,23 @@
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.footer {
+    background-color: $Light-Grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 1rem 2rem 1rem;
+    width: 100%;
+    color: $Slate;
+    @include tablet {
+        padding: 15rem 1rem 2rem 1rem;
+    }
+    &__text {
+        @include mobile__body-medium;
+        @include tablet {
+            @include body-medium;
+        }
+    }
+}
