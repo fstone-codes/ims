@@ -4,13 +4,13 @@ import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
 
-function InventoryItem({ name, category, status, quantity }) {
+function InventoryItem({ id, name, category, status, quantity, deleteItem }) {
     return (
         <li className="inv-item">
             <div className="inv-item__item-container">
                 <div className="inv-item__container">
                     <h2 className="inv-item__label">INVENTORY ITEM</h2>
-                    <Link className="inv-item__text inv-item__text--blue" to={"#"}>
+                    <Link className="inv-item__text inv-item__text--blue" to={`/inventory/${id}`}>
                         {name}
                         <span className="inv-item__inline-icon">
                             <img
@@ -43,8 +43,15 @@ function InventoryItem({ name, category, status, quantity }) {
                 </div>
             </div>
             <div className="inv-item__icon-container">
-                <img className="inv-item__icon" src={deleteIcon} alt="delete icon" />
-                <Link className="inv-item__link" to={"#"}>
+                <img
+                    onClick={() => {
+                        deleteItem(id);
+                    }}
+                    className="inv-item__icon"
+                    src={deleteIcon}
+                    alt="delete icon"
+                />
+                <Link className="inv-item__link" to={`/inventory/${id}/edit`}>
                     <img className="inv-item__icon" src={editIcon} alt="edit icon" />
                 </Link>
             </div>

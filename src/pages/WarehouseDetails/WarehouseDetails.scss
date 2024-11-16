@@ -1,17 +1,5 @@
-// all of the classes created from "WarehouseDetails" are listed in order below, please add classes to the list, even if they're not being used (just comment them out)
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
-
-/* 
-// TEMP FOR TESTING WITHOUT HEADER - DELETE WHEN HEADER COMBINATION CONFIRMED
-body {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(187, 187, 187);
-}
- */
 
 .main {
     border-radius: 3px;
@@ -22,6 +10,10 @@ body {
 
     @include tablet {
         width: calc(100vw - 4rem);
+    }
+
+    @include desktop {
+        width: calc(100vw - 16.25rem);
     }
 }
 
@@ -140,6 +132,7 @@ body {
         @include mobile__body-small;
         color: $Slate;
         font-weight: 600;
+        margin-bottom: 4px;
 
         @include tablet {
             @include body-small;
@@ -194,6 +187,7 @@ body {
         @include body-small;
         color: $Slate;
         font-weight: 600;
+        margin-bottom: 4px;
     }
 
     &__td-icon {

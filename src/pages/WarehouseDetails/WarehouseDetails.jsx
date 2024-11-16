@@ -30,7 +30,17 @@ function WarehouseDetails() {
 
             setWarehouseInventory(data);
         } catch (error) {
-            console.error("Error fetching warehouse inventory details");
+            console.error("Error fetching warehouse inventory details: ", error);
+        }
+    }
+
+    async function deleteItem(itemId) {
+        try {
+            await axios.delete(`http://localhost:8080/api/inventories/${itemId}`);
+
+            getWarehouseInventoryData();
+        } catch (error) {
+            console.error("Error deleting warehouse inventory item: ", error);
         }
     }
 
@@ -114,10 +124,12 @@ function WarehouseDetails() {
                     {warehouseInventory.map((item) => (
                         <InventoryItem
                             key={item.id}
+                            id={item.id}
                             name={item.item_name}
                             category={item.category}
                             status={item.status}
                             quantity={item.quantity}
+                            deleteItem={deleteItem}
                         />
                     ))}
                 </ul>
