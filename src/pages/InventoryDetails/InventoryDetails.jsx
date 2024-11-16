@@ -21,8 +21,6 @@ function InventoryDetails() {
         }
     }
 
-    console.log(singleItem);
-
     useEffect(() => {
         getSingleItemData();
     }, [inventoryId]);
