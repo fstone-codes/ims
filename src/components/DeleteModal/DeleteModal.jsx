@@ -29,21 +29,30 @@ function DeleteModal({
                     justifyContent: "center",
                     alignItems: "center",
                 },
+                content: {
+                    height: "100vh",
+                    width: "100vw",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                }
             }}
         >
-            <div className="modal__content-container">
-                <img className="modal__close-icon" src={closeIcon} alt="Close icon" onClick={() => setIsOpen(false)} />
-                <h1 className="modal__title">{modalTitle}</h1>
-                <p className="modal__text modal__text--large">{modalText}</p>
-            </div>
-            <div className="modal__btn-wrapper">
-                <button className="modal___cancel-btn" onClick={() => setIsOpen(false)}>Cancel</button>
-                <button
-                    className="modal___delete-btn"
-                    onClick={handleDeleteClick}
-                >
-                    Delete
-                </button>
+            <div className="modal__content-wrapper">
+                <div className="modal__content-container">
+                    <img className="modal__close-icon" src={closeIcon} alt="Close icon" onClick={() => setIsOpen(false)} />
+                    <h1 className="modal__title">{modalTitle}</h1>
+                    <p className="modal__text modal__text--large">{modalText}</p>
+                </div>
+                <div className="modal__btn-wrapper">
+                    <button className="modal___cancel-btn" onClick={() => setIsOpen(false)}>Cancel</button>
+                    <button
+                        className="modal___delete-btn"
+                        onClick={handleDeleteClick}
+                    >
+                        Delete
+                    </button>
+                </div>
             </div>
         </ReactModal>
     );
