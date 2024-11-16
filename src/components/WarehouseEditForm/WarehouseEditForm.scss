@@ -124,6 +124,7 @@ input, button {
         padding-right: 1rem;
         margin-bottom: 1rem;
         font-weight: 400;
+        border-color: $Cloud;
         @include tablet {
             width: auto;
         }
@@ -135,6 +136,7 @@ input, button {
     justify-content: center;
     padding: 1rem;
     column-gap: 0.5rem;
+    background-color: $Light-Grey;
     @include tablet {
         justify-content: flex-end;
        
