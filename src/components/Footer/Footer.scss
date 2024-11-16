@@ -3,3 +3,16 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
+.footer {
+    background-color: $Light-Grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    &__text {
+        @include mobile__body-medium;
+        @include tablet {
+            @include body-medium;
+        }
+    }
+}
