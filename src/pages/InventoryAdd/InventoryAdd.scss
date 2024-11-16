@@ -94,7 +94,7 @@
         border-radius: 1.25rem;
         height: 2.25rem;
         width: 100%;
-        padding: 1rem .5rem;
+        padding: 1rem 0.5rem;
         padding-right: 1rem;
         border-color: $Cloud;
         color: $Slate;
@@ -102,6 +102,11 @@
         font-weight: 400;
         margin-bottom: 1rem;
         font-family: "Titillium Web", sans-serif;
+        appearance: none;
+        @include tablet {
+            @include buttons-labels;
+            font-weight: 400;
+        }
     }
 
     &__input-quantity {
@@ -211,4 +216,38 @@ select:focus {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr auto;
     }
+}
+
+.inventoryform__radiobutton {
+    display: flex;
+    gap: 89px;
+
+    @include tablet {
+        gap: 40px;
+    }
+}
+
+.inventoryform__radiobutton label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 1rem;
+    @include tablet {
+        padding-bottom: 1.5rem;
+    }
+}
+
+.inventoryform__dropdown-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-40%);
+    width: 1.5rem;
+    height: 1.5rem;
+    pointer-events: none;
 }
