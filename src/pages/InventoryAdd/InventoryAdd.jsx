@@ -18,7 +18,7 @@ const InventoryAdd = () => {
         description: "",
         category: "",
         status: "In Stock",
-        quantity: 0,
+        quantity: "",
     });
 
     const [inventories, setInventories] = useState([]);
@@ -34,7 +34,6 @@ const InventoryAdd = () => {
 
             setInventories((prev) => [...prev, data]);
             return true;
-            
         } catch (error) {
             console.error("Error posting inventory data: ", error);
             return false;
@@ -86,7 +85,7 @@ const InventoryAdd = () => {
         const { name, value } = e.target;
         setInventoryData({
             ...InventoryData,
-            [name]: value,
+            [name]: name === "quantity" ? Number(value) : value,
         });
     };
 
@@ -106,7 +105,10 @@ const InventoryAdd = () => {
             return;
         }
 
-        if(InventoryData.status === "In Stock" && (typeof InventoryData.quantity === "number")){
+        if (
+            InventoryData.status === "In Stock" &&
+            (isNaN(InventoryData.quantity) || InventoryData.quantity <= 0)
+        ) {
             console.error("Quantity must be a number");
             return;
         }
@@ -117,14 +119,17 @@ const InventoryAdd = () => {
             description: InventoryData.description,
             category: InventoryData.category,
             status: InventoryData.status,
-            quantity: InventoryData.status === "In Stock" ? InventoryData.quantity : 0,
+            quantity:
+                InventoryData.status === "In Stock"
+                    ? InventoryData.quantity || 0
+                    : 0,
         };
         console.log(updatedData);
 
         const response = await postInventoryData(updatedData);
 
-        if(response){
-            alert("Inventory updated successfully!")
+        if (response) {
+            alert("Inventory updated successfully!");
         }
     };
 
@@ -191,7 +196,7 @@ const InventoryAdd = () => {
                             value={InventoryData.category}
                             onChange={handleChange}
                         >
-                            <option value="">Please select</option>
+                            <option value="" >Please select</option>
                             {filteredInventories.map((inventory) => (
                                 <option
                                     key={inventory.id}

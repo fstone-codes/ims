@@ -51,6 +51,7 @@
     flex-direction: column;
     padding: 1rem;
     row-gap: 0.25rem;
+    padding-left: 1.5rem;
     @include tablet {
         padding: 0 2rem 0.5rem;
     }
@@ -78,12 +79,10 @@
     }
     &__title {
         @include mobile__sub-header;
-        padding-left: 0.5rem;
         padding-bottom: 24px;
     }
     &__label {
         @include mobile__buttons-labels;
-        padding-left: 0.5rem;
         padding-bottom: 4px;
     }
     &__input-name,
@@ -95,7 +94,7 @@
         border-radius: 1.25rem;
         height: 2.25rem;
         width: 100%;
-        padding-left: 1rem;
+        padding: 1rem .5rem;
         padding-right: 1rem;
         border-color: $Cloud;
         color: $Slate;
