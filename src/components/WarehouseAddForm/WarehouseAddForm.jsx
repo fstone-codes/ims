@@ -71,9 +71,7 @@ function WarehouseAddForm() {
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
-                <Link to="/warehouse" className="warehouse-container_arrow">
-                    <img src={backArrow} alt="back arrow" className="warehouse-container_arrow"></img>
-                </Link>
+                <img src={backArrow} alt="back arrow" className="warehouse-container_arrow" onClick={handleClick}></img>
                 <h1 className="warehouseform-container__title">Add New Warehouse</h1>
             </div>
             <form onSubmit={handleSubmit}>
