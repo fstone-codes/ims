@@ -105,6 +105,16 @@ input, button {
             height: 2.375rem;
         }
     }
+    &__error-message {
+        display: flex;
+        align-items: center;
+        font-size: 0.5rem;
+        padding: 1rem;
+        color: red;
+        &-icon {
+            padding: 1rem;
+        }
+    }
 }
 
 .whcontactform {
@@ -147,6 +157,9 @@ input, button {
             }
         }
     }
+}
+.input-error {
+    border-color: red;
 }
 
 .warehouseform__button {
