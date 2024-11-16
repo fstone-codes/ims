@@ -5,6 +5,7 @@ import axios from "axios";
 import warehouse__sortIcon from "../../assets/Icons/sort-24px.svg";
 import warehouse__chevron from "../../assets/Icons/chevron_right-24px.svg";
 import warehouse__deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import warehouse__searchIcon from "../../assets/Icons/search-24px.svg"
 import warehouse__editIcon from "../../assets/Icons/edit-24px.svg";
 import { useState, useEffect } from "react";
 
@@ -35,15 +36,24 @@ function Warehouse() {
                 <div className="warehouse__header">
                     <h1 className="warehouse__heading">Warehouses</h1>
                     <div className="warehouse__search-container">
-                        {" "}
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="warehouse__search"
-                        />
-                        <button className="warehouse__add-warehouse-button">
-                            +Add New Warehouse
-                        </button>
+                        <div className="warehouse__search-subcontainer">
+                            {" "}
+                            <img
+                                className="warehouse-list__searchIcon"
+                                src={warehouse__searchIcon}
+                                alt="searchicon"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                className="warehouse__search"
+                            />
+                        </div>
+                        <Link to="/warehouse/add">
+                            <button className="warehouse__add-warehouse-button">
+                                + Add New Warehouse
+                            </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -129,11 +139,8 @@ function Warehouse() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="warehouse-list__content warehouse-list__action">
-                                <div
-                                    className="warehouse-list__label"
-                                    id="action-label"
-                                >
+                            <div className="warehouse-list__content-action">
+                                <div className="warehouse-list__label--action-label">
                                     ACTION
                                 </div>
                                 <div className="warehouse-list__icon-container">
@@ -142,14 +149,15 @@ function Warehouse() {
                                         src={warehouse__deleteIcon}
                                         alt="delete icon"
                                     />
+                                    <Link to={`/warehouse/${warehouse.id}/edit`}>
                                     <img
-                                        className="warehouse__icon"
+                                        className="warehouse-list__icon"
                                         src={warehouse__editIcon}
                                         alt="edit icon"
                                     />
+                                    </Link>
                                 </div>
                             </div>
-
                         </li>
                     ))}
                 </section>
