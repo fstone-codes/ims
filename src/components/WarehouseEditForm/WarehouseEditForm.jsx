@@ -233,8 +233,8 @@ function WarehouseEditForm() {
                     >
                         Cancel
                     </button>
-                    <button type="submit" className="warehouseform__button-add">
-                        + Add Warehouse
+                    <button type="submit" className="warehouseform__button-save">
+                        Save
                     </button>
                 </div>
             </form>
