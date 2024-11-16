@@ -18,17 +18,17 @@ const InventoryAdd = () => {
         description: "",
         category: "",
         status: "In Stock",
-        quantity: "",
+        quantity: 0,
     });
 
     const [inventories, setInventories] = useState([]);
     const [warehouses, setWarehouses] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const postInventoryData = async (id, updatedData) => {
+    const postInventoryData = async (updatedData) => {
         try {
             const { data } = await axios.post(
-                `http://localhost:8080/api/inventories/${id}`,
+                `http://localhost:8080/api/inventories`,
                 updatedData
             );
 
@@ -105,7 +105,8 @@ const InventoryAdd = () => {
             console.error("Missing required fields");
             return;
         }
-        if(InventoryData.status === "In Stock" && isNaN(Number(InventoryData.quantity))){
+
+        if(InventoryData.status === "In Stock" && (typeof InventoryData.quantity === "number")){
             console.error("Quantity must be a number");
             return;
         }
@@ -118,6 +119,7 @@ const InventoryAdd = () => {
             status: InventoryData.status,
             quantity: InventoryData.status === "In Stock" ? InventoryData.quantity : 0,
         };
+        console.log(updatedData);
 
         const response = await postInventoryData(updatedData);
 
