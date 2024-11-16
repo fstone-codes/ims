@@ -97,6 +97,8 @@
     }
 }
 .ReactModal__Overlay--after-open {
-  opacity: 70%;
-  position: relative;
+  @include tablet {
+    opacity: 70%;
+    position: relative;
+  }
 }
