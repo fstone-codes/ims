@@ -23,6 +23,10 @@ input, button {
     background: none; 
     outline: none; 
     box-shadow: none; 
+    &:active {
+        border-color: $Instock-Indigo;
+    }
+    
 }
 
 .warehouseform-container {
@@ -34,21 +38,30 @@ input, button {
         display: flex;
         padding-left: 1rem;
         border-bottom: .0625rem $Cloud solid;
+        @include tablet {
+            padding-bottom: 1rem;
+        }
     }
     &__arrow {
         display: flex;
         align-items: center;
         margin: 1rem;
+        &:hover {
+            cursor: pointer;
+        }
     }
     &__title {
-        padding: 1.5rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
     }
-
+    
 }
 .warehouseform-card {
     @include tablet {
         display: flex;
         justify-content: space-evenly;
+        padding: 1rem 0rem 2rem 0rem;
     }
 }
 
@@ -87,6 +100,10 @@ input, button {
         color: $Slate;
         font-weight: 400;
         margin-bottom: 1rem;
+        @include tablet {
+            width: auto;
+            height: 2.375rem;
+        }
     }
 }
 
@@ -121,8 +138,13 @@ input, button {
         padding-right: 1rem;
         margin-bottom: 1rem;
         font-weight: 400;
+        border-color: $Cloud;
+        color: $Slate;
         @include tablet {
             width: auto;
+            @include tablet {
+                height: 2.375rem;
+            }
         }
     }
 }
@@ -132,9 +154,10 @@ input, button {
     justify-content: center;
     padding: 1rem;
     column-gap: 0.5rem;
+    background-color: $Light-Grey;
     @include tablet {
         justify-content: flex-end;
-
+       
     }
     &-cancel {
         height: 2.25rem;
@@ -145,6 +168,7 @@ input, button {
         background-color: $White;
         color: $Slate;
         width: 100%;
+        cursor: pointer;
         &:hover {
             border-color: $Instock-Indigo;
             color: $Instock-Indigo;
@@ -166,6 +190,7 @@ input, button {
         color: $White;
         border-color: $Instock-Indigo;
         width: 100%;
+        cursor: pointer;
         &:hover {
             background-color: $Graphite;
             border-color: $Graphite;

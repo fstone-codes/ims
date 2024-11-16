@@ -19,6 +19,7 @@ function WarehouseEditForm() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchWarehouseData = async () => {
@@ -69,6 +70,7 @@ function WarehouseEditForm() {
                 );
                 setError(null);
                 console.log("Success:", result);
+                navigate(`/warehouse/${warehouseId}`);
             } else {
                 setError(result.message || "Failed to update warehouse.");
                 setSuccessMessage(null);
@@ -81,7 +83,6 @@ function WarehouseEditForm() {
         }
     };
 
-    const navigate = useNavigate();
     const handleClick = () => {
         navigate(`/warehouse/${warehouseId}`);
     };
@@ -233,8 +234,8 @@ function WarehouseEditForm() {
                     >
                         Cancel
                     </button>
-                    <button type="submit" className="warehouseform__button-add">
-                        + Add Warehouse
+                    <button type="submit" className="warehouseform__button-save">
+                        Save
                     </button>
                 </div>
             </form>
