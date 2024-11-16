@@ -10,6 +10,7 @@ import InventoryDetails from "./pages/InventoryDetails/InventoryDetails.jsx";
 import InventoryEdit from "./pages/InventoryEdit/InventoryEdit.jsx";
 import InventoryAdd from "./pages/InventoryAdd/InventoryAdd.jsx";
 import Header from "./components/Header.jsx/Header.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/inventory/:inventoryId/edit" element={<InventoryEdit />} />
                     <Route path="/inventory/add" element={<InventoryAdd />} />
                 </Routes>
+                <Footer/>
             </BrowserRouter>
         </>
     );
