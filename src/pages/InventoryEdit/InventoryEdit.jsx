@@ -28,30 +28,35 @@ function InventoryEdit() {
         try {
             const { data } = await axios.get("http://localhost:8080/api/inventories");
 
-            setInventories(data);
+            // setInventories(data);
+
+            const filterOnlyCategories = (arrOfObjects) => {
+                return arrOfObjects.map((object) => ({
+                    id: object.id,
+                    category: object.category,
+                }));
+            };
+
+            const newArray = filterOnlyCategories(data);
+
+            const removeDuplicateCategories = (arrOfObjects) => {
+                const storeUniqueCategories = [];
+                return arrOfObjects.filter((object) => {
+                    if (storeUniqueCategories.includes(object.category)) {
+                        return false;
+                    }
+                    storeUniqueCategories.push(object.category);
+                    return true;
+                });
+            };
+
+            const uniqueCategories = removeDuplicateCategories(newArray);
+
+            setCategoryList(uniqueCategories);
         } catch (error) {
             console.error("Error fetching inventory data: ", error);
         }
     };
-
-    // useEffect(() => {
-    //     const categoryOptions = [];
-    //     inventories.forEach((item) => {
-    //         if (!categoryOptions.some((filteredItem) => filteredItem.category === item.category)) {
-    //             categoryOptions.map({ id: index, category });
-    //         }
-    //     });
-    //     setCategoryList(categoryOptions);
-    // }, [inventories]);
-
-    useEffect(() => {
-        const uniqueCategories = [...new Set(inventories.map((item) => item.category))];
-        const categoryOptions = uniqueCategories.map((category, index) => ({
-            id: index,
-            category,
-        }));
-        setCategoryList(categoryOptions);
-    }, [inventories]);
 
     const getWarehouse = async () => {
         try {
@@ -68,7 +73,6 @@ function InventoryEdit() {
             const { data } = await axios.get(
                 `http://localhost:8080/api/inventories/${inventoryId}`
             );
-            console.log(data);
 
             setFormData(data);
         } catch (error) {
@@ -85,18 +89,14 @@ function InventoryEdit() {
         getSingleItemData();
     }, [inventoryId]);
 
-    console.log("category list: ", categoryList);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         setFormData(() => ({
             ...formData,
-            [name]: value,
-            // [name]: name === "quantity" ? Number(value) : value,
+            [name]: name === "quantity" ? Number(value) : value,
         }));
     };
-    console.log("form data: ", formData);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -158,7 +158,7 @@ function InventoryEdit() {
                 <div className="inventoryform-card">
                     <div className="inventoryform inventoryform--border">
                         <h2 className="inventoryform__title">Item Details</h2>
-                        <label htmlFor="inventory_name" className="inventoryform__label">
+                        <label htmlFor="item_name" className="inventoryform__label">
                             Item Name
                         </label>
                         <input
@@ -193,9 +193,9 @@ function InventoryEdit() {
                                 onChange={handleChange}
                             >
                                 <option value="">Please select</option>
-                                {categoryList.map((inventory) => (
-                                    <option key={inventory.id} value={inventory.category}>
-                                        {inventory.category}
+                                {categoryList.map((uniqueCategory) => (
+                                    <option key={uniqueCategory.id} value={uniqueCategory.category}>
+                                        {uniqueCategory.category}
                                     </option>
                                 ))}
                             </select>
