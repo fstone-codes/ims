@@ -8,16 +8,95 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-
+    position: absolute;
     @include tablet {
-      max-width: 700px;
-      max-height: 600px;
+      width: 42rem;
+      height: 16.375rem;
+      top: 11.5625rem;
     }
     &__content-wrapper {
         display: flex;
-        padding: 1rem;
-        // width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
         height: 100%;
+        width: 100%;
+        padding: 0 1rem;
+        position: absolute;
     }
+    &__text-closeBtn {
+      padding-top: 1rem;
+      position: relative;
+    }
+    &__text-container {
+      padding: 0 1rem;
+      position: absolute;
+      top: 3.75rem;
+    }
+    &__title {
+      padding-bottom: 1rem;
+      @include mobile__page-header;
+      @include tablet {
+       @include page-header;
+      }
+    }
+    &__text--large {
+      @include mobile__body-large;
+      @include tablet {
+       @include body-large;
+      }
+    }
+    &__close-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      right: 1rem;
+    }
+    &__btn-wrapper {
+      display: flex;
+      gap: 1rem;
+      width: 100vw;
+      padding: 1.5rem;
+      font-family: "Titillium Web", sans-serif;
+      @include tablet {
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 42rem;
+      }
+    }
+    &__cancel-btn {
+      font-family: inherit;
+      width: 50%;
+      height: 36px;
+      gap: 10px;
+      border-radius: 20px;
+      border: 1px solid $Cloud;
+      color: $Slate;
+      @include mobile__buttons-labels;
+      @include tablet {
+        width: 4.4375rem;
+        height: 2.375rem;
+        @include buttons-labels;
+      }
+    }
+    &__delete-btn {
+      font-family: inherit;
+      width: 50%;
+      height: 2.25rem;
+      border-radius: 20px;
+      color: $White;
+      background-color: $Red;
+      border: none;
+      @include mobile__buttons-labels;
+      @include tablet {
+        width: 4.4375rem;
+        height: 2.375rem;
+        @include buttons-labels;
+      }
+    }
+}
+.ReactModal__Overlay--after-open {
+  opacity: 70%;
+  position: relative;
 }

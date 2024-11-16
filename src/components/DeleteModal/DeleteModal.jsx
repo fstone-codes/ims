@@ -1,11 +1,10 @@
 import ReactModal from "react-modal";
 import closeIcon from "../../assets/Icons/close-24px.svg";
+import "./DeleteModal.scss";
 
 function DeleteModal({
     modalTitle,
     modalText,
-    handleModalClick,
-    setItemSelected,
     handleDeleteClick,
     isOpen,
     setIsOpen
@@ -20,34 +19,27 @@ function DeleteModal({
             // The 2 lines below enable esc to close the modal
             shouldCloseOnEsc={true}
             onRequestClose={() => setIsOpen(false)}
-            handleDeleteClick={handleDeleteClick}
-            handleModalClick={handleModalClick}
-            setItemSelected={setItemSelected}
             style={{
                 overlay: {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    background: "rgba(19, 24, 44, 1)",
                 },
-                content: {
-                    height: "100vh",
-                    width: "100vw",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
-                }
             }}
         >
             <div className="modal__content-wrapper">
-                <div className="modal__content-container">
+                <div className="modal__text-closeBtn">
                     <img className="modal__close-icon" src={closeIcon} alt="Close icon" onClick={() => setIsOpen(false)} />
-                    <h1 className="modal__title">{modalTitle}</h1>
-                    <p className="modal__text modal__text--large">{modalText}</p>
+                    <div className="modal__text-container">
+                        <h1 className="modal__title">{modalTitle}</h1>
+                        <p className="modal__text modal__text--large">{modalText}</p>
+                    </div>
                 </div>
                 <div className="modal__btn-wrapper">
-                    <button className="modal___cancel-btn" onClick={() => setIsOpen(false)}>Cancel</button>
+                    <button className="modal__cancel-btn" onClick={() => setIsOpen(false)}>Cancel</button>
                     <button
-                        className="modal___delete-btn"
+                        className="modal__delete-btn"
                         onClick={handleDeleteClick}
                     >
                         Delete
