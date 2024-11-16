@@ -17,22 +17,26 @@ export default function Header() {
                     <NavLink
                         to="/warehouse"
                         className={({ isActive }) => {
-                            isActive
-                                ? "nav__button nav__button--active"
-                                : "nav__button";
+                            return isActive
+                                ? "nav__link active"
+                                : "nav__link";
                         }}
                     >
-                        <button className="nav__button">Warehouses</button>
+                        <button className="nav__button">
+                            Warehouses
+                        </button>
                     </NavLink>
                     <NavLink
                         to="/inventory"
                         className={({ isActive }) => {
-                            isActive
-                                ? "nav__button nav__button--active"
-                                : "nav__button";
+                             return isActive
+                                ? "nav__link active"
+                                : "nav__link";
                         }}
                     >
-                        <button className="nav__button">Inventory</button>
+                        <button className="nav__button">
+                            Inventory
+                        </button>
                     </NavLink>
                 </div>
             </nav>
