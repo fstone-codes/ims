@@ -125,6 +125,7 @@ input, button {
         margin-bottom: 1rem;
         font-weight: 400;
         border-color: $Cloud;
+        color: $Slate;
         @include tablet {
             width: auto;
         }
