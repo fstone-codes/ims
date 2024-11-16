@@ -8,9 +8,18 @@ import warehouse__deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import warehouse__searchIcon from "../../assets/Icons/search-24px.svg"
 import warehouse__editIcon from "../../assets/Icons/edit-24px.svg";
 import { useState, useEffect } from "react";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 
 function Warehouse() {
     const [warehouses, setWarehouses] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [itemSelected, setItemSelected] = useState(null);
+
+    const handleModalClick = (warehouse) => {
+        setItemSelected(warehouse);
+        setIsOpen(true);
+    };
+
     async function getAllWarehouseData() {
         try {
             const { data } = await axios.get(
@@ -22,6 +31,23 @@ function Warehouse() {
             console.error("Error fetching all warehouses");
         }
     }
+
+    const handleDeleteClick = async () => {
+        if (!itemSelected) return;
+        try {
+            const response = await axios.delete(
+                `http://localhost:8080/api/warehouses/${itemSelected.id}`
+            );
+            setWarehouses((previousWhList) => {
+                return previousWhList.filter(
+                    (warehouse) => warehouse.id !== itemSelected.id
+                );
+            });
+            setIsOpen(false);
+        } catch (error) {
+            console.error("Error deleting warehouse: ", error);
+        }
+    };
 
     useEffect(() => {
         getAllWarehouseData();
@@ -148,6 +174,9 @@ function Warehouse() {
                                         className="warehouse-list__icon"
                                         src={warehouse__deleteIcon}
                                         alt="delete icon"
+                                        onClick={() =>
+                                            handleModalClick(warehouse)
+                                        }
                                     />
                                     <Link to={`/warehouse/${warehouse.id}/edit`}>
                                     <img
@@ -161,6 +190,15 @@ function Warehouse() {
                         </li>
                     ))}
                 </section>
+                <DeleteModal
+                    modalTitle={`Delete ${itemSelected?.warehouse_name} inventory item?`}
+                    modalText={`Please confirm that you'd like to delete ${itemSelected?.warehouse_name} from the list of warehouses. 
+                    You won't be able to undo this action.`}
+                    setitemSelected={setItemSelected}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    handleDeleteClick={handleDeleteClick}
+                />
             </div>
         </main>
     );
