@@ -19,8 +19,7 @@ input, button {
     margin: 0;
     padding: 0;
     border: $Cloud .0625rem solid;
-    font: inherit; 
-    color: inherit; 
+    font: inherit;  
     background: none; 
     outline: none; 
     box-shadow: none; 
@@ -86,10 +85,8 @@ input, button {
         padding-right: 1rem;
         border-color: $Cloud;
         color: $Slate;
-        background-color: $Light-Grey;
         font-weight: 400;
         margin-bottom: 1rem;
-
     }
 }
 
@@ -135,7 +132,6 @@ input, button {
     justify-content: center;
     padding: 1rem;
     column-gap: 0.5rem;
-    background-color: $Light-Grey;
     @include tablet {
         justify-content: flex-end;
        
