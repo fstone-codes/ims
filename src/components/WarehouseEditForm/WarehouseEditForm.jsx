@@ -15,6 +15,7 @@ function WarehouseEditForm() {
         contact_phone: "",
         contact_email: "",
     });
+    
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
 
@@ -54,7 +55,7 @@ function WarehouseEditForm() {
             const response = await fetch(
                 `http://localhost:8080/api/warehouses/${warehouseId}`,
                 {
-                    method: "PUT", // Use PUT to update the existing entry
+                    method: "PUT", 
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData),
                 }
