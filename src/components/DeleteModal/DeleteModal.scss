@@ -1,2 +1,21 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.modal {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+      max-width: 700px;
+      max-height: 600px;
+    }
+    &__content-container {
+        width: 100%;
+        height: 100%;
+    }
+}
