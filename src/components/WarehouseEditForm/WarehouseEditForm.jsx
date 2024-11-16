@@ -15,30 +15,30 @@ function WarehouseEditForm() {
         contact_phone: "",
         contact_email: "",
     });
-    
+
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
 
     useEffect(() => {
         const fetchWarehouseData = async () => {
             try {
-                const response = await fetch(
-                    `http://localhost:8080/api/warehouses/${warehouseId}`
-                );
+                const response = await fetch(`http://localhost:8080/api/warehouses/${warehouseId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    setFormData(data);
+                    setFormData(data); 
                 } else {
                     console.error("Error fetching warehouse data");
-                    setError("Error fetching warehouse data");
+                    setError("Failed to load warehouse data.");
                 }
             } catch (error) {
                 console.error("Fetch error:", error);
-                setError(
-                    "An error occurred while fetching the warehouse data."
-                );
+                setError("An error occurred while fetching the warehouse data.");
+            } finally {
+                setLoading(false); 
             }
         };
+
         fetchWarehouseData();
     }, [warehouseId]);
 
@@ -76,7 +76,7 @@ function WarehouseEditForm() {
             }
         } catch (error) {
             console.error("Fetch error:", error);
-            setError("An error occurred while updating the warehouse.");
+            setError("An error occurred while editing the warehouse.");
             setSuccessMessage(null);
         }
     };
@@ -132,8 +132,8 @@ function WarehouseEditForm() {
                             name="address"
                             placeholder="Street Address"
                             className="warehouseform__input-street"
-                            // value={formData.address}
-                            // onChange={handleInputChange}
+                            value={formData.address}
+                            onChange={handleInputChange}
                         ></input>
                         <label
                             htmlFor="city"
@@ -146,8 +146,8 @@ function WarehouseEditForm() {
                             name="city"
                             placeholder="City"
                             className="warehouseform__input-city"
-                            // value={formData.city}
-                            // onChange={handleInputChange}
+                            value={formData.city}
+                            onChange={handleInputChange}
                         ></input>
                         <label
                             htmlFor="country"
@@ -160,8 +160,8 @@ function WarehouseEditForm() {
                             name="country"
                             placeholder="Country"
                             className="warehouseform__input-country"
-                            // value={formData.country}
-                            // onChange={handleInputChange}
+                            value={formData.country}
+                            onChange={handleInputChange}
                         ></input>
                     </div>
                     <div className="whcontactform">
@@ -179,8 +179,8 @@ function WarehouseEditForm() {
                             name="contact_name"
                             placeholder="Contact Name"
                             className="whcontactform__input-contact"
-                            // value={formData.contact_name}
-                            // onChange={handleInputChange}
+                            value={formData.contact_name}
+                            onChange={handleInputChange}
                         ></input>
                         <label
                             htmlFor="contact_position"
@@ -193,8 +193,8 @@ function WarehouseEditForm() {
                             name="contact_position"
                             placeholder="Position"
                             className="whcontactform__input-position"
-                            // value={formData.contact_position}
-                            // onChange={handleInputChange}
+                            value={formData.contact_position}
+                            onChange={handleInputChange}
                         ></input>
                         <label
                             htmlFor="contact_phone"
@@ -207,8 +207,8 @@ function WarehouseEditForm() {
                             name="contact_phone"
                             placeholder="Phone Number"
                             className="whcontactform__input-phone"
-                            // value={formData.contact_phone}
-                            // onChange={handleInputChange}
+                            value={formData.contact_phone}
+                            onChange={handleInputChange}
                         ></input>
                         <label
                             htmlFor="contact_email"
@@ -221,8 +221,8 @@ function WarehouseEditForm() {
                             name="contact_email"
                             placeholder="Email"
                             className="whcontactform__input-email"
-                            // value={formData.contact_email}
-                            // onChange={handleInputChange}
+                            value={formData.contact_email}
+                            onChange={handleInputChange}
                         ></input>
                     </div>
                 </div>
