@@ -22,6 +22,7 @@ function WarehouseAddForm() {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
+        
     };
 
     const handleSubmit = async (event) => {
