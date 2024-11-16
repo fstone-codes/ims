@@ -30,21 +30,21 @@ function InventoryDetails() {
     }
 
     return (
-        <main className="main">
-            <section className="title">
-                <div className="title__container">
-                    <Link className="title__link" to={"/inventory"}>
+        <main className="main-inv">
+            <section className="title-inv">
+                <div className="title-inv__container">
+                    <Link className="title-inv__link" to={"/inventory"}>
                         <img
-                            className="title__back-icon"
+                            className="title-inv__back-icon"
                             src={arrowBackIcon}
                             alt="arrow back icon"
                         />
                     </Link>
-                    <h1 className="title__header">{singleItem.item_name}</h1>
+                    <h1 className="title-inv__header">{singleItem.item_name}</h1>
                 </div>
-                <Link className="title__icon-container" to={`/inventory/${inventoryId}/edit`}>
-                    <img className="title__edit-icon" src={editWhiteIcon} alt="edit icon" />
-                    <p className="title__edit-text">Edit</p>
+                <Link className="title-inv__icon-container" to={`/inventory/${inventoryId}/edit`}>
+                    <img className="title-inv__edit-icon" src={editWhiteIcon} alt="edit icon" />
+                    <p className="title-inv__edit-text">Edit</p>
                 </Link>
             </section>
             <section className="inv-details">
