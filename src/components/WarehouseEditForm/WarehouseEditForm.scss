@@ -39,6 +39,9 @@ input, button {
         display: flex;
         align-items: center;
         margin: 1rem;
+        &:hover {
+            cursor: pointer;
+        }
     }
     &__title {
         padding: 1.5rem;
@@ -145,6 +148,7 @@ input, button {
         background-color: $White;
         color: $Slate;
         width: 100%;
+        cursor: pointer;
         &:hover {
             border-color: $Instock-Indigo;
             color: $Instock-Indigo;
@@ -166,6 +170,7 @@ input, button {
         color: $White;
         border-color: $Instock-Indigo;
         width: 100%;
+        cursor: pointer;
         &:hover {
             background-color: $Graphite;
             border-color: $Graphite;
