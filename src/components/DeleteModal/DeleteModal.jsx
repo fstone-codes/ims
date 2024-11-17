@@ -24,12 +24,8 @@ function DeleteModal({
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    background: "rgba(19, 24, 44, 1)",
+                    background: "rgba(19, 24, 44, 0.7)",
                 },
-                content: {
-                    position: "absolute",
-                    zIndex: 20,
-                }
             }}
         >
             <div className="modal__content-wrapper">
