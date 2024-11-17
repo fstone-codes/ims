@@ -72,6 +72,10 @@
         cursor: pointer;
         text-decoration: none;
 
+        &:hover {
+            background-color: $Graphite;
+        }
+
         @include tablet {
             width: 5rem;
         }
@@ -189,6 +193,10 @@
         color: $Slate;
         font-weight: 600;
         margin-bottom: 4px;
+
+        @include tablet {
+            margin-bottom: 0;
+        }
     }
 
     &__td-icon {
