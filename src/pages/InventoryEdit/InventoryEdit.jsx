@@ -15,6 +15,7 @@ function InventoryEdit() {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const [formData, setFormData] = useState({
+        warehouse_id: "",
         warehouse_name: "",
         item_name: "",
         description: "",
@@ -60,6 +61,7 @@ function InventoryEdit() {
             const { data } = await axios.get("http://localhost:8080/api/warehouses");
 
             setWarehouses(data);
+            console.log(warehouses);
         } catch (error) {
             console.error("Error fetching warehouses", error);
         }
@@ -74,6 +76,7 @@ function InventoryEdit() {
             console.log(data);
 
             setFormData({
+                warehouse_id: "",
                 warehouse_name: data.warehouse_name,
                 item_name: data.item_name,
                 description: data.description,
@@ -81,20 +84,18 @@ function InventoryEdit() {
                 status: data.status,
                 quantity: data.quantity,
             });
-
-            console.log("new log", formData);
-
-            // setFormData(newUpdatedData);
         } catch (error) {
             console.error("Error fetching single inventory item: ", error);
         }
     };
 
-    const editSingleItemData = async () => {
+    const editSingleItemData = async (updatedData) => {
         try {
+            const { warehouse_name, ...nameRemovedData } = updatedData;
+
             const { data } = await axios.put(
                 `http://localhost:8080/api/inventories/${inventoryId}`,
-                updatedData
+                nameRemovedData
             );
 
             getSingleItemData(data);
@@ -117,7 +118,7 @@ function InventoryEdit() {
 
         setFormData(() => ({
             ...formData,
-            [name]: name === "quantity" || name === "warehouse_id" ? Number(value) : value,
+            [name]: name === "quantity" || name === "warehouse_name" ? Number(value) : value,
         }));
     };
 
@@ -125,13 +126,15 @@ function InventoryEdit() {
         e.preventDefault();
         setFormSubmitted(true);
 
+        console.log(updatedData);
+
         if (!validateForm()) {
             return;
         }
         try {
             await editSingleItemData(updatedData);
 
-            navigate("/inventory");
+            navigate(`/inventory/${inventoryId}`);
         } catch (error) {
             console.error("Error updating inventory: ", error);
         }
@@ -146,7 +149,7 @@ function InventoryEdit() {
             !formData.item_name ||
             !formData.description ||
             !formData.category ||
-            !formData.warehouse_id ||
+            !formData.warehouse_name ||
             (formData.status === "In Stock" && !formData.quantity)
         ) {
             console.error("Missing required fields");
@@ -165,7 +168,10 @@ function InventoryEdit() {
     };
 
     const updatedData = {
-        warehouse_id: formData.warehouse_id,
+        warehouse_id:
+            warehouses.find((warehouse) => warehouse.warehouse_name === formData.warehouse_name)
+                ?.id || "",
+        warehouse_name: formData.warehouse_name,
         item_name: formData.item_name,
         description: formData.description,
         category: formData.category,
@@ -351,17 +357,19 @@ function InventoryEdit() {
                             Warehouse
                         </label>
                         <select
-                            name="warehouse_id"
+                            name="warehouse_name"
                             id="warehouse"
                             className={`inventoryform__input-warehouse ${
                                 formSubmitted && !formData.warehouse_name
                                     ? "inventoryform__input-warehouse--error"
                                     : ""
                             }`}
-                            value={formData.warehouse_id}
+                            value={formData.warehouse_name}
                             onChange={handleChange}
                         >
-                            <option value="">{formData.warehouse_name}</option>
+                            <option value="">
+                                {formData.warehouse_name || "Select Warehouse"}
+                            </option>
                             {uniqueWarehouses.map((warehouse) => (
                                 <option key={warehouse.id} value={warehouse.id}>
                                     {warehouse.warehouse_name}
