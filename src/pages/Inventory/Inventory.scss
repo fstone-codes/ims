@@ -125,6 +125,10 @@
         }
     }
 
+    &__tablet-sort-icon {
+        width: 1rem;
+    }
+
     &__list {
         display: flex;
         flex-direction: column;
@@ -137,9 +141,14 @@
         gap: 1rem;
         width: 100%;
         border-top: 1px solid $Cloud;
+        // :hover {
+        //     background: #2E66E512;
+        //     opacity: 70%;
+        // }
         @include tablet {
             flex-direction: row;
             gap: 0;
+            
         }
 
         &:first-child {
@@ -196,6 +205,8 @@
         @include tablet {
             flex-direction: row;
             padding-left: 2rem;
+            margin-top: 0;
+            padding-top: 1rem;
         }
         @include desktop {
             padding-left: 2.5rem;
@@ -324,9 +335,6 @@
         width: 1.25rem;
         height: 1.25rem;
         cursor: pointer;
-        @include tablet {
-            padding: .75rem 0;
-        }
     }
 
     &__icon {

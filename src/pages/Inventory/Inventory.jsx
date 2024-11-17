@@ -69,7 +69,7 @@ function Inventory() {
                             placeholder="Search..."
                         />
                         <button className="add-button" onClick={addHandleClick}>
-                            +Add New Item
+                            + Add New Item
                         </button>
                     </article>
                 </div>
