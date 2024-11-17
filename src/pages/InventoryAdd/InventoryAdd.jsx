@@ -116,7 +116,7 @@ const InventoryAdd = () => {
         const response = await postInventoryData(updatedData);
 
         if (response) {
-            alert("Inventory updated successfully!");
+            navigate("/inventory");
         }
     };
 
