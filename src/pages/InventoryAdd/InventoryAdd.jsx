@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./InventoryAdd.scss";
-import backArrow from "../../assets/Icons/arrow_back-24px.svg";
-import dropdownIcon from "../../assets/Icons/arrow_drop_down-24px.svg";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/Icons/error-24px.svg";
 
 const InventoryAdd = () => {
