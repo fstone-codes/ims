@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Warehouse from "./pages/Warehouse/Warehouse.jsx";
