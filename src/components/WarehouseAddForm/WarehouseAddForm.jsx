@@ -17,7 +17,7 @@ function WarehouseAddForm() {
         contact_email: ''
     });
 
-    const [errors, setErrors] = useState({}); // Track field errors
+    const [errors, setErrors] = useState({}); 
     const [successMessage, setSuccessMessage] = useState(null);
 
     const handleInputChange = (event) => {
@@ -70,6 +70,7 @@ function WarehouseAddForm() {
                     contact_email: '',
                 });
                 setErrors({});
+                navigate('/warehouse');
             } else {
                 setSuccessMessage(null);
                 console.error('Error from server:', result);

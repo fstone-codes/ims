@@ -54,7 +54,7 @@ function WarehouseEditForm() {
     
         Object.keys(formData).forEach((key) => {
             const value = formData[key];
-            if (typeof value !== "string" || value.trim() === "") {
+            if (!value || (typeof value === "string" && value.trim() === "")) {
                 newErrors[key] = true; 
             }
         });
@@ -81,7 +81,7 @@ function WarehouseEditForm() {
             if (response.ok) {
                 const result = await response.json();
                 setSuccessMessage(result.message || "Warehouse updated successfully!");
-                navigate(`/warehouse/${warehouseId}`); 
+                navigate(`/warehouse/${warehouseId}`);
             } else {
                 console.error("Error updating warehouse");
             }
