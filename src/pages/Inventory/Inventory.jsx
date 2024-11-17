@@ -16,7 +16,7 @@ function Inventory() {
     const navigate = useNavigate();
 
     // HandleClick for Add button
-    const addHandleClick = () => navigate("/warehouse/add");
+    const addHandleClick = () => navigate("/inventory/add");
 
     const handleModalClick = (inventoryItem) => {
         setItemSelected(inventoryItem);
@@ -174,7 +174,7 @@ function Inventory() {
                             </div>
                             <article className="inventory__inventory__content">
                                 <div className="inventory__tb-header-wrapper">
-                                    <h4 className="inventory__label">
+                                    <h4 className="inventory__label inventory__label--hidden">
                                         ACTIONS
                                     </h4>
                                     <img

@@ -2,20 +2,25 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 
-.inventory-wrapper {
-    display: flex;
-    justify-content: center;   
-}
+// .inventory-wrapper {
+//     display: flex;
+//     justify-content: center;   
+    
+    
+    
+// }
 
 .inventory {
     display: flex;
     flex-direction: column;
     background-color: $White;
     width: 90%;
+    border-radius: .1875rem;
+    margin: auto;
     &__header {
         display: flex;
         flex-direction: column;
-        padding: 0 1rem;
+        padding: 0 1.5rem;
         @include tablet {
             flex-direction: row;
             justify-content: space-between;
@@ -74,7 +79,7 @@
         display: flex;
         flex-direction: column;
         list-style-type: none;
-        padding: 0 1rem;
+        // padding: 0 1.5rem;
     }
     &__item {
         display: flex;
@@ -87,7 +92,9 @@
             gap: 0;
         }
         &:first-child {
-            border-top: none;
+            @include tablet {
+                border-top: none;
+            }
             .inventory__tb-header-wrapper {
                 display: flex;
                 @include tablet {
@@ -96,6 +103,7 @@
                 }
             }
             .inventory__label {
+                width: 100%;
                 @include tablet {
                     display: unset;
                 }
@@ -113,6 +121,10 @@
         color: $Instock-Indigo;
         text-decoration: none;
         display: flex;
+        // width: 100%;
+        &:hover {
+            text-decoration: underline;
+        }
         @include mobile__buttons-labels;
         @include tablet {
             @include buttons-labels;
@@ -123,7 +135,8 @@
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
-        height: 40vw;
+        // height: 40vw;
+        margin-top: 1rem;
         @include tablet {
             flex-direction: row;
             height: unset;
@@ -132,31 +145,34 @@
     &__content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         flex-wrap: wrap;
-        width: 50%;
-        @include tablet {
-            justify-content: space-between;
-        }
-        &:nth-child(1){
-            order: 1;
-        }
+        width: 40%;
+        margin: auto;
+        // @include tablet {
+        //     // justify-content: center;
+        // }
+        // &:nth-child(1){
+        //     order: 1;
+        // }
         @include tablet {
             width: 20%;
         }
         &:nth-child(1) {
             order: 1;
+            padding-bottom: 1rem;
         }
         &:nth-child(2) {
             order:3;
+            padding-bottom: 1rem;
             @include tablet {
                 order: 2;
             }
         }
         &:nth-child(3) {
             order: 2;
+            padding-bottom: 1rem;
             align-self: flex-start;
-            padding-top: .25rem;
+            // padding-top: .25rem;
             @include tablet {
                 order: 3;
                 margin-bottom: 1rem;
@@ -164,12 +180,16 @@
         }
         &:nth-child(4) {
             order: 4;
+
         }
         &:nth-child(5) {
             order: 5;
         }
         &:nth-child(6) {
             order: 6;
+            // @include tablet {
+
+            // }
         }
         &--transparent {
             @include tablet {
@@ -180,6 +200,9 @@
     &__label {
         color: $Slate;
         padding-bottom: .25rem;
+        &--hidden {
+            display: none;
+        }
         @include mobile__table-header;
         @include tablet {
             display: none;
@@ -190,7 +213,7 @@
         display: none;
     }
     &__text {
-        padding-bottom: 1rem;
+        // padding-bottom: 1rem;
         @include tablet {
             padding-top: 1rem;
         }
@@ -225,13 +248,12 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        margin-bottom: 1rem;
         @include tablet {
             justify-content: flex-end;
             padding-top: 1rem;
+            margin-bottom: 0;
         }
-    }
-    &__inline-icon {
-        display: flex;
     }
 
     &__chevron-icon {
@@ -247,6 +269,7 @@
         width: 1.5rem;
         height: 1.5rem;
         cursor: pointer;
+        margin: 0 1.5rem;
     }
 }
 
