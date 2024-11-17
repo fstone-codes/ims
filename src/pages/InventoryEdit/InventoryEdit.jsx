@@ -205,7 +205,11 @@ function InventoryEdit() {
                             name="item_name"
                             id="item_name"
                             placeholder="Item Name"
-                            className="inventoryform__input-name"
+                            className={`inventoryform__input-name ${
+                                formSubmitted && !formData.item_name
+                                    ? "inventoryform__input-name--error"
+                                    : ""
+                            }`}
                             value={formData.item_name}
                             onChange={handleChange}
                         />
@@ -226,7 +230,11 @@ function InventoryEdit() {
                             name="description"
                             id="description"
                             placeholder="Please enter a brief item description..."
-                            className="inventoryform__input-description"
+                            className={`inventoryform__input-description ${
+                                formSubmitted && !formData.description
+                                    ? "inventoryform__input-description--error"
+                                    : ""
+                            }`}
                             value={formData.description}
                             onChange={handleChange}
                         />
@@ -247,7 +255,11 @@ function InventoryEdit() {
                             <select
                                 name="category"
                                 id="category"
-                                className="inventoryform__input-category"
+                                className={`inventoryform__input-category ${
+                                    formSubmitted && !formData.category
+                                        ? "inventoryform__input-category--error"
+                                        : ""
+                                }`}
                                 value={formData.category}
                                 onChange={handleChange}
                             >
@@ -274,7 +286,13 @@ function InventoryEdit() {
                         <h2 className="inventoryform__title">Item Availability</h2>
                         <label className="inventoryform__label">Status</label>
                         <div className="inventoryform__radiobutton">
-                            <label className="inventoryform__label">
+                            <label
+                                className={`inventoryform__label ${
+                                    formData.status === "In Stock"
+                                        ? "inventoryform__label--selected"
+                                        : ""
+                                }`}
+                            >
                                 <input
                                     type="radio"
                                     name="status"
@@ -284,7 +302,13 @@ function InventoryEdit() {
                                 />
                                 In Stock
                             </label>
-                            <label className="inventoryform__label">
+                            <label
+                                className={`inventoryform__label ${
+                                    formData.status === "Out of Stock"
+                                        ? "inventoryform__label--selected"
+                                        : ""
+                                }`}
+                            >
                                 <input
                                     type="radio"
                                     name="status"
@@ -303,7 +327,11 @@ function InventoryEdit() {
                                 <input
                                     type="number"
                                     name="quantity"
-                                    className="inventoryform__input-quantity"
+                                    className={`inventoryform__input-quantity ${
+                                        formSubmitted && !formData.quantity
+                                            ? "inventoryform__input-quantity--error"
+                                            : ""
+                                    }`}
                                     value={formData.quantity}
                                     onChange={handleChange}
                                 />
@@ -325,7 +353,11 @@ function InventoryEdit() {
                         <select
                             name="warehouse_id"
                             id="warehouse"
-                            className="inventoryform__input-warehouse"
+                            className={`inventoryform__input-warehouse ${
+                                formSubmitted && !formData.warehouse_name
+                                    ? "inventoryform__input-warehouse--error"
+                                    : ""
+                            }`}
                             value={formData.warehouse_id}
                             onChange={handleChange}
                         >
