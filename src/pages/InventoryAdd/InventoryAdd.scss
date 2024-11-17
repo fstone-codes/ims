@@ -1,19 +1,22 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-* {
-    padding: 0rem;
-    margin: 0rem;
-}
-
-.main {
+.main-inv-add {
+    border-radius: 3px;
+    width: calc(100vw - 2rem);
     background-color: $White;
     box-shadow: 0px 2px 5px 0px #13182c1a;
-    border-radius: 0.1875rem;
-    width: 90vw;
-    margin: auto;
-    padding: 0;
+    margin: 0 auto;
+
+    @include tablet {
+        width: calc(100vw - 4rem);
+    }
+
+    @include desktop {
+        width: calc(100vw - 16.25rem);
+    }
 }
+
 .title {
     display: flex;
     align-items: flex-start;
@@ -62,14 +65,14 @@
 .inventoryform {
     display: flex;
     flex-direction: column;
-    //padding: 1rem;
-    row-gap: 0.25rem;
-    //padding-left: 1.5rem;
+    padding: 1rem 1.5rem 1.5rem;
+
     @include tablet {
-        padding: 0 2rem 0.5rem;
+        margin: 1.5rem 0;
+        padding: 0 2rem;
     }
     @include desktop {
-        padding: 0 2.5rem 0.5rem;
+        padding: 0 2.5rem;
     }
 
     &--border {
@@ -81,25 +84,17 @@
         }
     }
 
-    @include tablet {
-        width: 100%;
-        border-right: 0.0625rem $Cloud solid;
-        margin-top: 1rem;
-    }
-    @include desktop {
-        padding-left: 3.9375rem;
-        padding-right: 3.9375rem;
-    }
     &__title {
         @include mobile__sub-header;
-        padding-bottom: 24px;
-        padding-left: 1.5rem;
-        padding-top: 1rem;
+        margin-bottom: 1.5rem;
+
+        @include tablet {
+            margin-bottom: 2rem;
+        }
     }
     &__label {
         @include mobile__buttons-labels;
-        padding-bottom: 4px;
-        padding-left: 1.5rem;
+        margin-bottom: 4px;
     }
     &__input-name,
     &__input-description,
@@ -109,33 +104,48 @@
         @include mobile__buttons-labels;
         border-radius: 1.25rem;
         height: 2.25rem;
-        // width: 100%;
-        padding-right: 1rem;
+        width: 100%;
+        padding-left: 1rem;
         border-color: $Cloud;
         color: $Slate;
         background-color: $White;
         font-weight: 400;
         margin-bottom: 1rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
         font-family: "Titillium Web", sans-serif;
         appearance: none;
         padding-left: 1rem;
+
+        &--error {
+            border-color: $Red;
+        }
+
         @include tablet {
             @include buttons-labels;
             font-weight: 400;
+            margin-bottom: 1.5rem;
         }
     }
 
-    &__input-category {
-        margin-bottom: 1.5rem;
-        padding-right: 0;
-        width: 100%;
+    &__input-category,
+    &__input-warehouse {
+        background-image: url(../../assets/Icons/arrow_drop_down-24px.svg);
+        background-repeat: no-repeat;
+        background-position: 97%;
+        margin-bottom: 0;
+    }
+
+    &__dropdown-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .inventoryform__label {
+            margin-bottom: 4px;
+        }
     }
 
     &__input-quantity {
         @include desktop {
-            width: 122px;
+            width: 20%;
         }
     }
 
@@ -143,6 +153,8 @@
         height: 120px;
         font-family: "Titillium Web", sans-serif;
         color: $Slate;
+        resize: none;
+
         @include mobile__buttons-labels;
         font-weight: 400;
         padding: 8px 1rem;
@@ -159,39 +171,46 @@
             grid-column: 1 / 3;
             justify-content: flex-end;
             gap: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        @include desktop {
+            padding: 1rem 2.5rem;
         }
     }
 
     &__button-cancel,
     &__button-add {
         display: flex;
-        padding: 8px 39px;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1rem;
+        border-radius: 1.25rem;
         column-gap: 0.5rem;
         background-color: $Light-Grey;
         flex-grow: 1;
+        font-weight: 600;
+
         @include tablet {
             flex: 0 0 auto;
+            height: 2.375rem;
+            width: auto;
         }
     }
-    &__button-cancel,
-    &__button-add {
+    &__button-cancel {
         height: 2.25rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: 1.25rem;
+
         border-color: $Cloud;
         background-color: $White;
         color: $Slate;
         &:hover {
             border-color: $Instock-Indigo;
             color: $Instock-Indigo;
+            font-weight: 600;
         }
         @include tablet {
             height: 2.375rem;
             width: auto;
-        }
-        @include desktop {
-            margin-left: 3.9375rem;
         }
     }
     &__button-add {
@@ -205,9 +224,6 @@
         @include tablet {
             height: 2.375rem;
             width: auto;
-        }
-        @include desktop {
-            margin-right: 3.9375rem;
         }
     }
 }
@@ -238,51 +254,45 @@ select {
 
 .inventoryform__radiobutton {
     display: flex;
-    //gap: 89px;
     justify-content: space-between;
-    padding-left: 1.5rem;
-    padding-right: 4.5rem;
-
-    @include tablet {
-        gap: 40px;
-    }
+    width: 100%;
 
     label {
         display: flex;
         align-items: center;
         gap: 4px;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        width: 100%;
+        font-weight: 400;
+        color: $Slate;
+
+        &.inventoryform__label--selected {
+            color: $Instock-Black;
+        }
+
         @include tablet {
-            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
         }
     }
-}
-
-.inventoryform__dropdown-wrapper {
-    position: relative;
-    //width: 100%;
-}
-
-.dropdown-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-40%);
-    width: 1.5rem;
-    height: 1.5rem;
-    pointer-events: none;
 }
 
 .inventoryform__error-message {
     display: flex;
     align-items: center;
     font-size: 0.75rem;
-    color: #c94515;
-    margin-top: -0.75rem;
-    margin-bottom: 0.25rem;
-    padding-left: 24px;
+    color: $Red;
+    margin: -0.75rem 0 0.25rem;
+
+    @include tablet {
+        margin: -1.25rem 0 0.25rem;
+    }
+
+    &--dropdown {
+        margin: 0.25rem 0 0.25rem;
+    }
+
     &-icon {
-        height: auto;
+        height: 16px;
         margin-right: 0.25rem;
     }
 }
