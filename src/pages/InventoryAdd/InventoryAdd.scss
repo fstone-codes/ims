@@ -108,6 +108,13 @@
         }
     }
 
+    &__input-category,
+    &__input-warehouse {
+        background-image: url(../../assets/Icons/arrow_drop_down-24px.svg);
+        background-repeat: no-repeat;
+        background-position: 97%;
+    }
+
     &__input-quantity {
         @include desktop {
             width: 122px;
@@ -242,11 +249,23 @@ select:focus {
 }
 
 .dropdown-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-40%);
-    width: 1.5rem;
-    height: 1.5rem;
-    pointer-events: none;
+    &--category {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-40%);
+        width: 1.5rem;
+        height: 1.5rem;
+        pointer-events: none;
+    }
+
+    &--warehouse {
+        position: relative;
+        // top: 50%;
+        // right: 10px;
+        // transform: translateY(-40%);
+        width: 1.5rem;
+        height: 1.5rem;
+        // pointer-events: none;
+    }
 }

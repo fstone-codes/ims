@@ -28,8 +28,6 @@ function InventoryEdit() {
         try {
             const { data } = await axios.get("http://localhost:8080/api/inventories");
 
-            // setInventories(data);
-
             const filterOnlyCategories = (arrOfObjects) => {
                 return arrOfObjects.map((object) => ({
                     id: object.id,
@@ -62,7 +60,17 @@ function InventoryEdit() {
         try {
             const { data } = await axios.get("http://localhost:8080/api/warehouses");
 
-            setWarehouses(data);
+            const filterOnlyLocations = (arrOfObjects) => {
+                return arrOfObjects.map((object) => ({
+                    id: object.id,
+                    warehouse_name: object.warehouse_name,
+                }));
+            };
+
+            const newArray = filterOnlyLocations(data);
+            console.log(newArray);
+
+            setWarehouses(newArray);
         } catch (error) {
             console.error("Error fetching warehouses", error);
         }
@@ -104,22 +112,27 @@ function InventoryEdit() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(name, typeof value);
 
         setFormData(() => ({
             ...formData,
-            [name]: name === "quantity" ? Number(value) : value,
+            [name]: name === "quantity" || name === "warehouse_id" ? Number(value) : value,
         }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true);
-        validateForm();
+        console.log(updatedData);
+        if (!validateForm()) {
+            return;
+        }
+        try {
+            await editSingleItemData(updatedData);
 
-        const response = await editSingleItemData(updatedData);
-
-        if (response) {
-            alert("Inventory updated successfully!");
+            navigate("/inventory");
+        } catch (error) {
+            console.error("Error updating inventory: ", error);
         }
     };
 
@@ -136,7 +149,7 @@ function InventoryEdit() {
             (formData.status === "In Stock" && !formData.quantity)
         ) {
             console.error("Missing required fields");
-            return;
+            return false;
         }
 
         if (
@@ -144,8 +157,10 @@ function InventoryEdit() {
             (isNaN(formData.quantity) || formData.quantity <= 0)
         ) {
             console.error("Quantity must be a number");
-            return;
+            return false;
         }
+
+        return true;
     };
 
     const updatedData = {
@@ -157,7 +172,7 @@ function InventoryEdit() {
         quantity: formData.status === "In Stock" ? formData.quantity || 0 : 0,
     };
 
-    if (!formData) {
+    if (warehouses.length === 0 || !formData) {
         return <div>Loading item...</div>;
     }
 
@@ -214,7 +229,6 @@ function InventoryEdit() {
                                     </option>
                                 ))}
                             </select>
-                            <img src={dropdownIcon} alt="Dropdown Icon" className="dropdown-icon" />
                         </div>
                     </div>
                     <div className="inventoryform">
@@ -243,28 +257,21 @@ function InventoryEdit() {
                             </label>
                         </div>
                         {formData.status === "In Stock" && (
-                            <>
-                                <div className="inventoryform__dropdown-wrapper">
-                                    <label htmlFor="quantity" className="inventoryform__label">
-                                        Quantity
-                                    </label>
-                                    <input
-                                        type="number"
-                                        name="quantity"
-                                        className="inventoryform__input-quantity"
-                                        value={formData.quantity}
-                                        onChange={handleChange}
-                                    />
-                                    {formSubmitted && !formData.quantity && (
-                                        <span className="warning">Quantity is required.</span>
-                                    )}
-                                    <img
-                                        src={dropdownIcon}
-                                        alt="Dropdown Icon"
-                                        className="dropdown-icon"
-                                    />
-                                </div>
-                            </>
+                            <div className="inventoryform__dropdown-wrapper">
+                                <label htmlFor="quantity" className="inventoryform__label">
+                                    Quantity
+                                </label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    className="inventoryform__input-quantity"
+                                    value={formData.quantity}
+                                    onChange={handleChange}
+                                />
+                                {formSubmitted && !formData.quantity && (
+                                    <span className="warning">Quantity is required.</span>
+                                )}
+                            </div>
                         )}
                         <label htmlFor="warehouse" className="inventoryform__label">
                             Warehouse
@@ -283,9 +290,6 @@ function InventoryEdit() {
                                 </option>
                             ))}
                         </select>
-                        {formSubmitted && !formData.warehouse_id && (
-                            <span className="warning">Warehouse is required</span>
-                        )}
                     </div>
 
                     <div className="inventoryform__buttons">
