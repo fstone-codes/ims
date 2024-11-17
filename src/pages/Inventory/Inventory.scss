@@ -4,8 +4,9 @@
 
 // .inventory-wrapper {
     // display: flex;
+    // flex-direction: column;
     // justify-content: center;   
-
+    // height: 100vh;
 // }
 
 .inventory {
@@ -74,12 +75,20 @@
             margin: 0 1rem;
         }
     }
+
+    &__tablet-labels {
+        display: none;
+        @include tablet {
+            display: unset;
+        }
+    }
+
     &__list {
         display: flex;
         flex-direction: column;
         list-style-type: none;
-        // padding: 0 1.5rem;
     }
+
     &__item {
         display: flex;
         flex-direction: column;
@@ -99,6 +108,7 @@
                 @include tablet {
                     background-color: $Light-Grey;
                     padding: .75rem;
+                    display: none;
                 }
             }
             .inventory__label {
@@ -120,7 +130,6 @@
         color: $Instock-Indigo;
         text-decoration: none;
         display: flex;
-        // width: 100%;
         &:hover {
             text-decoration: underline;
         }
@@ -134,11 +143,10 @@
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
-        // height: 40vw;
         margin-top: 1rem;
         @include tablet {
             flex-direction: row;
-            height: unset;
+            padding-left: 2rem;
         }
     }
     &__content {
@@ -149,10 +157,14 @@
         margin: auto;
         @include tablet {
             width: 20%;
+            margin: unset;
         }
         &:nth-child(1) {
             order: 1;
             padding-bottom: 1rem;
+            @include tablet {
+                padding-bottom: 0;
+            }
         }
         &:nth-child(2) {
             order:3;
@@ -165,11 +177,11 @@
             order: 2;
             padding-bottom: 1rem;
             align-self: flex-start;
-            // padding-top: .25rem;
-            @include tablet {
-                order: 3;
-                margin-bottom: 1rem;
-            }
+            // @include tablet {
+            //     order: 3;
+            //     margin-bottom: 1rem;
+            //     padding-bottom: 0;
+            // }
         }
         &:nth-child(4) {
             order: 4;
@@ -180,9 +192,6 @@
         }
         &:nth-child(6) {
             order: 6;
-            // @include tablet {
-
-            // }
         }
         &--transparent {
             @include tablet {
@@ -193,6 +202,9 @@
     &__label {
         color: $Slate;
         padding-bottom: .25rem;
+        @include tablet {
+            padding-bottom: 0;
+        }
         &--hidden {
             display: none;
         }
@@ -205,12 +217,12 @@
     &__sort-icon {
         display: none;
     }
-    &__text {
-        // padding-bottom: 1rem;
-        @include tablet {
-            padding-top: 1rem;
-        }
-    }
+    // &__text {
+    //     // padding-bottom: 1rem;
+    //     // @include tablet {
+    //     //     padding-top: 1rem;
+    //     // }
+    // }
     &__status {
         display: inline-flex;
         justify-content: center;
@@ -221,7 +233,7 @@
         @include mobile__body-small;
         @include tablet {
             justify-content: space-between;
-            margin-top: 1rem;
+            // margin-top: 1rem;
         }
         &--green {
             background-color: #15846312;
@@ -245,6 +257,7 @@
         @include tablet {
             justify-content: flex-end;
             padding-top: 1rem;
+            padding-right: 2rem;
             margin-bottom: 0;
         }
     }
@@ -263,6 +276,9 @@
         height: 1.5rem;
         cursor: pointer;
         margin: 0 1.5rem;
+        @include tablet {
+            margin: 0;
+        }
     }
 }
 

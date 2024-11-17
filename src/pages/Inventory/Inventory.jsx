@@ -73,6 +73,14 @@ function Inventory() {
                         </button>
                     </article>
                 </div>
+                <section className="inventory__tablet-labels">
+                    <h4 className="inventory__label">INVENTORY ITEM</h4>
+                    <h4 className="inventory__label">CATEGORY</h4>
+                    <h4 className="inventory__label">STATUS</h4>
+                    <h4 className="inventory__label">QUANTITY</h4>
+                    <h4 className="inventory__label">WAREHOUSE</h4>
+                    <h4 className="inventory__label">ACTIONS</h4>
+                </section>
                 <ul className="inventory__list">
                     {inventory.map((inventoryItem) => (
                         <li className="inventory__item" key={inventoryItem.id}>
