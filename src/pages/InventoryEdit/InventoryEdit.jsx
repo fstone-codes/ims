@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 // maintain the same styling for both Add + Edit Inventory pages
 import "../InventoryAdd/InventoryAdd.scss";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
+import errorIcon from "../../assets/Icons/error-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -208,6 +209,16 @@ function InventoryEdit() {
                             value={formData.item_name}
                             onChange={handleChange}
                         />
+                        {formSubmitted && !formData.item_name && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="description" className="inventoryform__label">
                             Description
                         </label>
@@ -219,6 +230,16 @@ function InventoryEdit() {
                             value={formData.description}
                             onChange={handleChange}
                         />
+                        {formSubmitted && !formData.description && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <div className="inventoryform__dropdown-wrapper">
                             <label htmlFor="category" className="inventoryform__label">
                                 Category
@@ -237,13 +258,23 @@ function InventoryEdit() {
                                     </option>
                                 ))}
                             </select>
+                            {formSubmitted && !formData.category && (
+                                <div className="inventoryform__error-message">
+                                    <img
+                                        src={errorIcon}
+                                        alt="Error icon"
+                                        className="inventoryform__error-message-icon"
+                                    />
+                                    <span>This field is required</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="inventoryform">
                         <h2 className="inventoryform__title">Item Availability</h2>
                         <label className="inventoryform__label">Status</label>
                         <div className="inventoryform__radiobutton">
-                            <label>
+                            <label className="inventoryform__label">
                                 <input
                                     type="radio"
                                     name="status"
@@ -277,7 +308,14 @@ function InventoryEdit() {
                                     onChange={handleChange}
                                 />
                                 {formSubmitted && !formData.quantity && (
-                                    <span className="warning">Quantity is required.</span>
+                                    <div className="inventoryform__error-message">
+                                        <img
+                                            src={errorIcon}
+                                            alt="Error icon"
+                                            className="inventoryform__error-message-icon"
+                                        />
+                                        <span>This field is required</span>
+                                    </div>
                                 )}
                             </div>
                         )}
@@ -298,6 +336,16 @@ function InventoryEdit() {
                                 </option>
                             ))}
                         </select>
+                        {formSubmitted && !formData.warehouse_name && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="inventoryform__buttons">

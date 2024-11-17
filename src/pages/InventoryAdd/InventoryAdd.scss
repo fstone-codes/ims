@@ -65,14 +65,14 @@
 .inventoryform {
     display: flex;
     flex-direction: column;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.5rem 1.5rem;
 
-    // row-gap: 0.25rem;
     @include tablet {
-        padding: 0 2rem 0.5rem;
+        margin: 1.5rem 0;
+        padding: 0 2rem;
     }
     @include desktop {
-        padding: 0 2.5rem 0.5rem;
+        padding: 0 2.5rem;
     }
 
     &--border {
@@ -84,20 +84,13 @@
         }
     }
 
-    @include tablet {
-        width: 100%;
-        border-right: 0.0625rem $Cloud solid;
-        margin-top: 1rem;
-    }
-    @include desktop {
-        padding-left: 3.9375rem;
-        padding-right: 3.9375rem;
-    }
     &__title {
         @include mobile__sub-header;
-        padding-bottom: 24px;
-        padding-left: 1.5rem;
-        padding-top: 1rem;
+        margin-bottom: 1.5rem;
+
+        @include tablet {
+            margin-bottom: 2rem;
+        }
     }
     &__label {
         @include mobile__buttons-labels;
@@ -124,6 +117,7 @@
         @include tablet {
             @include buttons-labels;
             font-weight: 400;
+            margin-bottom: 1.5rem;
         }
     }
 
@@ -132,11 +126,21 @@
         background-image: url(../../assets/Icons/arrow_drop_down-24px.svg);
         background-repeat: no-repeat;
         background-position: 97%;
+        margin-bottom: 0;
+    }
+
+    &__dropdown-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .inventoryform__label {
+            margin-bottom: 4px;
+        }
     }
 
     &__input-quantity {
         @include desktop {
-            width: 122px;
+            width: 20%;
         }
     }
 
@@ -160,6 +164,11 @@
             grid-column: 1 / 3;
             justify-content: flex-end;
             gap: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        @include desktop {
+            padding: 1rem 2.5rem;
         }
     }
 
@@ -167,33 +176,34 @@
     &__button-add {
         display: flex;
         justify-content: center;
-        padding: 8px 39px;
+        align-items: center;
+        padding: 0 1rem;
+        border-radius: 1.25rem;
         column-gap: 0.5rem;
         background-color: $Light-Grey;
         flex-grow: 1;
+        font-weight: 600;
+
         @include tablet {
             flex: 0 0 auto;
+            height: 2.375rem;
+            width: auto;
         }
     }
-    &__button-cancel,
-    &__button-add {
+    &__button-cancel {
         height: 2.25rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: 1.25rem;
+
         border-color: $Cloud;
         background-color: $White;
         color: $Slate;
         &:hover {
             border-color: $Instock-Indigo;
             color: $Instock-Indigo;
+            font-weight: 600;
         }
         @include tablet {
             height: 2.375rem;
             width: auto;
-        }
-        @include desktop {
-            margin-left: 3.9375rem;
         }
     }
     &__button-add {
@@ -207,9 +217,6 @@
         @include tablet {
             height: 2.375rem;
             width: auto;
-        }
-        @include desktop {
-            margin-right: 3.9375rem;
         }
     }
 }
@@ -240,50 +247,25 @@ select {
 
 .inventoryform__radiobutton {
     display: flex;
-    //gap: 89px;
     justify-content: space-between;
-    padding-left: 1.5rem;
-    padding-right: 4.5rem;
+    width: 100%;
 
     @include tablet {
-        gap: 40px;
+        // heig
     }
 
     label {
         display: flex;
         align-items: center;
         gap: 4px;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        width: 100%;
+        font-weight: 400;
+        color: $Slate;
+
         @include tablet {
-            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
         }
-    }
-}
-
-.inventoryform__dropdown-wrapper {
-    position: relative;
-    //width: 100%;
-}
-
-.dropdown-icon {
-    &--category {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-40%);
-        width: 1.5rem;
-        height: 1.5rem;
-        pointer-events: none;
-    }
-
-    &--warehouse {
-        position: relative;
-        // top: 50%;
-        // right: 10px;
-        // transform: translateY(-40%);
-        width: 1.5rem;
-        height: 1.5rem;
-        // pointer-events: none;
     }
 }
 
@@ -292,9 +274,7 @@ select {
     align-items: center;
     font-size: 0.75rem;
     color: #c94515;
-    margin-top: -0.75rem;
-    margin-bottom: 0.25rem;
-    padding-left: 24px;
+    margin: 0.25rem 0;
     &-icon {
         height: auto;
         margin-right: 0.25rem;

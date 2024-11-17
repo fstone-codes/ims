@@ -29,10 +29,7 @@ const InventoryAdd = () => {
 
     const postInventoryData = async (updatedData) => {
         try {
-            const { data } = await axios.post(
-                `http://localhost:8080/api/inventories`,
-                updatedData
-            );
+            const { data } = await axios.post(`http://localhost:8080/api/inventories`, updatedData);
 
             setInventories((prev) => [...prev, data]);
             return true;
@@ -44,9 +41,7 @@ const InventoryAdd = () => {
 
     const getInventories = async () => {
         try {
-            const { data } = await axios.get(
-                "http://localhost:8080/api/inventories"
-            );
+            const { data } = await axios.get("http://localhost:8080/api/inventories");
 
             setInventories(data);
         } catch (error) {
@@ -57,20 +52,14 @@ const InventoryAdd = () => {
     const filteredInventories = [];
 
     inventories.forEach((item) => {
-        if (
-            !filteredInventories.some(
-                (filteredItem) => filteredItem.category === item.category
-            )
-        ) {
+        if (!filteredInventories.some((filteredItem) => filteredItem.category === item.category)) {
             filteredInventories.push({ id: item.id, category: item.category });
         }
     });
 
     const getWarehouse = async () => {
         try {
-            const { data } = await axios.get(
-                "http://localhost:8080/api/warehouses"
-            );
+            const { data } = await axios.get("http://localhost:8080/api/warehouses");
 
             setWarehouses(data);
         } catch (error) {
@@ -94,7 +83,6 @@ const InventoryAdd = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true);
-        // postInventoryData();
 
         if (
             !InventoryData.item_name ||
@@ -121,10 +109,7 @@ const InventoryAdd = () => {
             description: InventoryData.description,
             category: InventoryData.category,
             status: InventoryData.status,
-            quantity:
-                InventoryData.status === "In Stock"
-                    ? InventoryData.quantity || 0
-                    : 0,
+            quantity: InventoryData.status === "In Stock" ? InventoryData.quantity || 0 : 0,
         };
         console.log(updatedData);
 
@@ -135,20 +120,11 @@ const InventoryAdd = () => {
         }
     };
 
-    // //when validating
-    // if (InventoryData.status === "In Stock" && !InventoryData.quantity) {
-    //     //validation for quantity
-    // }
-
     return (
-        <main className="main">
+        <main className="main-inv-add">
             <div className="title">
                 <Link to="/inventory" className="title__link">
-                    <img
-                        src={backArrow}
-                        alt="back arrow"
-                        className="title__icon"
-                    ></img>
+                    <img src={backArrow} alt="back arrow" className="title__icon"></img>
                 </Link>
                 <h1 className="title__header">Add New Inventory Item</h1>
             </div>
@@ -156,10 +132,7 @@ const InventoryAdd = () => {
                 <div className="inventoryform-card">
                     <div className="inventoryform inventoryform--border">
                         <h2 className="inventoryform__title">Item Details</h2>
-                        <label
-                            htmlFor="inventory_name"
-                            className="inventoryform__label"
-                        >
+                        <label htmlFor="inventory_name" className="inventoryform__label">
                             Item Name
                         </label>
                         <input
@@ -181,10 +154,7 @@ const InventoryAdd = () => {
                                 <span>This field is required</span>
                             </div>
                         )}
-                        <label
-                            htmlFor="description"
-                            className="inventoryform__label"
-                        >
+                        <label htmlFor="description" className="inventoryform__label">
                             Description
                         </label>
                         <textarea
@@ -205,10 +175,7 @@ const InventoryAdd = () => {
                                 <span>This field is required</span>
                             </div>
                         )}
-                        <label
-                            htmlFor="category"
-                            className="inventoryform__label"
-                        >
+                        <label htmlFor="category" className="inventoryform__label">
                             Category
                         </label>
                         <div className="inventoryform__dropdown-wrapper">
@@ -231,25 +198,16 @@ const InventoryAdd = () => {
                                 )}
                                 <option value="">Please select</option>
                                 {filteredInventories.map((inventory) => (
-                                    <option
-                                        key={inventory.id}
-                                        value={inventory.category}
-                                    >
+                                    <option key={inventory.id} value={inventory.category}>
                                         {inventory.category}
                                     </option>
                                 ))}
                             </select>
-                            <img
-                                src={dropdownIcon}
-                                alt="Dropdown Icon"
-                                className="dropdown-icon"
-                            />
+                            <img src={dropdownIcon} alt="Dropdown Icon" className="dropdown-icon" />
                         </div>
                     </div>
                     <div className="inventoryform">
-                        <h2 className="inventoryform__title">
-                            Item Availability
-                        </h2>
+                        <h2 className="inventoryform__title">Item Availability</h2>
 
                         <label className="inventoryform__label">Status</label>
                         <div className="inventoryform__radiobutton">
@@ -258,9 +216,7 @@ const InventoryAdd = () => {
                                     type="radio"
                                     name="status"
                                     value="In Stock"
-                                    checked={
-                                        InventoryData.status === "In Stock"
-                                    }
+                                    checked={InventoryData.status === "In Stock"}
                                     onChange={handleChange}
                                 />
                                 In Stock
@@ -270,9 +226,7 @@ const InventoryAdd = () => {
                                     type="radio"
                                     name="status"
                                     value="Out of Stock"
-                                    checked={
-                                        InventoryData.status === "Out of Stock"
-                                    }
+                                    checked={InventoryData.status === "Out of Stock"}
                                     onChange={handleChange}
                                 />
                                 Out of Stock
@@ -281,10 +235,7 @@ const InventoryAdd = () => {
 
                         {InventoryData.status === "In Stock" && (
                             <>
-                                <label
-                                    htmlFor="quantity"
-                                    className="inventoryform__label"
-                                >
+                                <label htmlFor="quantity" className="inventoryform__label">
                                     Quantity
                                 </label>
                                 <div className="inventoryform__dropdown-wrapper">
@@ -295,19 +246,16 @@ const InventoryAdd = () => {
                                         value={InventoryData.quantity}
                                         onChange={handleChange}
                                     />
-                                    {formSubmitted &&
-                                        !InventoryData.quantity && (
-                                            <div className="inventoryform__error-message">
-                                                <img
-                                                    src={errorIcon}
-                                                    alt="Error icon"
-                                                    className="inventoryform__error-message-icon"
-                                                />
-                                                <span>
-                                                    This field is required
-                                                </span>
-                                            </div>
-                                        )}
+                                    {formSubmitted && !InventoryData.quantity && (
+                                        <div className="inventoryform__error-message">
+                                            <img
+                                                src={errorIcon}
+                                                alt="Error icon"
+                                                className="inventoryform__error-message-icon"
+                                            />
+                                            <span>This field is required</span>
+                                        </div>
+                                    )}
                                     <img
                                         src={dropdownIcon}
                                         alt="Dropdown Icon"
@@ -316,10 +264,7 @@ const InventoryAdd = () => {
                                 </div>
                             </>
                         )}
-                        <label
-                            htmlFor="warehouse"
-                            className="inventoryform__label"
-                        >
+                        <label htmlFor="warehouse" className="inventoryform__label">
                             Warehouse
                         </label>
                         <select
@@ -356,10 +301,7 @@ const InventoryAdd = () => {
                         >
                             Cancel
                         </button>
-                        <button
-                            type="submit"
-                            className="inventoryform__button-add"
-                        >
+                        <button type="submit" className="inventoryform__button-add">
                             + Add Item
                         </button>
                     </div>
