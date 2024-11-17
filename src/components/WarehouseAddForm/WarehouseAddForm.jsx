@@ -2,6 +2,7 @@ import './WarehouseAddForm.scss'
 import backArrow from '../../assets/Icons/arrow_back-24px.svg'
 import {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import errorIcon from '../../assets/Icons/error-24px.svg'
 
 function WarehouseAddForm() {
   
@@ -16,51 +17,65 @@ function WarehouseAddForm() {
         contact_email: ''
     });
 
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState({}); // Track field errors
     const [successMessage, setSuccessMessage] = useState(null);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        
+
+
+        if (value.trim() !== '') {
+            setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
+        }
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Submitting form data:", formData);
+
+        const newErrors = {};
+
+        Object.keys(formData).forEach((key) => {
+            if (!formData[key].trim()) {
+                newErrors[key] = true;
+            }
+        });
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length > 0) {
+            console.error('Validation failed:', newErrors);
+            return;
+        }
 
         try {
             const response = await fetch('http://localhost:8080/api/warehouses/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
             });
 
             const result = await response.json();
 
             if (response.ok) {
-            setSuccessMessage(result.message || 'Warehouse added successfully!');
-            setError(null);
-            setFormData({
-                warehouse_name: '',
-                address: '',
-                city: '',
-                country: '',
-                contact_name: '',
-                contact_position: '',
-                contact_phone: '',
-                contact_email: ''
-            });
-            console.log("Success:", result);
+                setSuccessMessage(result.message || 'Warehouse added successfully!');
+                setFormData({
+                    warehouse_name: '',
+                    address: '',
+                    city: '',
+                    country: '',
+                    contact_name: '',
+                    contact_position: '',
+                    contact_phone: '',
+                    contact_email: '',
+                });
+                setErrors({});
             } else {
-                setError(result.message || 'Failed to add warehouse.');
                 setSuccessMessage(null);
-                console.error("Error from server:", result);
+                console.error('Error from server:', result);
             }
         } catch (error) {
-            console.error("Fetch error:", error);
-            setError('An error occurred while adding the warehouse.');
-            setSuccessMessage(null);
+            console.error('Fetch error:', error);
         }
     };
 
@@ -72,7 +87,7 @@ function WarehouseAddForm() {
     return (
         <div className="warehouseform-container">
             <div className="warehouseform-container__top">
-                <img src={backArrow} alt="back arrow" className="warehouse-container_arrow" onClick={handleClick}></img>
+                <img src={backArrow} alt="back arrow" className="warehouse-container__arrow" onClick={handleClick}></img>
                 <h1 className="warehouseform-container__title">Add New Warehouse</h1>
             </div>
             <form onSubmit={handleSubmit}>
@@ -84,37 +99,61 @@ function WarehouseAddForm() {
                             type="text"
                             name="warehouse_name"
                             placeholder="Warehouse Name"
-                            className= "warehouseform__input-name"
+                            className={`warehouseform__input-name ${errors.warehouse_name ? 'input--error' : ''}`}
                             value={formData.warehouse_name}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                        {errors.warehouse_name && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="address" className="warehouseform__label-street">Street Address</label>
                         <input
                             type="text"
                             name="address"
                             placeholder="Street Address"
-                            className= "warehouseform__input-street"
+                            className={`warehouseform__input-street ${errors.address ? 'input--error' : ''}`}
                             value={formData.address}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                        {errors.address && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="city" className="warehouseform__label-city">City</label>
                         <input
                             type="text"
                             name="city"
                             placeholder="City"
-                            className= "warehouseform__input-city"
+                            className= {`warehouseform__input-city ${errors.city ? 'input--error' : ''}`}
                             value={formData.city}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                         {errors.city && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="country" className="warehouseform__label-country">Country</label>
                         <input
                             type="text"
                             name="country"
                             placeholder="Country"
-                            className= "warehouseform__input-country"
+                            className= {`warehouseform__input-country ${errors.country ? 'input--error' : ''}`}
                             value={formData.country}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                        {errors.country && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                     </div>              
                     <div className="whcontactform">
                         <h2 className="whcontactform__title">Contact Details</h2>
@@ -123,37 +162,61 @@ function WarehouseAddForm() {
                             type="text"
                             name="contact_name"
                             placeholder="Contact Name"
-                            className= "whcontactform__input-contact"
+                            className= {`whcontactform__input-contact ${errors.contact_name ? 'input--error' : ''}`}
                             value={formData.contact_name}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                          {errors.contact_name && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="contact_position" className="whcontactform__label-position">Position</label>
                         <input
                             type="text"
                             name="contact_position"
                             placeholder="Position"
-                            className= "whcontactform__input-position"
+                            className= {`whcontactform__input-position ${errors.contact_position? 'input--error' : ''}`}
                             value={formData.contact_position}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                        {errors.contact_position && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="contact_phone" className="whcontactform__label-phone">Phone Number</label>
                         <input
                             type="text"
                             name="contact_phone"
                             placeholder="Phone Number"
-                            className= "whcontactform__input-phone"
+                            className= {`whcontactform__input-phone ${errors.contact_phone? 'input--error' : ''}`}
                             value={formData.contact_phone}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                         {errors.contact_phone && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label htmlFor="contact_email" className="whcontactform__label-email">Email</label>
                         <input
                             type="text"
                             name="contact_email"
                             placeholder="Email"
-                            className= "whcontactform__input-email"
+                            className= {`whcontactform__input-email ${errors.contact_email? 'input--error' : ''}`}
                             value={formData.contact_email}
                             onChange={handleInputChange}
-                        ></input>
+                        />
+                          {errors.contact_email && (
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                     </div>
                 </div>              
                 <div className="warehouseform__button">
