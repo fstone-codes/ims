@@ -2,6 +2,10 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 
+.inventory-wrapper {
+    position: relative;
+}
+
 .inventory {
     display: flex;
     flex-direction: column;
@@ -108,8 +112,9 @@
             }
         }
         @include desktop {
-            // column-gap: 6.25rem;
+            justify-content: space-between;
             width: 100%;
+            padding: .6875rem 2.5rem;
         }
     }
 

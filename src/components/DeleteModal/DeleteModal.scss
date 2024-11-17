@@ -1,6 +1,29 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+// #root {
+//   position: relative;
+//   z-index: -2;
+// }
+
+.ReactModal__Overlay--after-open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $Light-Grey;
+  @include tablet {
+    opacity: 70%;
+    // position: relative;
+    // z-index: 0;
+  }
+}
+
+.ReactModal__Content--after-open {
+  border-inline: none;
+  // position: absolute;
+  // z-index: 1;
+}
+
 .modal {
     width: 100%;
     height: 100%;
@@ -9,6 +32,7 @@
     flex-direction: column;
     justify-content: center;
     position: absolute;
+    // z-index: 2;
     @include tablet {
       width: 42rem;
       height: 16.375rem;
@@ -21,7 +45,8 @@
         height: 100%;
         width: 100%;
         padding: 0 1rem;
-        position: absolute;
+        // position: absolute;
+        // z-index: 5;
     }
     &__text-closeBtn {
       padding-top: 1rem;
@@ -50,6 +75,9 @@
       height: 1.5rem;
       position: absolute;
       right: 1rem;
+      &:hover {
+        cursor: pointer;
+      }
     }
     &__btn-wrapper {
       display: flex;
@@ -73,6 +101,10 @@
       border-radius: 20px;
       border: 1px solid $Cloud;
       color: $Slate;
+      &:hover {
+        color: $Instock-Indigo;
+        border: 1px solid $Instock-Indigo;
+      }
       @include mobile__buttons-labels;
       @include tablet {
         width: 4.4375rem;
@@ -88,6 +120,10 @@
       color: $White;
       background-color: $Red;
       border: none;
+      &:hover {
+        background-color: $Graphite;
+        cursor: pointer;
+      }
       @include mobile__buttons-labels;
       @include tablet {
         width: 4.4375rem;
@@ -95,10 +131,4 @@
         @include buttons-labels;
       }
     }
-}
-.ReactModal__Overlay--after-open {
-  @include tablet {
-    opacity: 70%;
-    position: relative;
-  }
 }
