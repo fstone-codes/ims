@@ -16,7 +16,7 @@ function Inventory() {
     const navigate = useNavigate();
 
     // HandleClick for Add button
-    const addHandleClick = () => navigate("/warehouse/add");
+    const addHandleClick = () => navigate("/inventory/add");
 
     const handleModalClick = (inventoryItem) => {
         setItemSelected(inventoryItem);
@@ -69,10 +69,55 @@ function Inventory() {
                             placeholder="Search..."
                         />
                         <button className="add-button" onClick={addHandleClick}>
-                            +Add New Item
+                            + Add New Item
                         </button>
                     </article>
                 </div>
+                <section className="inventory__tablet-labels">
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">
+                            INVENTORY ITEM
+                        </h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">CATEGORY</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">STATUS</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">QUANTITY</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">WAREHOUSE</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <h4 className="inventory__tablet-label">ACTIONS</h4>
+                </section>
                 <ul className="inventory__list">
                     {inventory.map((inventoryItem) => (
                         <li className="inventory__item" key={inventoryItem.id}>
@@ -174,7 +219,7 @@ function Inventory() {
                             </div>
                             <article className="inventory__inventory__content">
                                 <div className="inventory__tb-header-wrapper">
-                                    <h4 className="inventory__label">
+                                    <h4 className="inventory__label inventory__label--hidden">
                                         ACTIONS
                                     </h4>
                                     <img

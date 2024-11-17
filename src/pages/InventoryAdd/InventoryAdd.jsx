@@ -5,6 +5,7 @@ import dropdownIcon from "../../assets/Icons/arrow_drop_down-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import errorIcon from "../../assets/Icons/error-24px.svg";
 
 const InventoryAdd = () => {
     const navigate = useNavigate();
@@ -28,10 +29,7 @@ const InventoryAdd = () => {
 
     const postInventoryData = async (updatedData) => {
         try {
-            const { data } = await axios.post(
-                `http://localhost:8080/api/inventories`,
-                updatedData
-            );
+            const { data } = await axios.post(`http://localhost:8080/api/inventories`, updatedData);
 
             setInventories((prev) => [...prev, data]);
             return true;
@@ -43,9 +41,7 @@ const InventoryAdd = () => {
 
     const getInventories = async () => {
         try {
-            const { data } = await axios.get(
-                "http://localhost:8080/api/inventories"
-            );
+            const { data } = await axios.get("http://localhost:8080/api/inventories");
 
             setInventories(data);
         } catch (error) {
@@ -56,20 +52,14 @@ const InventoryAdd = () => {
     const filteredInventories = [];
 
     inventories.forEach((item) => {
-        if (
-            !filteredInventories.some(
-                (filteredItem) => filteredItem.category === item.category
-            )
-        ) {
+        if (!filteredInventories.some((filteredItem) => filteredItem.category === item.category)) {
             filteredInventories.push({ id: item.id, category: item.category });
         }
     });
 
     const getWarehouse = async () => {
         try {
-            const { data } = await axios.get(
-                "http://localhost:8080/api/warehouses"
-            );
+            const { data } = await axios.get("http://localhost:8080/api/warehouses");
 
             setWarehouses(data);
         } catch (error) {
@@ -93,7 +83,6 @@ const InventoryAdd = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true);
-        // postInventoryData();
 
         if (
             !InventoryData.item_name ||
@@ -120,34 +109,22 @@ const InventoryAdd = () => {
             description: InventoryData.description,
             category: InventoryData.category,
             status: InventoryData.status,
-            quantity:
-                InventoryData.status === "In Stock"
-                    ? InventoryData.quantity || 0
-                    : 0,
+            quantity: InventoryData.status === "In Stock" ? InventoryData.quantity || 0 : 0,
         };
         console.log(updatedData);
 
         const response = await postInventoryData(updatedData);
 
         if (response) {
-            alert("Inventory updated successfully!");
+            navigate("/inventory");
         }
     };
 
-    // //when validating
-    // if (InventoryData.status === "In Stock" && !InventoryData.quantity) {
-    //     //validation for quantity
-    // }
-
     return (
-        <main className="main">
+        <main className="main-inv-add">
             <div className="title">
                 <Link to="/inventory" className="title__link">
-                    <img
-                        src={backArrow}
-                        alt="back arrow"
-                        className="title__icon"
-                    ></img>
+                    <img src={backArrow} alt="back arrow" className="title__icon"></img>
                 </Link>
                 <h1 className="title__header">Add New Inventory Item</h1>
             </div>
@@ -155,10 +132,7 @@ const InventoryAdd = () => {
                 <div className="inventoryform-card">
                     <div className="inventoryform inventoryform--border">
                         <h2 className="inventoryform__title">Item Details</h2>
-                        <label
-                            htmlFor="inventory_name"
-                            className="inventoryform__label"
-                        >
+                        <label htmlFor="inventory_name" className="inventoryform__label">
                             Item Name
                         </label>
                         <input
@@ -166,82 +140,115 @@ const InventoryAdd = () => {
                             name="item_name"
                             id="item_name"
                             placeholder="Item Name"
-                            className="inventoryform__input-name"
+                            className={`inventoryform__input-name ${
+                                formSubmitted && !InventoryData.item_name
+                                    ? "inventoryform__input-name--error"
+                                    : ""
+                            }`}
                             value={InventoryData.item_name}
                             onChange={handleChange}
                         />
-                        <label
-                            htmlFor="description"
-                            className="inventoryform__label"
-                        >
+                        {formSubmitted && !InventoryData.item_name && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
+                        <label htmlFor="description" className="inventoryform__label">
                             Description
                         </label>
                         <textarea
                             name="description"
                             id="description"
                             placeholder="Please enter a brief item description..."
-                            className="inventoryform__input-description"
+                            className={`inventoryform__input-description ${
+                                formSubmitted && !InventoryData.description
+                                    ? "inventoryform__input-description--error"
+                                    : ""
+                            }`}
                             value={InventoryData.description}
                             onChange={handleChange}
                         />
+                        {formSubmitted && !InventoryData.description && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
+                        <label htmlFor="category" className="inventoryform__label">
+                            Category
+                        </label>
                         <div className="inventoryform__dropdown-wrapper">
-                            <label
-                                htmlFor="category"
-                                className="inventoryform__label"
-                            >
-                                Category
-                            </label>
                             <select
                                 name="category"
                                 id="category"
-                                className="inventoryform__input-category"
+                                className={`inventoryform__input-category ${
+                                    formSubmitted && !InventoryData.category
+                                        ? "inventoryform__input-category--error"
+                                        : ""
+                                }`}
                                 value={InventoryData.category}
                                 onChange={handleChange}
                             >
                                 <option value="">Please select</option>
                                 {filteredInventories.map((inventory) => (
-                                    <option
-                                        key={inventory.id}
-                                        value={inventory.category}
-                                    >
+                                    <option key={inventory.id} value={inventory.category}>
                                         {inventory.category}
                                     </option>
                                 ))}
                             </select>
-                            <img
-                                src={dropdownIcon}
-                                alt="Dropdown Icon"
-                                className="dropdown-icon"
-                            />
+                            {formSubmitted && !InventoryData.category && (
+                                <div className="inventoryform__error-message inventoryform__error-message--dropdown">
+                                    <img
+                                        src={errorIcon}
+                                        alt="Error icon"
+                                        className="inventoryform__error-message-icon"
+                                    />
+                                    <span>This field is required</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="inventoryform">
-                        <h2 className="inventoryform__title">
-                            Item Availability
-                        </h2>
-
+                        <h2 className="inventoryform__title">Item Availability</h2>
                         <label className="inventoryform__label">Status</label>
                         <div className="inventoryform__radiobutton">
-                            <label>
+                            <label
+                                className={`inventoryform__label ${
+                                    InventoryData.status === "In Stock"
+                                        ? "inventoryform__label--selected"
+                                        : ""
+                                }`}
+                            >
                                 <input
                                     type="radio"
                                     name="status"
                                     value="In Stock"
-                                    checked={
-                                        InventoryData.status === "In Stock"
-                                    }
+                                    checked={InventoryData.status === "In Stock"}
                                     onChange={handleChange}
                                 />
                                 In Stock
                             </label>
-                            <label className="inventoryform__label">
+                            <label
+                                className={`inventoryform__label ${
+                                    InventoryData.status === "Out of Stock"
+                                        ? "inventoryform__label--selected"
+                                        : ""
+                                }`}
+                            >
                                 <input
                                     type="radio"
                                     name="status"
                                     value="Out of Stock"
-                                    checked={
-                                        InventoryData.status === "Out of Stock"
-                                    }
+                                    checked={InventoryData.status === "Out of Stock"}
                                     onChange={handleChange}
                                 />
                                 Out of Stock
@@ -250,58 +257,64 @@ const InventoryAdd = () => {
 
                         {InventoryData.status === "In Stock" && (
                             <>
-                                <div className="inventoryform__dropdown-wrapper">
-                                    <label
-                                        htmlFor="quantity"
-                                        className="inventoryform__label"
-                                    >
-                                        Quantity
-                                    </label>
-                                    <input
-                                        type="number"
-                                        name="quantity"
-                                        className="inventoryform__input-quantity"
-                                        value={InventoryData.quantity}
-                                        onChange={handleChange}
-                                    />
-                                    {formSubmitted &&
-                                        !InventoryData.quantity && (
-                                            <span className="warning">
-                                                Quantity is required.
-                                            </span>
-                                        )}
-                                    <img
-                                        src={dropdownIcon}
-                                        alt="Dropdown Icon"
-                                        className="dropdown-icon"
-                                    />
-                                </div>
+                                <label htmlFor="quantity" className="inventoryform__label">
+                                    Quantity
+                                </label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    className={`inventoryform__input-quantity ${
+                                        formSubmitted && !InventoryData.quantity
+                                            ? "inventoryform__input-quantity--error"
+                                            : ""
+                                    }`}
+                                    value={InventoryData.quantity}
+                                    onChange={handleChange}
+                                />
+                                {formSubmitted && !InventoryData.quantity && (
+                                    <div className="inventoryform__error-message">
+                                        <img
+                                            src={errorIcon}
+                                            alt="Error icon"
+                                            className="inventoryform__error-message-icon"
+                                        />
+                                        <span>This field is required</span>
+                                    </div>
+                                )}
                             </>
                         )}
-                        <label
-                            htmlFor="warehouse"
-                            className="inventoryform__label"
-                        >
-                            Warehouse
-                        </label>
-                        <select
-                            name="warehouse_id"
-                            id="warehouse"
-                            className="inventoryform__input-warehouse"
-                            value={InventoryData.warehouse_id}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select Warehouse</option>
-                            {warehouses.map((warehouse) => (
-                                <option key={warehouse.id} value={warehouse.id}>
-                                    {warehouse.warehouse_name}
-                                </option>
-                            ))}
-                        </select>
+                        <div className="inventoryform__dropdown-wrapper">
+                            <label htmlFor="warehouse" className="inventoryform__label">
+                                Warehouse
+                            </label>
+                            <select
+                                name="warehouse_id"
+                                id="warehouse_id"
+                                className={`inventoryform__input-warehouse ${
+                                    formSubmitted && !InventoryData.warehouse_id
+                                        ? "inventoryform__input-warehouse--error"
+                                        : ""
+                                }`}
+                                value={InventoryData.warehouse_id}
+                                onChange={handleChange}
+                            >
+                                <option value="">Select Warehouse</option>
+                                {warehouses.map((warehouse) => (
+                                    <option key={warehouse.id} value={warehouse.id}>
+                                        {warehouse.warehouse_name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                         {formSubmitted && !InventoryData.warehouse_id && (
-                            <span className="warning">
-                                Warehouse is required
-                            </span>
+                            <div className="inventoryform__error-message inventoryform__error-message--dropdown">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
                         )}
                     </div>
 
@@ -313,10 +326,7 @@ const InventoryAdd = () => {
                         >
                             Cancel
                         </button>
-                        <button
-                            type="submit"
-                            className="inventoryform__button-add"
-                        >
+                        <button type="submit" className="inventoryform__button-add">
                             + Add Item
                         </button>
                     </div>
