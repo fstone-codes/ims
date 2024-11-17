@@ -23,7 +23,7 @@ function DeleteModal({
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    background: "rgba(19, 24, 44, 1)",
+                    background: "rgba(19, 24, 44, 0.7)",
                 },
             }}
         >
