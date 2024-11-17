@@ -1,15 +1,14 @@
 import ReactModal from "react-modal";
 import closeIcon from "../../assets/Icons/close-24px.svg";
-import "./DeleteModal.scss";
+import "./DeleteModal.scss"; 
 
 function DeleteModal({
     modalTitle,
     modalText,
     handleDeleteClick,
     isOpen,
-    setIsOpen
+    setIsOpen,
 }) {
-
     return (
         <ReactModal
             className="modal"
@@ -29,15 +28,25 @@ function DeleteModal({
             }}
         >
             <div className="modal__content-wrapper">
-                <div className="modal__text-closeBtn">
-                    <img className="modal__close-icon" src={closeIcon} alt="Close icon" onClick={() => setIsOpen(false)} />
-                    <div className="modal__text-container">
-                        <h1 className="modal__title">{modalTitle}</h1>
-                        <p className="modal__text modal__text--large">{modalText}</p>
-                    </div>
+                <img
+                    className="modal__close-icon"
+                    src={closeIcon}
+                    alt="Close icon"
+                    onClick={() => setIsOpen(false)}
+                />
+                <div className="modal__text-container">
+                    <h1 className="modal__title">{modalTitle}</h1>
+                    <p className="modal__text modal__text--large">
+                        {modalText}
+                    </p>
                 </div>
                 <div className="modal__btn-wrapper">
-                    <button className="modal__cancel-btn" onClick={() => setIsOpen(false)}>Cancel</button>
+                    <button
+                        className="modal__cancel-btn"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        Cancel
+                    </button>
                     <button
                         className="modal__delete-btn"
                         onClick={handleDeleteClick}
