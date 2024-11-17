@@ -40,6 +40,7 @@
         @include mobile__body-small;
         color: $Slate;
         font-weight: 600;
+        margin-bottom: 4px;
 
         @include tablet {
             display: none;
@@ -53,6 +54,10 @@
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 

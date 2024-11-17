@@ -30,7 +30,17 @@ function WarehouseDetails() {
 
             setWarehouseInventory(data);
         } catch (error) {
-            console.error("Error fetching warehouse inventory details");
+            console.error("Error fetching warehouse inventory details: ", error);
+        }
+    }
+
+    async function deleteItem(itemId) {
+        try {
+            await axios.delete(`http://localhost:8080/api/inventories/${itemId}`);
+
+            getWarehouseInventoryData();
+        } catch (error) {
+            console.error("Error deleting warehouse inventory item: ", error);
         }
     }
 
@@ -48,21 +58,21 @@ function WarehouseDetails() {
     }
 
     return (
-        <main className="main">
-            <section className="title">
-                <div className="title__container">
-                    <Link className="title__link" to={"/warehouse"}>
+        <main className="main-wh">
+            <section className="title-wh">
+                <div className="title-wh__container">
+                    <Link className="title-wh__link" to={"/warehouse"}>
                         <img
-                            className="title__back-icon"
+                            className="title-wh__back-icon"
                             src={arrowBackIcon}
                             alt="arrow back icon"
                         />
                     </Link>
-                    <h1 className="title__header">{singleWarehouse.warehouse_name}</h1>
+                    <h1 className="title-wh__header">{singleWarehouse.warehouse_name}</h1>
                 </div>
-                <Link className="title__icon-container" to={`/warehouse/${warehouseId}/edit`}>
-                    <img className="title__edit-icon" src={editWhiteIcon} alt="edit icon" />
-                    <p className="title__edit-text">Edit</p>
+                <Link className="title-wh__icon-container" to={`/warehouse/${warehouseId}/edit`}>
+                    <img className="title-wh__edit-icon" src={editWhiteIcon} alt="edit icon" />
+                    <p className="title-wh__edit-text">Edit</p>
                 </Link>
             </section>
             <section className="wh-details">
@@ -114,10 +124,12 @@ function WarehouseDetails() {
                     {warehouseInventory.map((item) => (
                         <InventoryItem
                             key={item.id}
+                            id={item.id}
                             name={item.item_name}
                             category={item.category}
                             status={item.status}
                             quantity={item.quantity}
+                            deleteItem={deleteItem}
                         />
                     ))}
                 </ul>
