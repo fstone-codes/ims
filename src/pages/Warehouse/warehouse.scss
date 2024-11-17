@@ -7,8 +7,8 @@
 }
 .main {
     width: 100%;
-    padding: 0 1rem;
-    position: relative;
+    display: flex;
+    justify-content: center;
 }
 .warehouse {
     &__header {
@@ -17,13 +17,12 @@
             justify-content: space-between;
         }
     }
-    position: absolute;
-    width: 90%;
-    padding: 0 1.5rem;
+    width: calc(100vw - 4rem);
     background-color: $White;
+    border-radius: .1875rem;
 
     @include tablet {
-        padding-left: 2rem;
+        //padding-left: 2rem;
     }
 
     &__heading {
@@ -32,7 +31,14 @@
         padding: 2rem 1.5rem 1rem;
 
         @include tablet {
-            padding: 0;
+            @include page-header;
+            padding-left: 2rem;
+            padding-top: 2rem;
+            padding-bottom: 1.375rem;
+        }
+
+        @include desktop{
+            padding-left: 2.5rem;
             padding-top: 2rem;
             padding-bottom: 1.375rem;
         }
@@ -41,15 +47,17 @@
     &__search-container {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 1rem;
         padding: 1.5rem 1rem;
         padding-top: 0;
         border-bottom: 1px solid $Cloud;
+        @include mobile__buttons-labels;
 
         @include tablet {
             @include buttons-labels;
             display: flex;
             flex-direction: row;
+            gap: 1rem;
             border-bottom: none;
             padding-top: 2rem;
         }
@@ -80,8 +88,12 @@
         width: 100%;
         height: 2.25rem;
         @include mobile__buttons-labels;
+        &:hover {
+            background-color: $Graphite;
+        }
 
         @include tablet {
+            @include buttons-labels;
             padding-top: 8px 16px;
             width: 168px;
             height: 38px;
@@ -99,6 +111,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
+        row-gap: 1rem;
 
         @include tablet {
             flex-direction: row;
@@ -123,6 +136,10 @@
         }
 
         @include tablet {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
             //tablet view
             &:nth-child(1) {
                 order: 1;
@@ -139,27 +156,24 @@
         }
     }
 }
-.warehouse-list {
-    @include tablet {
-        &__item {
-            &:first-child {
-                .warehouse-list__label {
-                    display: unset;
-                }
-            }
-        }
-        &__label {
-            display: none;
-        }
-    }
-}
 
 .warehouse-list {
     &__item {
         list-style: none;
         background-color: $White;
+        padding: 1rem 1.5rem 1.5rem;
+        &:hover {
+            background-color: rgba($Instock-Indigo,0.07);
+        }
+        @include tablet {
+            justify-content: space-between;
+            padding: 1.6875rem 0rem 1.6875rem 2rem;
+        }
+        @include desktop{
+            padding: 1.6875rem 2.5rem 1.6875rem 2.5rem;
+            justify-content: space-between;
+        }
     }
-
     &__link {
         text-decoration: none;
         display: flex;
@@ -175,13 +189,14 @@
         color: $Slate;
         @include mobile__body-small;
         font-weight: 600;
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
+        //padding-top: 1rem;
+        margin-bottom: 0.25rem;
 
         @include tablet {
             background-color: #f7f8f9;
             @include body-small;
             font-weight: 600;
+            display: none;
         }
     }
 
@@ -191,7 +206,9 @@
 
         @include tablet {
             @include body-small;
-            padding-top: 1.5rem;
+            // padding-top: 1.5rem;
+            width: 100%;
+            
         }
     }
 
@@ -205,12 +222,15 @@
 
     &__icon-container {
         display: flex;
-
-        padding-bottom: 1.5rem;
+        justify-content: space-between;
+        order: 5;
+        width: 100%;
 
         @include tablet {
             justify-content: flex-end;
-            // flex: 1;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 2rem;
         }
     }
 
@@ -218,6 +238,8 @@
         display: none;
         width: 1rem;
         height: 1rem;
+        margin-left: 4px;
+        transform: translateY(10%);
 
         @include tablet {
             display: inline-block;
@@ -226,33 +248,18 @@
     }
 
     &__chevron {
-        //display: none;
         height: 1.25rem;
         width: 1.25rem;
         display: inline-block;
         flex-shrink: 0;
+        padding-left: 4px;
 
         @include tablet {
-            transform: translateY(62%);
+            transform: translateY(7%);
         }
     }
 }
-.warehouse-list__content-action {
-    display: flex;
-}
 
-.warehouse-list__label--action-label {
-    display: none;
-    @include tablet {
-        display: inline-block;
-        color: $Slate;
-        @include body-small;
-        font-weight: 600;
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
-        background-color: #f7f8f9;
-    }
-}
 
 .warehouse-list__searchIcon {
     width: 1.5rem;
@@ -269,4 +276,21 @@
     display: flex;
     align-items: flex-end;
     gap: 5px;
+}
+
+.warehouse-list__tablet-header {
+    color: $Slate;
+    background-color: $Light-Grey;
+    @include body-small;
+    font-weight: 600;
+    display: none;
+
+    @include tablet {
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: .6875rem;
+        padding-bottom: .6875rem;
+       
+        align-items: center;
+    }
 }

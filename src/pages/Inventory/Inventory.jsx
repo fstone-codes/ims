@@ -69,33 +69,63 @@ function Inventory() {
                             placeholder="Search..."
                         />
                         <button className="add-button" onClick={addHandleClick}>
-                            +Add New Item
+                            + Add New Item
                         </button>
                     </article>
                 </div>
                 <section className="inventory__tablet-labels">
-                    <h4 className="inventory__label">INVENTORY ITEM</h4>
-                    <h4 className="inventory__label">CATEGORY</h4>
-                    <h4 className="inventory__label">STATUS</h4>
-                    <h4 className="inventory__label">QUANTITY</h4>
-                    <h4 className="inventory__label">WAREHOUSE</h4>
-                    <h4 className="inventory__label">ACTIONS</h4>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">
+                            INVENTORY ITEM
+                        </h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">CATEGORY</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">STATUS</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">QUANTITY</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <div className="inventory__tablet-labels-container">
+                        <h4 className="inventory__tablet-label">WAREHOUSE</h4>
+                        <img
+                            className="inventory__tablet-sort-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
+                    </div>
+                    <h4 className="inventory__tablet-label">ACTIONS</h4>
                 </section>
                 <ul className="inventory__list">
                     {inventory.map((inventoryItem) => (
                         <li className="inventory__item" key={inventoryItem.id}>
                             <div className="inventory__table-components">
                                 <article className="inventory__content">
-                                    <div className="inventory__tb-header-wrapper">
-                                        <h4 className="inventory__label">
-                                            INVENTORY ITEM
-                                        </h4>
-                                        <img
-                                            className="inventory__sort-icon"
-                                            src={sortIcon}
-                                            alt="sort icon"
-                                        />
-                                    </div>
+                                    <h4 className="inventory__label">
+                                        INVENTORY ITEM
+                                    </h4>
                                     <Link
                                         className="inventory__link inventory__link--blue"
                                         to={`/inventory/${inventoryItem.id}`}
@@ -111,31 +141,15 @@ function Inventory() {
                                     </Link>
                                 </article>
                                 <article className="inventory__content">
-                                    <div className="inventory__tb-header-wrapper">
-                                        <h4 className="inventory__label">
-                                            CATEGORY
-                                        </h4>
-                                        <img
-                                            className="inventory__sort-icon"
-                                            src={sortIcon}
-                                            alt="sort right icon"
-                                        />
-                                    </div>
+                                    <h4 className="inventory__label">
+                                        CATEGORY
+                                    </h4>
                                     <p className="inventory__text inventory__text--medium">
                                         {inventoryItem.category}
                                     </p>
                                 </article>
                                 <article className="inventory__content">
-                                    <div className="inventory__tb-header-wrapper">
-                                        <h4 className="inventory__label">
-                                            STATUS
-                                        </h4>
-                                        <img
-                                            className="inventory__sort-icon"
-                                            src={sortIcon}
-                                            alt="sort right icon"
-                                        />
-                                    </div>
+                                    <h4 className="inventory__label">STATUS</h4>
                                     <p
                                         className={`inventory__status ${
                                             inventoryItem.status === "In Stock"
@@ -149,48 +163,25 @@ function Inventory() {
                                     </p>
                                 </article>
                                 <article className="inventory__content">
-                                    <div className="inventory__tb-header-wrapper">
-                                        <h4 className="inventory__label">
-                                            QTY
-                                        </h4>
-                                        <img
-                                            className="inventory__sort-icon"
-                                            src={sortIcon}
-                                            alt="sort right icon"
-                                        />
-                                    </div>
+                                    <h4 className="inventory__label">QTY</h4>
                                     <p className="inventory__text inventory__text--medium">
                                         {inventoryItem.quantity}
                                     </p>
                                 </article>
                                 <article className="inventory__content inventory__content--transparent"></article>
                                 <article className="inventory__content">
-                                    <div className="inventory__tb-header-wrapper">
-                                        <h4 className="inventory__label">
-                                            WAREHOUSE
-                                        </h4>
-                                        <img
-                                            className="inventory__sort-icon"
-                                            src={sortIcon}
-                                            alt="sort right icon"
-                                        />
-                                    </div>
+                                    <h4 className="inventory__label">
+                                        WAREHOUSE
+                                    </h4>
                                     <p className="inventory__text inventory__text--medium">
                                         {inventoryItem.warehouse_name}
                                     </p>
                                 </article>
                             </div>
                             <article className="inventory__inventory__content">
-                                <div className="inventory__tb-header-wrapper">
-                                    <h4 className="inventory__label inventory__label--hidden">
-                                        ACTIONS
-                                    </h4>
-                                    <img
-                                        className="inventory__sort-icon"
-                                        src={sortIcon}
-                                        alt="sort right icon"
-                                    />
-                                </div>
+                                <h4 className="inventory__label inventory__label--hidden">
+                                    ACTIONS
+                                </h4>
                                 <div className="inventory__icon-wrapper">
                                     <img
                                         className="inventory__icon"
