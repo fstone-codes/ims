@@ -79,7 +79,8 @@
     &__tablet-labels {
         display: none;
         @include tablet {
-            display: unset;
+            display: flex;
+            flex-direction: row;
         }
     }
 
