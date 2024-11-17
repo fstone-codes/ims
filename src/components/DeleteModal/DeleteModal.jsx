@@ -1,6 +1,6 @@
 import ReactModal from "react-modal";
 import closeIcon from "../../assets/Icons/close-24px.svg";
-import "./DeleteModal.scss";
+import "./DeleteModal.scss"; 
 
 function DeleteModal({
     modalTitle,
