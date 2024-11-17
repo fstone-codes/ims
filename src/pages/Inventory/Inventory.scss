@@ -102,6 +102,7 @@
             justify-content: space-evenly;
             align-items: center;
             color: $Slate;
+            background-color: $Light-Grey;
             padding: 0.6875rem 0;
             &-container {
                 display: flex;
@@ -139,7 +140,6 @@
         gap: 1rem;
         width: 100%;
         border-top: 1px solid $Cloud;
-        background-color: $Light-Grey;
         &:hover {
             background-color: rgba($Instock-Indigo, 0.07);
         }
