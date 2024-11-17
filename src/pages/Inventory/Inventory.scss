@@ -2,6 +2,10 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 
+.inventory-wrapper {
+    position: relative;
+}
+
 .inventory {
     display: flex;
     flex-direction: column;
@@ -108,8 +112,9 @@
             }
         }
         @include desktop {
-            // column-gap: 6.25rem;
+            justify-content: space-between;
             width: 100%;
+            padding: .6875rem 2.5rem;
         }
     }
 
@@ -118,6 +123,10 @@
         @include tablet {
             @include table-header;
         }
+    }
+
+    &__tablet-sort-icon {
+        width: 1rem;
     }
 
     &__list {
@@ -132,9 +141,14 @@
         gap: 1rem;
         width: 100%;
         border-top: 1px solid $Cloud;
+        // :hover {
+        //     background: #2E66E512;
+        //     opacity: 70%;
+        // }
         @include tablet {
             flex-direction: row;
             gap: 0;
+            
         }
 
         &:first-child {
@@ -191,6 +205,8 @@
         @include tablet {
             flex-direction: row;
             padding-left: 2rem;
+            margin-top: 0;
+            padding-top: 1rem;
         }
         @include desktop {
             padding-left: 2.5rem;
@@ -319,9 +335,6 @@
         width: 1.25rem;
         height: 1.25rem;
         cursor: pointer;
-        @include tablet {
-            padding: .75rem 0;
-        }
     }
 
     &__icon {
