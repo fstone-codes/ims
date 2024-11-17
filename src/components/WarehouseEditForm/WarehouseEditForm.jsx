@@ -99,7 +99,7 @@ function WarehouseEditForm() {
         <div className="warehouseform-container">
         <div className="warehouseform-container__top">
             <img src={backArrow} alt="back arrow" className="warehouse-container_arrow" onClick={handleClick}></img>
-            <h1 className="warehouseform-container__title">Add New Warehouse</h1>
+            <h1 className="warehouseform-container__title">Edit Warehouse</h1>
         </div>
         <form onSubmit={handleSubmit}>
             <div className="warehouseform-card">
