@@ -5,6 +5,10 @@
     padding: 1rem 1.5rem 1.5rem;
     border-top: 1px solid $Cloud;
 
+    &:hover {
+        background-color: rgba($color: #2e66e5, $alpha: 0.07);
+    }
+
     @include tablet {
         display: flex;
         padding: 1rem 2rem;
@@ -81,14 +85,14 @@
         @include mobile__body-small;
 
         &--green {
-            background-color: #15846312;
-            color: #158463;
+            background-color: rgba($color: $Green, $alpha: 0.07);
+            color: $Green;
             font-weight: 600;
         }
 
         &--red {
-            background-color: #c9451512;
-            color: #c94515;
+            background-color: rgba($color: $Red, $alpha: 0.07);
+            color: $Red;
             font-weight: 600;
         }
     }
