@@ -67,6 +67,7 @@
     flex-direction: column;
     padding: 1rem 1.5rem;
 
+    // row-gap: 0.25rem;
     @include tablet {
         padding: 0 2rem 0.5rem;
     }
@@ -95,6 +96,8 @@
     &__title {
         @include mobile__sub-header;
         padding-bottom: 24px;
+        padding-left: 1.5rem;
+        padding-top: 1rem;
     }
     &__label {
         @include mobile__buttons-labels;
@@ -117,6 +120,7 @@
         margin-bottom: 1rem;
         font-family: "Titillium Web", sans-serif;
         appearance: none;
+        padding-left: 1rem;
         @include tablet {
             @include buttons-labels;
             font-weight: 400;
@@ -137,7 +141,6 @@
     }
 
     &__input-description {
-        width: 100%;
         height: 120px;
         font-family: "Titillium Web", sans-serif;
         color: $Slate;
@@ -163,6 +166,7 @@
     &__button-cancel,
     &__button-add {
         display: flex;
+        justify-content: center;
         padding: 8px 39px;
         column-gap: 0.5rem;
         background-color: $Light-Grey;
@@ -171,7 +175,8 @@
             flex: 0 0 auto;
         }
     }
-    &__button-cancel {
+    &__button-cancel,
+    &__button-add {
         height: 2.25rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -192,10 +197,6 @@
         }
     }
     &__button-add {
-        height: 2.25rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: 1.25rem;
         background-color: $Instock-Indigo;
         color: $White;
         border-color: $Instock-Indigo;
@@ -219,14 +220,12 @@ select {
     box-shadow: none;
     outline: none;
     border: 1px solid;
-}
 
-input:focus,
-textarea:focus,
-select:focus {
-    box-shadow: none;
-    outline: none;
-    border-color: $Instock-Indigo;
+    &:focus {
+        box-shadow: none;
+        outline: none;
+        border-color: $Instock-Indigo;
+    }
 }
 
 .inventoryform-card {
@@ -241,26 +240,29 @@ select:focus {
 
 .inventoryform__radiobutton {
     display: flex;
-    gap: 89px;
+    //gap: 89px;
+    justify-content: space-between;
+    padding-left: 1.5rem;
+    padding-right: 4.5rem;
 
     @include tablet {
         gap: 40px;
     }
-}
 
-.inventoryform__radiobutton label {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding-bottom: 1rem;
-    @include tablet {
-        padding-bottom: 1.5rem;
+    label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding-bottom: 1rem;
+        @include tablet {
+            padding-bottom: 1.5rem;
+        }
     }
 }
 
 .inventoryform__dropdown-wrapper {
     position: relative;
-    width: 100%;
+    //width: 100%;
 }
 
 .dropdown-icon {
@@ -282,5 +284,19 @@ select:focus {
         width: 1.5rem;
         height: 1.5rem;
         // pointer-events: none;
+    }
+}
+
+.inventoryform__error-message {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #c94515;
+    margin-top: -0.75rem;
+    margin-bottom: 0.25rem;
+    padding-left: 24px;
+    &-icon {
+        height: auto;
+        margin-right: 0.25rem;
     }
 }

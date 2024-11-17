@@ -5,6 +5,7 @@ import dropdownIcon from "../../assets/Icons/arrow_drop_down-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import errorIcon from "../../assets/Icons/error-24px.svg";
 
 const InventoryAdd = () => {
     const navigate = useNavigate();
@@ -170,6 +171,16 @@ const InventoryAdd = () => {
                             value={InventoryData.item_name}
                             onChange={handleChange}
                         />
+                        {formSubmitted && !InventoryData.item_name && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
                         <label
                             htmlFor="description"
                             className="inventoryform__label"
@@ -184,13 +195,23 @@ const InventoryAdd = () => {
                             value={InventoryData.description}
                             onChange={handleChange}
                         />
+                        {formSubmitted && !InventoryData.description && (
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
+                        )}
+                        <label
+                            htmlFor="category"
+                            className="inventoryform__label"
+                        >
+                            Category
+                        </label>
                         <div className="inventoryform__dropdown-wrapper">
-                            <label
-                                htmlFor="category"
-                                className="inventoryform__label"
-                            >
-                                Category
-                            </label>
                             <select
                                 name="category"
                                 id="category"
@@ -198,6 +219,16 @@ const InventoryAdd = () => {
                                 value={InventoryData.category}
                                 onChange={handleChange}
                             >
+                                {formSubmitted && !InventoryData.category && (
+                                    <div className="inventoryform__error-message">
+                                        <img
+                                            src={errorIcon}
+                                            alt="Error icon"
+                                            className="inventoryform__error-message-icon"
+                                        />
+                                        <span>This field is required</span>
+                                    </div>
+                                )}
                                 <option value="">Please select</option>
                                 {filteredInventories.map((inventory) => (
                                     <option
@@ -250,13 +281,13 @@ const InventoryAdd = () => {
 
                         {InventoryData.status === "In Stock" && (
                             <>
+                                <label
+                                    htmlFor="quantity"
+                                    className="inventoryform__label"
+                                >
+                                    Quantity
+                                </label>
                                 <div className="inventoryform__dropdown-wrapper">
-                                    <label
-                                        htmlFor="quantity"
-                                        className="inventoryform__label"
-                                    >
-                                        Quantity
-                                    </label>
                                     <input
                                         type="number"
                                         name="quantity"
@@ -266,9 +297,16 @@ const InventoryAdd = () => {
                                     />
                                     {formSubmitted &&
                                         !InventoryData.quantity && (
-                                            <span className="warning">
-                                                Quantity is required.
-                                            </span>
+                                            <div className="inventoryform__error-message">
+                                                <img
+                                                    src={errorIcon}
+                                                    alt="Error icon"
+                                                    className="inventoryform__error-message-icon"
+                                                />
+                                                <span>
+                                                    This field is required
+                                                </span>
+                                            </div>
                                         )}
                                     <img
                                         src={dropdownIcon}
@@ -299,9 +337,14 @@ const InventoryAdd = () => {
                             ))}
                         </select>
                         {formSubmitted && !InventoryData.warehouse_id && (
-                            <span className="warning">
-                                Warehouse is required
-                            </span>
+                            <div className="inventoryform__error-message">
+                                <img
+                                    src={errorIcon}
+                                    alt="Error icon"
+                                    className="inventoryform__error-message-icon"
+                                />
+                                <span>This field is required</span>
+                            </div>
                         )}
                     </div>
 
