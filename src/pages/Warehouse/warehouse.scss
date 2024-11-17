@@ -30,7 +30,14 @@
         padding: 2rem 1.5rem 1rem;
 
         @include tablet {
-            padding: 0;
+            @include page-header;
+            padding-left: 2rem;
+            padding-top: 2rem;
+            padding-bottom: 1.375rem;
+        }
+
+        @include desktop{
+            padding-left: 2.5rem;
             padding-top: 2rem;
             padding-bottom: 1.375rem;
         }
@@ -43,11 +50,13 @@
         padding: 1.5rem 1rem;
         padding-top: 0;
         border-bottom: 1px solid $Cloud;
+        @include mobile__buttons-labels;
 
         @include tablet {
             @include buttons-labels;
             display: flex;
             flex-direction: row;
+            gap: 1rem;
             border-bottom: none;
             padding-top: 2rem;
         }
@@ -80,6 +89,7 @@
         @include mobile__buttons-labels;
 
         @include tablet {
+            @include buttons-labels;
             padding-top: 8px 16px;
             width: 168px;
             height: 38px;
@@ -98,7 +108,6 @@
         flex-wrap: wrap;
         justify-content: space-between;
         row-gap: 1rem;
-        margin-bottom: 1rem;
 
         @include tablet {
             flex-direction: row;
@@ -108,12 +117,6 @@
     &__content {
         //1st child name, 2nd child contactname, 3rd address, 4th contactinfo
         // Default order for mobile view
-        @include tablet {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-
         width: 50%;
         &:nth-child(1) {
             order: 1;
@@ -130,6 +133,9 @@
 
         @include tablet {
             width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
             //tablet view
             &:nth-child(1) {
                 order: 1;
@@ -154,6 +160,12 @@
         padding: 1rem 1.5rem 1.5rem;
         @include tablet {
             justify-content: space-between;
+            padding: 1.6875rem 0rem 1.6875rem 2rem;
+
+        }
+
+        @include desktop{
+            padding: 1.6875rem 0rem 1.6875rem 2.5rem;
         }
     }
 
@@ -191,6 +203,7 @@
             @include body-small;
             // padding-top: 1.5rem;
             width: 100%;
+            
         }
     }
 
@@ -210,6 +223,9 @@
 
         @include tablet {
             justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 2rem;
         }
     }
 
@@ -218,7 +234,7 @@
         width: 1rem;
         height: 1rem;
         margin-left: 4px;
-        transform: translateY(20%);
+        transform: translateY(10%);
 
         @include tablet {
             display: inline-block;
@@ -227,35 +243,18 @@
     }
 
     &__chevron {
-        //display: none;
         height: 1.25rem;
         width: 1.25rem;
         display: inline-block;
         flex-shrink: 0;
+        padding-left: 4px;
 
         @include tablet {
-            transform: translateY(62%);
+            transform: translateY(7%);
         }
     }
 }
-.warehouse-list__content-action {
-    //display: flex;
-    justify-content: space-between;
-    //width: 100%;
-}
 
-.warehouse-list__label--action-label {
-    display: none;
-    @include tablet {
-        display: inline-block;
-        color: $Slate;
-        @include body-small;
-        font-weight: 600;
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
-        background-color: #f7f8f9;
-    }
-}
 
 .warehouse-list__searchIcon {
     width: 1.5rem;
@@ -284,5 +283,8 @@
     @include tablet {
         display: flex;
         justify-content: space-evenly;
+        margin-top: .6875rem;
+        margin-bottom: .6875rem;
+        align-items: center;
     }
 }
