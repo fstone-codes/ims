@@ -7,8 +7,9 @@
 }
 .main {
     width: 100%;
-    padding: 0 1rem;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 .warehouse {
     &__header {
@@ -18,12 +19,11 @@
         }
     }
     position: absolute;
-    width: 90%;
-    padding: 0 1.5rem;
+    width: calc(100vw - 4rem);
     background-color: $White;
 
     @include tablet {
-        padding-left: 2rem;
+        //padding-left: 2rem;
     }
 
     &__heading {
@@ -41,7 +41,7 @@
     &__search-container {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 1rem;
         padding: 1.5rem 1rem;
         padding-top: 0;
         border-bottom: 1px solid $Cloud;
@@ -99,6 +99,8 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
+        row-gap: 1rem;
+        margin-bottom: 1rem;
 
         @include tablet {
             flex-direction: row;
@@ -108,6 +110,12 @@
     &__content {
         //1st child name, 2nd child contactname, 3rd address, 4th contactinfo
         // Default order for mobile view
+        @include tablet {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
         width: 50%;
         &:nth-child(1) {
             order: 1;
@@ -150,6 +158,11 @@
         }
         &__label {
             display: none;
+            width: 100%;
+            padding: 0.6875rem 0;
+        }
+        &__label--label1 {
+            padding: 0.6875rem 0 0.6875rem 32px;
         }
     }
 }
@@ -158,6 +171,7 @@
     &__item {
         list-style: none;
         background-color: $White;
+        padding: 1rem 1.5rem 1.5rem;
     }
 
     &__link {
@@ -175,8 +189,8 @@
         color: $Slate;
         @include mobile__body-small;
         font-weight: 600;
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
+        //padding-top: 1rem;
+        margin-bottom: 0.25rem;
 
         @include tablet {
             background-color: #f7f8f9;
@@ -191,7 +205,8 @@
 
         @include tablet {
             @include body-small;
-            padding-top: 1.5rem;
+            // padding-top: 1.5rem;
+            width: 100%;
         }
     }
 
@@ -205,8 +220,7 @@
 
     &__icon-container {
         display: flex;
-
-        padding-bottom: 1.5rem;
+        justify-content: space-between;
 
         @include tablet {
             justify-content: flex-end;
@@ -218,6 +232,8 @@
         display: none;
         width: 1rem;
         height: 1rem;
+        margin-left: 4px;
+        transform: translateY(20%);
 
         @include tablet {
             display: inline-block;
@@ -238,7 +254,9 @@
     }
 }
 .warehouse-list__content-action {
-    display: flex;
+    //display: flex;
+    justify-content: space-between;
+    //width: 100%;
 }
 
 .warehouse-list__label--action-label {
