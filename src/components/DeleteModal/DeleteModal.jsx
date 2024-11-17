@@ -28,19 +28,17 @@ function DeleteModal({
             }}
         >
             <div className="modal__content-wrapper">
-                <div className="modal__text-closeBtn">
-                    <img
-                        className="modal__close-icon"
-                        src={closeIcon}
-                        alt="Close icon"
-                        onClick={() => setIsOpen(false)}
-                    />
-                    <div className="modal__text-container">
-                        <h1 className="modal__title">{modalTitle}</h1>
-                        <p className="modal__text modal__text--large">
-                            {modalText}
-                        </p>
-                    </div>
+                <img
+                    className="modal__close-icon"
+                    src={closeIcon}
+                    alt="Close icon"
+                    onClick={() => setIsOpen(false)}
+                />
+                <div className="modal__text-container">
+                    <h1 className="modal__title">{modalTitle}</h1>
+                    <p className="modal__text modal__text--large">
+                        {modalText}
+                    </p>
                 </div>
                 <div className="modal__btn-wrapper">
                     <button
