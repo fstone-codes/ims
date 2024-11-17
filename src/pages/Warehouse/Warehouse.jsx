@@ -5,7 +5,7 @@ import axios from "axios";
 import warehouse__sortIcon from "../../assets/Icons/sort-24px.svg";
 import warehouse__chevron from "../../assets/Icons/chevron_right-24px.svg";
 import warehouse__deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
-import warehouse__searchIcon from "../../assets/Icons/search-24px.svg"
+import warehouse__searchIcon from "../../assets/Icons/search-24px.svg";
 import warehouse__editIcon from "../../assets/Icons/edit-24px.svg";
 import { useState, useEffect } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
@@ -82,22 +82,57 @@ function Warehouse() {
                         </Link>
                     </div>
                 </div>
+                <section className="warehouse-list__tablet-header">
+                    <p className="warehouse-list__tablet-label ">
+                        WAREHOUSE
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-label ">
+                        ADDRESS{" "}
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-header ">
+                        CONTACT NAME
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-header">
+                        CONTACT INFORMATION
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-header">ACTION</p>
+                </section>
 
                 <section className="warehouse-list__items">
                     {warehouses.map((warehouse, index) => (
                         <li key={warehouse.id} className="warehouse-list__item">
                             <div className="warehouse-list__table-components">
                                 <div className="warehouse-list__content">
-                                    <p className="warehouse-list__label">
+                                    <p className="warehouse-list__label warehouse-list__label--label1">
                                         WAREHOUSE
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
                                     </p>
-                                    {index === 0 && (
-                                        <img
-                                            className="warehouse-list__sortIcon"
-                                            src={warehouse__sortIcon}
-                                            alt="sorticon"
-                                        />
-                                    )}
 
                                     <Link
                                         to={`/warehouse/${warehouse.id}`}
@@ -117,31 +152,33 @@ function Warehouse() {
                                     </Link>
                                 </div>
                                 <div className="warehouse-list__content">
-                                    <p className="warehouse-list__label">
+                                    <p className="warehouse-list__label ">
                                         CONTACT NAME
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
                                     </p>
-                                    {index === 0 && (
-                                        <img
-                                            className="warehouse-list__sortIcon"
-                                            src={warehouse__sortIcon}
-                                            alt="sorticon"
-                                        />
-                                    )}
+
                                     <p className="warehouse-list__text">
                                         {warehouse.contact_name}
                                     </p>
                                 </div>
                                 <div className="warehouse-list__content">
-                                    <p className="warehouse-list__label">
+                                    <p className="warehouse-list__label ">
                                         ADDRESS{" "}
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
                                     </p>
-                                    {index === 0 && (
-                                        <img
-                                            className="warehouse-list__sortIcon"
-                                            src={warehouse__sortIcon}
-                                            alt="sorticon"
-                                        />
-                                    )}
+
                                     <p className="warehouse-list__text">
                                         {warehouse.address} <br />
                                         {warehouse.city} {", "}
@@ -151,24 +188,21 @@ function Warehouse() {
                                 <div className="warehouse-list__content">
                                     <p className="warehouse-list__label">
                                         CONTACT INFORMATION
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
                                     </p>
-                                    {index === 0 && (
-                                        <img
-                                            className="warehouse-list__sortIcon"
-                                            src={warehouse__sortIcon}
-                                            alt="sorticon"
-                                        />
-                                    )}
                                     <p className="warehouse-list__text">
                                         {warehouse.contact_phone} <br />
                                         {warehouse.contact_email}
                                     </p>
                                 </div>
-                            </div>
-                            <div className="warehouse-list__content-action">
-                                <div className="warehouse-list__label--action-label">
-                                    ACTION
-                                </div>
+
+                                {/* <div className="warehouse-list__content"> */}
                                 <div className="warehouse-list__icon-container">
                                     <img
                                         className="warehouse-list__icon"
@@ -178,13 +212,16 @@ function Warehouse() {
                                             handleModalClick(warehouse)
                                         }
                                     />
-                                    <Link to={`/warehouse/${warehouse.id}/edit`}>
-                                    <img
-                                        className="warehouse-list__icon"
-                                        src={warehouse__editIcon}
-                                        alt="edit icon"
-                                    />
+                                    <Link
+                                        to={`/warehouse/${warehouse.id}/edit`}
+                                    >
+                                        <img
+                                            className="warehouse-list__icon"
+                                            src={warehouse__editIcon}
+                                            alt="edit icon"
+                                        />
                                     </Link>
+                                    {/* </div> */}
                                 </div>
                             </div>
                         </li>
