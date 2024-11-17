@@ -79,7 +79,7 @@ function Inventory() {
                             INVENTORY ITEM
                         </h4>
                         <img
-                            className="inventory__sort-icon"
+                            className="inventory__tablet-sort-icon"
                             src={sortIcon}
                             alt="sort icon"
                         />
@@ -87,7 +87,7 @@ function Inventory() {
                     <div className="inventory__tablet-labels-container">
                         <h4 className="inventory__tablet-label">CATEGORY</h4>
                         <img
-                            className="inventory__sort-icon"
+                            className="inventory__tablet-sort-icon"
                             src={sortIcon}
                             alt="sort icon"
                         />
@@ -95,7 +95,7 @@ function Inventory() {
                     <div className="inventory__tablet-labels-container">
                         <h4 className="inventory__tablet-label">STATUS</h4>
                         <img
-                            className="inventory__sort-icon"
+                            className="inventory__tablet-sort-icon"
                             src={sortIcon}
                             alt="sort icon"
                         />
@@ -103,7 +103,7 @@ function Inventory() {
                     <div className="inventory__tablet-labels-container">
                         <h4 className="inventory__tablet-label">QUANTITY</h4>
                         <img
-                            className="inventory__sort-icon"
+                            className="inventory__tablet-sort-icon"
                             src={sortIcon}
                             alt="sort icon"
                         />
@@ -111,7 +111,7 @@ function Inventory() {
                     <div className="inventory__tablet-labels-container">
                         <h4 className="inventory__tablet-label">WAREHOUSE</h4>
                         <img
-                            className="inventory__sort-icon"
+                            className="inventory__tablet-sort-icon"
                             src={sortIcon}
                             alt="sort icon"
                         />

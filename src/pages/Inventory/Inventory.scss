@@ -17,6 +17,7 @@
     border-radius: .1875rem;
     margin: auto;
     box-shadow: 0 2px 5px 0 #13182C1A;
+
     &__header {
         display: flex;
         flex-direction: column;
@@ -24,8 +25,10 @@
         @include tablet {
             flex-direction: row;
             justify-content: space-between;
+            padding: 0 2rem;
         }
     }
+
     &__title {
         padding-top: 2rem;
         @include mobile__page-header;
@@ -34,6 +37,7 @@
             @include page-header;
         }
     }
+
     &__CTA-field-container {
         display: flex;
         flex-direction: column;
@@ -42,6 +46,7 @@
             flex-direction: row;
             align-items: center;
         }
+
         .input-field {
             background-image: url("../../assets/Icons/search-24px.svg");
             background-repeat: no-repeat;
@@ -54,12 +59,15 @@
             margin: 1.5rem 0 1rem 0;
             @include tablet {
                 width: unset;
+                height: 2.375rem;
+                margin: 0;
             }
             &::placeholder {
                 padding: .5rem 1rem;
             }
         }
     }
+
     .add-button {
         color: $White;
         background-color: $Instock-Indigo;
@@ -72,7 +80,7 @@
             width: 8rem;
             height: 2.375rem;
             margin-bottom: 0;
-            margin: 0 1rem;
+            margin-left: 1rem;
         }
     }
 
@@ -80,7 +88,13 @@
         display: none;
         @include tablet {
             display: flex;
-
+            justify-content: space-evenly;
+            color: $Slate;
+            background-color: $Light-Grey;
+            padding: .6875rem 0;
+            &-container {
+                display: flex;
+            }
         }
     }
 
@@ -100,10 +114,12 @@
             flex-direction: row;
             gap: 0;
         }
+
         &:first-child {
             @include tablet {
                 border-top: none;
             }
+            
             .inventory__tb-header-wrapper {
                 display: flex;
                 @include tablet {
@@ -112,12 +128,14 @@
                     display: none;
                 }
             }
+
             .inventory__label {
                 width: 100%;
                 @include tablet {
                     display: unset;
                 }
             }
+
             .inventory__sort-icon {
                 @include tablet {
                     width: 1rem;
@@ -127,10 +145,12 @@
             }
         }
     }
+
     &__link--blue {
         color: $Instock-Indigo;
         text-decoration: none;
         display: flex;
+
         &:hover {
             text-decoration: underline;
         }
@@ -139,6 +159,7 @@
             @include buttons-labels;
         }
     }
+
     &__table-components {
         display: flex;
         flex-direction: row;
@@ -150,6 +171,7 @@
             padding-left: 2rem;
         }
     }
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -160,6 +182,7 @@
             width: 20%;
             margin: unset;
         }
+
         &:nth-child(1) {
             order: 1;
             padding-bottom: 1rem;
@@ -167,6 +190,7 @@
                 padding-bottom: 0;
             }
         }
+
         &:nth-child(2) {
             order:3;
             padding-bottom: 1rem;
@@ -174,38 +198,40 @@
                 order: 2;
             }
         }
+
         &:nth-child(3) {
             order: 2;
             padding-bottom: 1rem;
             align-self: flex-start;
-            // @include tablet {
-            //     order: 3;
-            //     margin-bottom: 1rem;
-            //     padding-bottom: 0;
-            // }
         }
+
         &:nth-child(4) {
             order: 4;
 
         }
+
         &:nth-child(5) {
             order: 5;
         }
+
         &:nth-child(6) {
             order: 6;
         }
+
         &--transparent {
             @include tablet {
                 display: none;
             }
         }
     }
+    
     &__label {
         color: $Slate;
         padding-bottom: .25rem;
         @include tablet {
             padding-bottom: 0;
         }
+
         &--hidden {
             display: none;
         }
@@ -215,16 +241,12 @@
             @include table-header;
         }
     }
+
     &__sort-icon {
         display: none;
     }
-    // &__text {
-    //     // padding-bottom: 1rem;
-    //     // @include tablet {
-    //     //     padding-top: 1rem;
-    //     // }
-    // }
-    &__status {
+
+     &__status {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -234,8 +256,8 @@
         @include mobile__body-small;
         @include tablet {
             justify-content: space-between;
-            // margin-top: 1rem;
         }
+
         &--green {
             background-color: #15846312;
             color: #158463;
@@ -250,6 +272,7 @@
             width: 5.375rem;
         }
     }
+
     &__icon-wrapper {
         display: flex;
         justify-content: space-between;
@@ -272,6 +295,7 @@
             padding: .75rem 0;
         }
     }
+
     &__icon {
         width: 1.5rem;
         height: 1.5rem;
