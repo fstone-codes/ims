@@ -2,13 +2,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 
-// .inventory-wrapper {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;   
-    // height: 100vh;
-// }
-
 .inventory {
     display: flex;
     flex-direction: column;
@@ -18,13 +11,12 @@
     margin: auto;
     box-shadow: 0 2px 5px 0 #13182C1A;
     @include desktop {
-        // margin: 0 8.125rem;
         width: 85vw;
     }
 
     &__header {
         display: flex;
-        // flex-direction: column;
+        flex-direction: column;
         padding: 0 1.5rem;
         @include tablet {
             flex-direction: row;
@@ -51,9 +43,11 @@
         justify-content: center;
         @include tablet {
             flex-direction: row;
+            margin-top: 2rem;
         }
         @include desktop {
             padding-top: 2rem;
+            margin-top: 0;
         }
 
         .input-field {
@@ -111,12 +105,10 @@
                 display: flex;
                 gap: .0625rem;
                 align-items: center;
-                // width: 20%;
             }
         }
         @include desktop {
-            // justify-content: unset;
-            column-gap: 6.25rem;
+            // column-gap: 6.25rem;
             width: 100%;
         }
     }
@@ -327,7 +319,6 @@
         width: 1.25rem;
         height: 1.25rem;
         cursor: pointer;
-        // padding: .75rem;
         @include tablet {
             padding: .75rem 0;
         }
