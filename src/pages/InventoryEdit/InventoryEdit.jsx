@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 // maintain the same styling for both Add + Edit Inventory pages
 import "../InventoryAdd/InventoryAdd.scss";
-import backArrow from "../../assets/Icons/arrow_back-24px.svg";
-import errorIcon from "../../assets/Icons/error-24px.svg";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import backArrow from "../../assets/Icons/arrow_back-24px.svg";
+import errorIcon from "../../assets/Icons/error-24px.svg";
 
 function InventoryEdit() {
     const { inventoryId } = useParams();

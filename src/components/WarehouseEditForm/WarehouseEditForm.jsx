@@ -2,7 +2,7 @@ import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import errorIcon from '../../assets/Icons/error-24px.svg';
 import "./WarehouseEditForm.scss";
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 
 function WarehouseEditForm() {
     const { warehouseId } = useParams();
@@ -42,7 +42,6 @@ function WarehouseEditForm() {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-
 
         if (value.trim() !== "") {
             setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
