@@ -1,7 +1,7 @@
 import './WarehouseAddForm.scss'
 import backArrow from '../../assets/Icons/arrow_back-24px.svg'
 import {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import errorIcon from '../../assets/Icons/error-24px.svg'
 
 function WarehouseAddForm() {
@@ -23,8 +23,6 @@ function WarehouseAddForm() {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-
-
         if (value.trim() !== '') {
             setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
         }
@@ -32,31 +30,24 @@ function WarehouseAddForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const newErrors = {};
-
         Object.keys(formData).forEach((key) => {
             if (!formData[key].trim()) {
                 newErrors[key] = true;
             }
         });
-
         setErrors(newErrors);
-
         if (Object.keys(newErrors).length > 0) {
             console.error('Validation failed:', newErrors);
             return;
         }
-
         try {
             const response = await fetch('http://localhost:8080/api/warehouses/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
-
             const result = await response.json();
-
             if (response.ok) {
                 setSuccessMessage(result.message || 'Warehouse added successfully!');
                 setFormData({
@@ -79,7 +70,6 @@ function WarehouseAddForm() {
             console.error('Fetch error:', error);
         }
     };
-
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/warehouse');
@@ -224,11 +214,8 @@ function WarehouseAddForm() {
                     <button type="button" onClick={handleClick} className="warehouseform__button-cancel">Cancel</button>
                     <button type="submit" className="warehouseform__button-add">+ Add Warehouse</button>
                 </div>
-                
-
             </form>
         </div>
-       
     )
 }
 
