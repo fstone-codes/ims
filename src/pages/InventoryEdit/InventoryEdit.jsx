@@ -271,7 +271,7 @@ function InventoryEdit() {
                                 ))}
                             </select>
                             {formSubmitted && !formData.category && (
-                                <div className="inventoryform__error-message">
+                                <div className="inventoryform__error-message inventoryform__error-message--dropdown">
                                     <img
                                         src={errorIcon}
                                         alt="Error icon"
@@ -369,7 +369,7 @@ function InventoryEdit() {
                             ))}
                         </select>
                         {formSubmitted && !formData.warehouse_name && (
-                            <div className="inventoryform__error-message">
+                            <div className="inventoryform__error-message inventoryform__error-message--dropdown">
                                 <img
                                     src={errorIcon}
                                     alt="Error icon"

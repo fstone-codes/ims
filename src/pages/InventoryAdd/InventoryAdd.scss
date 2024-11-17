@@ -250,13 +250,6 @@ select {
     }
 }
 
-// input[type="radio"] {
-//     // display: none; // Hide the default radio button
-
-//     &:checked + label {
-//         font-weight: 600;
-//     }
-// }
 .inventoryform__radiobutton {
     display: flex;
     justify-content: space-between;
@@ -286,14 +279,18 @@ select {
     align-items: center;
     font-size: 0.75rem;
     color: $Red;
-    margin: -0.5rem 0 0.25rem;
+    margin: -0.75rem 0 0.25rem;
 
     @include tablet {
         margin: -1.25rem 0 0.25rem;
     }
 
+    &--dropdown {
+        margin: 0.25rem 0 0.25rem;
+    }
+
     &-icon {
-        height: auto;
+        height: 16px;
         margin-right: 0.25rem;
     }
 }
