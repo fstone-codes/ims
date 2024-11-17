@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-// maintain the same styling for both pages
+// maintain the same styling for both Add + Edit Inventory pages
 import "../InventoryAdd/InventoryAdd.scss";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
-import dropdownIcon from "../../assets/Icons/arrow_drop_down-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,13 +9,12 @@ import { useNavigate, useParams } from "react-router-dom";
 function InventoryEdit() {
     const { inventoryId } = useParams();
     const navigate = useNavigate();
-    const [inventories, setInventories] = useState([]);
     const [warehouses, setWarehouses] = useState([]);
-    const [formSubmitted, setFormSubmitted] = useState(false);
     const [categoryList, setCategoryList] = useState([]);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const [formData, setFormData] = useState({
-        warehouse_id: "",
+        warehouse_name: "",
         item_name: "",
         description: "",
         category: "",
@@ -60,17 +58,7 @@ function InventoryEdit() {
         try {
             const { data } = await axios.get("http://localhost:8080/api/warehouses");
 
-            const filterOnlyLocations = (arrOfObjects) => {
-                return arrOfObjects.map((object) => ({
-                    id: object.id,
-                    warehouse_name: object.warehouse_name,
-                }));
-            };
-
-            const newArray = filterOnlyLocations(data);
-            console.log(newArray);
-
-            setWarehouses(newArray);
+            setWarehouses(data);
         } catch (error) {
             console.error("Error fetching warehouses", error);
         }
@@ -82,7 +70,20 @@ function InventoryEdit() {
                 `http://localhost:8080/api/inventories/${inventoryId}`
             );
 
-            setFormData(data);
+            console.log(data);
+
+            setFormData({
+                warehouse_name: data.warehouse_name,
+                item_name: data.item_name,
+                description: data.description,
+                category: data.category,
+                status: data.status,
+                quantity: data.quantity,
+            });
+
+            console.log("new log", formData);
+
+            // setFormData(newUpdatedData);
         } catch (error) {
             console.error("Error fetching single inventory item: ", error);
         }
@@ -112,7 +113,6 @@ function InventoryEdit() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, typeof value);
 
         setFormData(() => ({
             ...formData,
@@ -123,7 +123,7 @@ function InventoryEdit() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true);
-        console.log(updatedData);
+
         if (!validateForm()) {
             return;
         }
@@ -172,12 +172,20 @@ function InventoryEdit() {
         quantity: formData.status === "In Stock" ? formData.quantity || 0 : 0,
     };
 
+    console.log(warehouses);
+
+    const uniqueWarehouses = [
+        ...new Map(warehouses.map((item) => [item.warehouse_name, item])).values(),
+    ].filter((warehouse) => warehouse.warehouse_name !== formData.warehouse_name);
+
     if (warehouses.length === 0 || !formData) {
         return <div>Loading item...</div>;
     }
 
+    console.log(uniqueWarehouses);
+
     return (
-        <main className="main">
+        <main className="main-inv-add">
             <div className="title">
                 <Link to="/inventory" className="title__link">
                     <img src={backArrow} alt="back arrow" className="title__icon"></img>
@@ -283,8 +291,8 @@ function InventoryEdit() {
                             value={formData.warehouse_id}
                             onChange={handleChange}
                         >
-                            <option value="">Select Warehouse</option>
-                            {warehouses.map((warehouse) => (
+                            <option value="">{formData.warehouse_name}</option>
+                            {uniqueWarehouses.map((warehouse) => (
                                 <option key={warehouse.id} value={warehouse.id}>
                                     {warehouse.warehouse_name}
                                 </option>
