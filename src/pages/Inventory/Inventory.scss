@@ -17,15 +17,22 @@
     border-radius: .1875rem;
     margin: auto;
     box-shadow: 0 2px 5px 0 #13182C1A;
+    @include desktop {
+        // margin: 0 8.125rem;
+        width: 85vw;
+    }
 
     &__header {
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
         padding: 0 1.5rem;
         @include tablet {
             flex-direction: row;
             justify-content: space-between;
             padding: 0 2rem;
+        }
+        @include desktop {
+            padding: 0 2.5rem;
         }
     }
 
@@ -44,7 +51,9 @@
         justify-content: center;
         @include tablet {
             flex-direction: row;
-            align-items: center;
+        }
+        @include desktop {
+            padding-top: 2rem;
         }
 
         .input-field {
@@ -104,6 +113,11 @@
                 align-items: center;
                 // width: 20%;
             }
+        }
+        @include desktop {
+            // justify-content: unset;
+            column-gap: 6.25rem;
+            width: 100%;
         }
     }
 
@@ -185,6 +199,9 @@
         @include tablet {
             flex-direction: row;
             padding-left: 2rem;
+        }
+        @include desktop {
+            padding-left: 2.5rem;
         }
     }
 
@@ -300,6 +317,9 @@
             padding-right: 2rem;
             margin-bottom: 0;
             gap: 1rem;
+        }
+        @include desktop {
+            padding-right: 2.5rem;
         }
     }
 
