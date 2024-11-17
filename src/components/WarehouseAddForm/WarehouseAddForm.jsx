@@ -104,8 +104,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                         {errors.warehouse_name && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -119,8 +119,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                         {errors.address && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -134,8 +134,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                          {errors.city && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -149,8 +149,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                         {errors.country && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -167,8 +167,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                           {errors.contact_name && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -182,8 +182,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                         {errors.contact_position && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -197,8 +197,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                          {errors.contact_phone && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
@@ -212,8 +212,8 @@ function WarehouseAddForm() {
                             onChange={handleInputChange}
                         />
                           {errors.contact_email && (
-                            <div className="wavehouseform__error-message">
-                                <img src={errorIcon} alt="Error icon" className="wavehouseform__error-message-icon" />
+                            <div className="warehouseform__error-message">
+                                <img src={errorIcon} alt="Error icon" className="warehouseform__error-message-icon" />
                                 <span>This field is required</span>
                             </div>
                         )}
