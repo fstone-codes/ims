@@ -82,116 +82,148 @@ function Warehouse() {
                         </Link>
                     </div>
                 </div>
+                <section className="warehouse-list__tablet-header">
+                    <p className="warehouse-list__tablet-label ">
+                        WAREHOUSE
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-label ">
+                        ADDRESS{" "}
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-header ">
+                        CONTACT NAME
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-header">
+                        CONTACT INFORMATION
+                        <img
+                            className="warehouse-list__sortIcon"
+                            src={warehouse__sortIcon}
+                            alt="sorticon"
+                        />
+                    </p>
+                    <p className="warehouse-list__tablet-header">ACTION</p>
+                </section>
 
                 <section className="warehouse-list__items">
                     {warehouses.map((warehouse, index) => (
                         <li key={warehouse.id} className="warehouse-list__item">
                             <div className="warehouse-list__table-components">
-            
-                                    <div className="warehouse-list__content">
-                                        <p className="warehouse-list__label warehouse-list__label--label1">
-                                            WAREHOUSE
-                                            {index === 0 && (
-                                                <img
-                                                    className="warehouse-list__sortIcon"
-                                                    src={warehouse__sortIcon}
-                                                    alt="sorticon"
-                                                />
-                                            )}
-                                        </p>
-
-                                        <Link
-                                            to={`/warehouse/${warehouse.id}`}
-                                            className="warehouse-list__link"
-                                        >
-                                            <p
-                                                className="warehouse-list__text"
-                                                id="warehousenamecolor"
-                                            >
-                                                {warehouse.warehouse_name}
-                                            </p>
+                                <div className="warehouse-list__content">
+                                    <p className="warehouse-list__label warehouse-list__label--label1">
+                                        WAREHOUSE
+                                        {index === 0 && (
                                             <img
-                                                className="warehouse-list__chevron"
-                                                src={warehouse__chevron}
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
                                                 alt="sorticon"
                                             />
-                                        </Link>
-                                    </div>
-                                    <div className="warehouse-list__content">
-                                        <p className="warehouse-list__label ">
-                                            CONTACT NAME
-                                            {index === 0 && (
-                                                <img
-                                                    className="warehouse-list__sortIcon"
-                                                    src={warehouse__sortIcon}
-                                                    alt="sorticon"
-                                                />
-                                            )}
-                                        </p>
+                                        )}
+                                    </p>
 
-                                        <p className="warehouse-list__text">
-                                            {warehouse.contact_name}
+                                    <Link
+                                        to={`/warehouse/${warehouse.id}`}
+                                        className="warehouse-list__link"
+                                    >
+                                        <p
+                                            className="warehouse-list__text"
+                                            id="warehousenamecolor"
+                                        >
+                                            {warehouse.warehouse_name}
                                         </p>
-                                    </div>
-                                    <div className="warehouse-list__content">
-                                        <p className="warehouse-list__label ">
-                                            ADDRESS{" "}
-                                            {index === 0 && (
-                                                <img
-                                                    className="warehouse-list__sortIcon"
-                                                    src={warehouse__sortIcon}
-                                                    alt="sorticon"
-                                                />
-                                            )}
-                                        </p>
-
-                                        <p className="warehouse-list__text">
-                                            {warehouse.address} <br />
-                                            {warehouse.city} {", "}
-                                            {warehouse.country}
-                                        </p>
-                                    </div>
-                                    <div className="warehouse-list__content">
-                                        <p className="warehouse-list__label">
-                                            CONTACT INFORMATION
-                                            {index === 0 && (
-                                                <img
-                                                    className="warehouse-list__sortIcon"
-                                                    src={warehouse__sortIcon}
-                                                    alt="sorticon"
-                                                />
-                                            )}
-                                        </p>
-                                        <p className="warehouse-list__text">
-                                            {warehouse.contact_phone} <br />
-                                            {warehouse.contact_email}
-                                        </p>
-                                    </div>
+                                        <img
+                                            className="warehouse-list__chevron"
+                                            src={warehouse__chevron}
+                                            alt="sorticon"
+                                        />
+                                    </Link>
                                 </div>
-                                <div className="warehouse-list__content-action">
-                                    <div className="warehouse-list__label--action-label">
-                                        ACTION
-                                    </div>
-                                    <div className="warehouse-list__icon-container">
+                                <div className="warehouse-list__content">
+                                    <p className="warehouse-list__label ">
+                                        CONTACT NAME
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
+                                    </p>
+
+                                    <p className="warehouse-list__text">
+                                        {warehouse.contact_name}
+                                    </p>
+                                </div>
+                                <div className="warehouse-list__content">
+                                    <p className="warehouse-list__label ">
+                                        ADDRESS{" "}
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
+                                    </p>
+
+                                    <p className="warehouse-list__text">
+                                        {warehouse.address} <br />
+                                        {warehouse.city} {", "}
+                                        {warehouse.country}
+                                    </p>
+                                </div>
+                                <div className="warehouse-list__content">
+                                    <p className="warehouse-list__label">
+                                        CONTACT INFORMATION
+                                        {index === 0 && (
+                                            <img
+                                                className="warehouse-list__sortIcon"
+                                                src={warehouse__sortIcon}
+                                                alt="sorticon"
+                                            />
+                                        )}
+                                    </p>
+                                    <p className="warehouse-list__text">
+                                        {warehouse.contact_phone} <br />
+                                        {warehouse.contact_email}
+                                    </p>
+                                </div>
+
+                                {/* <div className="warehouse-list__content"> */}
+                                <div className="warehouse-list__icon-container">
+                                    <img
+                                        className="warehouse-list__icon"
+                                        src={warehouse__deleteIcon}
+                                        alt="delete icon"
+                                        onClick={() =>
+                                            handleModalClick(warehouse)
+                                        }
+                                    />
+                                    <Link
+                                        to={`/warehouse/${warehouse.id}/edit`}
+                                    >
                                         <img
                                             className="warehouse-list__icon"
-                                            src={warehouse__deleteIcon}
-                                            alt="delete icon"
-                                            onClick={() =>
-                                                handleModalClick(warehouse)
-                                            }
+                                            src={warehouse__editIcon}
+                                            alt="edit icon"
                                         />
-                                        <Link
-                                            to={`/warehouse/${warehouse.id}/edit`}
-                                        >
-                                            <img
-                                                className="warehouse-list__icon"
-                                                src={warehouse__editIcon}
-                                                alt="edit icon"
-                                            />
-                                        </Link>
-                                    </div>
+                                    </Link>
+                                    {/* </div> */}
                                 </div>
+                            </div>
                         </li>
                     ))}
                 </section>
