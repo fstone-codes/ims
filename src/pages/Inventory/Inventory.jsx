@@ -7,6 +7,7 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import { baseUrl } from "../../utils";
 
 function Inventory() {
     const [inventory, setInventory] = useState([]);
@@ -25,9 +26,7 @@ function Inventory() {
 
     const getInventory = async () => {
         try {
-            const response = await axios.get(
-                "http://localhost:8080/api/inventories"
-            );
+            const response = await axios.get(`${baseUrl}/api/inventories`);
             const inventoryData = response.data;
             setInventory(inventoryData);
         } catch (error) {
@@ -39,7 +38,7 @@ function Inventory() {
         if (!itemSelected) return;
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/inventories/${itemSelected.id}`
+                `${baseUrl}/api/inventories/${itemSelected.id}`
             );
             // Filter out the item selected from the list of inventories fetched previously
             setInventory((previousInv) => {
