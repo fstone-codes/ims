@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/Icons/error-24px.svg";
+import { baseUrl } from "../../utils";
 
 function InventoryEdit() {
     const { inventoryId } = useParams();
@@ -26,7 +27,7 @@ function InventoryEdit() {
 
     const getInventories = async () => {
         try {
-            const { data } = await axios.get("http://localhost:8080/api/inventories");
+            const { data } = await axios.get(`${baseUrl}/api/inventories`);
 
             const filterOnlyCategories = (arrOfObjects) => {
                 return arrOfObjects.map((object) => ({
@@ -58,7 +59,7 @@ function InventoryEdit() {
 
     const getWarehouse = async () => {
         try {
-            const { data } = await axios.get("http://localhost:8080/api/warehouses");
+            const { data } = await axios.get(`${baseUrl}/api/warehouses`);
 
             setWarehouses(data);
             console.log(warehouses);
@@ -70,7 +71,7 @@ function InventoryEdit() {
     const getSingleItemData = async () => {
         try {
             const { data } = await axios.get(
-                `http://localhost:8080/api/inventories/${inventoryId}`
+                `${baseUrl}/api/inventories/${inventoryId}`
             );
 
             console.log(data);
@@ -94,7 +95,7 @@ function InventoryEdit() {
             const { warehouse_name, ...nameRemovedData } = updatedData;
 
             const { data } = await axios.put(
-                `http://localhost:8080/api/inventories/${inventoryId}`,
+                `${baseUrl}/api/inventories/${inventoryId}`,
                 nameRemovedData
             );
 
@@ -118,7 +119,10 @@ function InventoryEdit() {
 
         setFormData(() => ({
             ...formData,
-            [name]: name === "quantity" || name === "warehouse_name" ? Number(value) : value,
+            [name]:
+                name === "quantity" || name === "warehouse_name"
+                    ? Number(value)
+                    : value,
         }));
     };
 
@@ -169,8 +173,10 @@ function InventoryEdit() {
 
     const updatedData = {
         warehouse_id:
-            warehouses.find((warehouse) => warehouse.warehouse_name === formData.warehouse_name)
-                ?.id || "",
+            warehouses.find(
+                (warehouse) =>
+                    warehouse.warehouse_name === formData.warehouse_name
+            )?.id || "",
         warehouse_name: formData.warehouse_name,
         item_name: formData.item_name,
         description: formData.description,
@@ -182,8 +188,12 @@ function InventoryEdit() {
     console.log(warehouses);
 
     const uniqueWarehouses = [
-        ...new Map(warehouses.map((item) => [item.warehouse_name, item])).values(),
-    ].filter((warehouse) => warehouse.warehouse_name !== formData.warehouse_name);
+        ...new Map(
+            warehouses.map((item) => [item.warehouse_name, item])
+        ).values(),
+    ].filter(
+        (warehouse) => warehouse.warehouse_name !== formData.warehouse_name
+    );
 
     if (warehouses.length === 0 || !formData) {
         return <div>Loading item...</div>;
@@ -195,7 +205,11 @@ function InventoryEdit() {
         <main className="main-inv-add">
             <div className="title">
                 <Link to="/inventory" className="title__link">
-                    <img src={backArrow} alt="back arrow" className="title__icon"></img>
+                    <img
+                        src={backArrow}
+                        alt="back arrow"
+                        className="title__icon"
+                    ></img>
                 </Link>
                 <h1 className="title__header">Edit Inventory Item</h1>
             </div>
@@ -203,7 +217,10 @@ function InventoryEdit() {
                 <div className="inventoryform-card">
                     <div className="inventoryform inventoryform--border">
                         <h2 className="inventoryform__title">Item Details</h2>
-                        <label htmlFor="item_name" className="inventoryform__label">
+                        <label
+                            htmlFor="item_name"
+                            className="inventoryform__label"
+                        >
                             Item Name
                         </label>
                         <input
@@ -229,7 +246,10 @@ function InventoryEdit() {
                                 <span>This field is required</span>
                             </div>
                         )}
-                        <label htmlFor="description" className="inventoryform__label">
+                        <label
+                            htmlFor="description"
+                            className="inventoryform__label"
+                        >
                             Description
                         </label>
                         <textarea
@@ -255,7 +275,10 @@ function InventoryEdit() {
                             </div>
                         )}
                         <div className="inventoryform__dropdown-wrapper">
-                            <label htmlFor="category" className="inventoryform__label">
+                            <label
+                                htmlFor="category"
+                                className="inventoryform__label"
+                            >
                                 Category
                             </label>
                             <select
@@ -271,7 +294,10 @@ function InventoryEdit() {
                             >
                                 <option value="">Please select</option>
                                 {categoryList.map((uniqueCategory) => (
-                                    <option key={uniqueCategory.id} value={uniqueCategory.category}>
+                                    <option
+                                        key={uniqueCategory.id}
+                                        value={uniqueCategory.category}
+                                    >
                                         {uniqueCategory.category}
                                     </option>
                                 ))}
@@ -289,7 +315,9 @@ function InventoryEdit() {
                         </div>
                     </div>
                     <div className="inventoryform">
-                        <h2 className="inventoryform__title">Item Availability</h2>
+                        <h2 className="inventoryform__title">
+                            Item Availability
+                        </h2>
                         <label className="inventoryform__label">Status</label>
                         <div className="inventoryform__radiobutton">
                             <label
@@ -327,7 +355,10 @@ function InventoryEdit() {
                         </div>
                         {formData.status === "In Stock" && (
                             <div className="inventoryform__dropdown-wrapper">
-                                <label htmlFor="quantity" className="inventoryform__label">
+                                <label
+                                    htmlFor="quantity"
+                                    className="inventoryform__label"
+                                >
                                     Quantity
                                 </label>
                                 <input
@@ -353,7 +384,10 @@ function InventoryEdit() {
                                 )}
                             </div>
                         )}
-                        <label htmlFor="warehouse" className="inventoryform__label">
+                        <label
+                            htmlFor="warehouse"
+                            className="inventoryform__label"
+                        >
                             Warehouse
                         </label>
                         <select
@@ -396,7 +430,10 @@ function InventoryEdit() {
                         >
                             Cancel
                         </button>
-                        <button type="submit" className="inventoryform__button-add">
+                        <button
+                            type="submit"
+                            className="inventoryform__button-add"
+                        >
                             Save
                         </button>
                     </div>

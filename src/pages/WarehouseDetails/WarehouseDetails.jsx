@@ -6,6 +6,7 @@ import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
 import editWhiteIcon from "../../assets/Icons/edit-white-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
+import { baseUrl } from "../../utils";
 
 function WarehouseDetails() {
     const [singleWarehouse, setSingleWarehouse] = useState(null);
@@ -14,7 +15,9 @@ function WarehouseDetails() {
 
     async function getSingleWarehouseData() {
         try {
-            const { data } = await axios.get(`http://localhost:8080/api/warehouses/${warehouseId}`);
+            const { data } = await axios.get(
+                `${baseUrl}/api/warehouses/${warehouseId}`
+            );
 
             setSingleWarehouse(data);
         } catch (error) {
@@ -25,18 +28,21 @@ function WarehouseDetails() {
     async function getWarehouseInventoryData() {
         try {
             const { data } = await axios.get(
-                `http://localhost:8080/api/warehouses/${warehouseId}/inventories`
+                `${baseUrl}/api/warehouses/${warehouseId}/inventories`
             );
 
             setWarehouseInventory(data);
         } catch (error) {
-            console.error("Error fetching warehouse inventory details: ", error);
+            console.error(
+                "Error fetching warehouse inventory details: ",
+                error
+            );
         }
     }
 
     async function deleteItem(itemId) {
         try {
-            await axios.delete(`http://localhost:8080/api/inventories/${itemId}`);
+            await axios.delete(`${baseUrl}/api/inventories/${itemId}`);
 
             getWarehouseInventoryData();
         } catch (error) {
@@ -68,10 +74,19 @@ function WarehouseDetails() {
                             alt="arrow back icon"
                         />
                     </Link>
-                    <h1 className="title-wh__header">{singleWarehouse.warehouse_name}</h1>
+                    <h1 className="title-wh__header">
+                        {singleWarehouse.warehouse_name}
+                    </h1>
                 </div>
-                <Link className="title-wh__icon-container" to={`/warehouse/${warehouseId}/edit`}>
-                    <img className="title-wh__edit-icon" src={editWhiteIcon} alt="edit icon" />
+                <Link
+                    className="title-wh__icon-container"
+                    to={`/warehouse/${warehouseId}/edit`}
+                >
+                    <img
+                        className="title-wh__edit-icon"
+                        src={editWhiteIcon}
+                        alt="edit icon"
+                    />
                     <p className="title-wh__edit-text">Edit</p>
                 </Link>
             </section>
@@ -89,32 +104,56 @@ function WarehouseDetails() {
                 </div>
                 <div className="wh-details__container">
                     <h2 className="wh-details__label">CONTACT NAME:</h2>
-                    <p className="wh-details__text">{singleWarehouse.contact_name}</p>
-                    <p className="wh-details__text">{singleWarehouse.contact_position}</p>
+                    <p className="wh-details__text">
+                        {singleWarehouse.contact_name}
+                    </p>
+                    <p className="wh-details__text">
+                        {singleWarehouse.contact_position}
+                    </p>
                 </div>
                 <div className="wh-details__container">
                     <h2 className="wh-details__label">CONTACT INFORMATION:</h2>
-                    <p className="wh-details__text">{singleWarehouse.contact_phone}</p>
-                    <p className="wh-details__text">{singleWarehouse.contact_email}</p>
+                    <p className="wh-details__text">
+                        {singleWarehouse.contact_phone}
+                    </p>
+                    <p className="wh-details__text">
+                        {singleWarehouse.contact_email}
+                    </p>
                 </div>
             </section>
             <section className="inv">
                 <div className="inv__td-container">
                     <div className="inv__td-content">
                         <p className="inv__td-label">INVENTORY ITEM</p>
-                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                        <img
+                            className="inv__td-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
                     </div>
                     <div className="inv__td-content">
                         <p className="inv__td-label">CATEGORY</p>
-                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                        <img
+                            className="inv__td-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
                     </div>
                     <div className="inv__td-content">
                         <p className="inv__td-label">STATUS</p>
-                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                        <img
+                            className="inv__td-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
                     </div>
                     <div className="inv__td-content">
                         <p className="inv__td-label">QUANTITY</p>
-                        <img className="inv__td-icon" src={sortIcon} alt="sort icon" />
+                        <img
+                            className="inv__td-icon"
+                            src={sortIcon}
+                            alt="sort icon"
+                        />
                     </div>
                     <div className="inv__td-content inv__td-content--right">
                         <p className="inv__td-label">ACTIONS</p>

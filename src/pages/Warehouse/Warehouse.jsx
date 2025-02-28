@@ -9,6 +9,7 @@ import warehouse__searchIcon from "../../assets/Icons/search-24px.svg";
 import warehouse__editIcon from "../../assets/Icons/edit-24px.svg";
 import { useState, useEffect } from "react";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import { baseUrl } from "../../utils";
 
 function Warehouse() {
     const [warehouses, setWarehouses] = useState([]);
@@ -22,7 +23,7 @@ function Warehouse() {
 
     async function getAllWarehouseData() {
         try {
-            const { data } = await axios.get(`http://localhost:8080/api/warehouses`);
+            const { data } = await axios.get(`${baseUrl}/api/warehouses`);
 
             setWarehouses(data);
         } catch (error) {
@@ -34,10 +35,12 @@ function Warehouse() {
         if (!itemSelected) return;
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/warehouses/${itemSelected.id}`
+                `${baseUrl}/api/warehouses/${itemSelected.id}`
             );
             setWarehouses((previousWhList) => {
-                return previousWhList.filter((warehouse) => warehouse.id !== itemSelected.id);
+                return previousWhList.filter(
+                    (warehouse) => warehouse.id !== itemSelected.id
+                );
             });
             setIsOpen(false);
         } catch (error) {
@@ -134,7 +137,10 @@ function Warehouse() {
                                         to={`/warehouse/${warehouse.id}`}
                                         className="warehouse-list__link"
                                     >
-                                        <p className="warehouse-list__text" id="warehousenamecolor">
+                                        <p
+                                            className="warehouse-list__text"
+                                            id="warehousenamecolor"
+                                        >
                                             {warehouse.warehouse_name}
                                         </p>
                                         <img
@@ -156,7 +162,9 @@ function Warehouse() {
                                         )}
                                     </p>
 
-                                    <p className="warehouse-list__text">{warehouse.contact_name}</p>
+                                    <p className="warehouse-list__text">
+                                        {warehouse.contact_name}
+                                    </p>
                                 </div>
                                 <div className="warehouse-list__content">
                                     <p className="warehouse-list__label ">
@@ -199,9 +207,13 @@ function Warehouse() {
                                         className="warehouse-list__icon"
                                         src={warehouse__deleteIcon}
                                         alt="delete icon"
-                                        onClick={() => handleModalClick(warehouse)}
+                                        onClick={() =>
+                                            handleModalClick(warehouse)
+                                        }
                                     />
-                                    <Link to={`/warehouse/${warehouse.id}/edit`}>
+                                    <Link
+                                        to={`/warehouse/${warehouse.id}/edit`}
+                                    >
                                         <img
                                             className="warehouse-list__icon"
                                             src={warehouse__editIcon}
